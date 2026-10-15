@@ -1,4 +1,4 @@
-import {initializeBlock} from '@airtable/blocks/interface/ui';
+import {initializeBlock} from '@airtable/blocks/base/ui';
 import './style.css';
 
 function HelloWorldApp() {
@@ -45,4 +45,4 @@ function HelloWorldApp() {
     );
 }
 
-initializeBlock({interface: () => <HelloWorldApp />});
+initializeBlock(() => <HelloWorldApp />);

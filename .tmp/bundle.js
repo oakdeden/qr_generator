@@ -1109,7 +1109,7 @@
           return dispatcher;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React8 = require_react(), Internals = {
+        var React10 = require_react(), Internals = {
           d: {
             f: noop,
             r: function() {
@@ -1127,7 +1127,7 @@
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
@@ -2347,7 +2347,7 @@
         }
         function flattenOptionChildren(children) {
           var content = "";
-          React8.Children.forEach(children, function(child) {
+          React10.Children.forEach(children, function(child) {
             null != child && (content += child, didWarnInvalidOptionChildren || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || (didWarnInvalidOptionChildren = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             )));
@@ -4342,7 +4342,7 @@
         function basicStateReducer(state, action) {
           return "function" === typeof action ? action(state) : action;
         }
-        function useReducer(reducer, initialArg, init) {
+        function useReducer2(reducer, initialArg, init) {
           reducer !== basicStateReducer && (currentHookNameInDev = "useReducer");
           currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
           workInProgressHook = createWorkInProgressHook();
@@ -4379,7 +4379,7 @@
           );
           return [workInProgressHook.memoizedState, reducer];
         }
-        function useMemo2(nextCreate, deps) {
+        function useMemo3(nextCreate, deps) {
           currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
           workInProgressHook = createWorkInProgressHook();
           deps = void 0 === deps ? null : deps;
@@ -7778,7 +7778,7 @@
             );
           return result;
         }
-        var React8 = require_react(), ReactDOM2 = require_react_dom(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_SCOPE_TYPE = Symbol.for("react.scope"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden"), REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, ASYNC_ITERATOR = Symbol.asyncIterator, REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), isArrayImpl = Array.isArray, jsxPropsParents = /* @__PURE__ */ new WeakMap(), jsxChildrenParents = /* @__PURE__ */ new WeakMap(), CLIENT_REFERENCE_TAG = Symbol.for("react.client.reference"), assign = Object.assign, hasOwnProperty = Object.prototype.hasOwnProperty, VALID_ATTRIBUTE_NAME_REGEX = RegExp(
+        var React10 = require_react(), ReactDOM2 = require_react_dom(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_SCOPE_TYPE = Symbol.for("react.scope"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden"), REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, ASYNC_ITERATOR = Symbol.asyncIterator, REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), isArrayImpl = Array.isArray, jsxPropsParents = /* @__PURE__ */ new WeakMap(), jsxChildrenParents = /* @__PURE__ */ new WeakMap(), CLIENT_REFERENCE_TAG = Symbol.for("react.client.reference"), assign = Object.assign, hasOwnProperty = Object.prototype.hasOwnProperty, VALID_ATTRIBUTE_NAME_REGEX = RegExp(
           "^[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"
         ), illegalAttributeNameCache = {}, validatedAttributeNameCache = {}, unitlessNumbers = new Set(
           "animationIterationCount aspectRatio borderImageOutset borderImageSlice borderImageWidth boxFlex boxFlexGroup boxOrdinalGroup columnCount columns flex flexGrow flexPositive flexShrink flexNegative flexOrder gridArea gridRow gridRowEnd gridRowSpan gridRowStart gridColumn gridColumnEnd gridColumnSpan gridColumnStart fontWeight lineClamp lineHeight opacity order orphans scale tabSize widows zIndex zoom fillOpacity floodOpacity stopOpacity strokeDasharray strokeDashoffset strokeMiterlimit strokeOpacity strokeWidth MozAnimationIterationCount MozBoxFlex MozBoxFlexGroup MozLineClamp msAnimationIterationCount msFlex msZoom msFlexGrow msFlexNegative msFlexOrder msFlexPositive msFlexShrink msGridColumn msGridColumnSpan msGridRow msGridRowSpan WebkitAnimationIterationCount WebkitBoxFlex WebKitBoxFlexGroup WebkitBoxOrdinalGroup WebkitColumnCount WebkitColumns WebkitFlex WebkitFlexGrow WebkitFlexPositive WebkitFlexShrink WebkitLineClamp".split(
@@ -8429,7 +8429,7 @@
           "^(aria)-[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"
         ), rARIACamel = RegExp(
           "^(aria)[A-Z][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"
-        ), badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/, msPattern$1 = /^-ms-/, hyphenPattern = /-(.)/g, badStyleValueWithSemicolonPattern = /;\s*$/, warnedStyleNames = {}, warnedStyleValues = {}, warnedForNaNValue = false, warnedForInfinityValue = false, matchHtmlRegExp = /["'&<>]/, uppercasePattern = /([A-Z])/g, msPattern = /^ms-/, isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i, ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        ), badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/, msPattern$1 = /^-ms-/, hyphenPattern = /-(.)/g, badStyleValueWithSemicolonPattern = /;\s*$/, warnedStyleNames = {}, warnedStyleValues = {}, warnedForNaNValue = false, warnedForInfinityValue = false, matchHtmlRegExp = /["'&<>]/, uppercasePattern = /([A-Z])/g, msPattern = /^ms-/, isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i, ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -8705,8 +8705,8 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
             resolveCurrentlyRenderingComponent();
             return context._currentValue2;
           },
-          useMemo: useMemo2,
-          useReducer,
+          useMemo: useMemo3,
+          useReducer: useReducer2,
           useRef: function(initialValue) {
             currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
             workInProgressHook = createWorkInProgressHook();
@@ -8715,12 +8715,12 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           },
           useState: function(initialState) {
             currentHookNameInDev = "useState";
-            return useReducer(basicStateReducer, initialState);
+            return useReducer2(basicStateReducer, initialState);
           },
           useInsertionEffect: noop,
           useLayoutEffect: noop,
           useCallback: function(callback, deps) {
-            return useMemo2(function() {
+            return useMemo3(function() {
               return callback;
             }, deps);
           },
@@ -10078,7 +10078,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         }
         function flattenOptionChildren(children) {
           var content = "";
-          React8.Children.forEach(children, function(child) {
+          React10.Children.forEach(children, function(child) {
             null != child && (content += child, didWarnInvalidOptionChildren || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || (didWarnInvalidOptionChildren = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             )));
@@ -11973,7 +11973,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         function basicStateReducer(state, action) {
           return "function" === typeof action ? action(state) : action;
         }
-        function useReducer(reducer, initialArg, init) {
+        function useReducer2(reducer, initialArg, init) {
           reducer !== basicStateReducer && (currentHookNameInDev = "useReducer");
           currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
           workInProgressHook = createWorkInProgressHook();
@@ -12010,7 +12010,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           );
           return [workInProgressHook.memoizedState, reducer];
         }
-        function useMemo2(nextCreate, deps) {
+        function useMemo3(nextCreate, deps) {
           currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
           workInProgressHook = createWorkInProgressHook();
           deps = void 0 === deps ? null : deps;
@@ -15627,13 +15627,13 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           return trackedPostpones;
         }
         function ensureCorrectIsomorphicReactVersion() {
-          var isomorphicReactPackageVersion = React8.version;
+          var isomorphicReactPackageVersion = React10.version;
           if ("19.3.1" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.3.1\nLearn more: https://react.dev/warnings/version-mismatch")
             );
         }
-        var React8 = require_react(), ReactDOM2 = require_react_dom(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_SCOPE_TYPE = Symbol.for("react.scope"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden"), REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, ASYNC_ITERATOR = Symbol.asyncIterator, REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), isArrayImpl = Array.isArray, jsxPropsParents = /* @__PURE__ */ new WeakMap(), jsxChildrenParents = /* @__PURE__ */ new WeakMap(), CLIENT_REFERENCE_TAG = Symbol.for("react.client.reference"), hasOwnProperty = Object.prototype.hasOwnProperty, channel = new MessageChannel(), taskQueue = [];
+        var React10 = require_react(), ReactDOM2 = require_react_dom(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_SCOPE_TYPE = Symbol.for("react.scope"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden"), REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, ASYNC_ITERATOR = Symbol.asyncIterator, REACT_OPTIMISTIC_KEY = Symbol.for("react.optimistic_key"), isArrayImpl = Array.isArray, jsxPropsParents = /* @__PURE__ */ new WeakMap(), jsxChildrenParents = /* @__PURE__ */ new WeakMap(), CLIENT_REFERENCE_TAG = Symbol.for("react.client.reference"), hasOwnProperty = Object.prototype.hasOwnProperty, channel = new MessageChannel(), taskQueue = [];
         channel.port1.onmessage = function() {
           var task = taskQueue.shift();
           task && task();
@@ -16294,7 +16294,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           "^(aria)-[:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"
         ), rARIACamel = RegExp(
           "^(aria)[A-Z][:A-Z_a-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD\\-.0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040]*$"
-        ), badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/, msPattern$1 = /^-ms-/, hyphenPattern = /-(.)/g, badStyleValueWithSemicolonPattern = /;\s*$/, warnedStyleNames = {}, warnedStyleValues = {}, warnedForNaNValue = false, warnedForInfinityValue = false, matchHtmlRegExp = /["'&<>]/, uppercasePattern = /([A-Z])/g, msPattern = /^ms-/, isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i, ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        ), badVendoredStyleNamePattern = /^(?:webkit|moz|o)[A-Z]/, msPattern$1 = /^-ms-/, hyphenPattern = /-(.)/g, badStyleValueWithSemicolonPattern = /;\s*$/, warnedStyleNames = {}, warnedStyleValues = {}, warnedForNaNValue = false, warnedForInfinityValue = false, matchHtmlRegExp = /["'&<>]/, uppercasePattern = /([A-Z])/g, msPattern = /^ms-/, isJavaScriptProtocol = /^[\u0000-\u001F ]*j[\r\n\t]*a[\r\n\t]*v[\r\n\t]*a[\r\n\t]*s[\r\n\t]*c[\r\n\t]*r[\r\n\t]*i[\r\n\t]*p[\r\n\t]*t[\r\n\t]*:/i, ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -16621,8 +16621,8 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
             resolveCurrentlyRenderingComponent();
             return context._currentValue;
           },
-          useMemo: useMemo2,
-          useReducer,
+          useMemo: useMemo3,
+          useReducer: useReducer2,
           useRef: function(initialValue) {
             currentlyRenderingComponent = resolveCurrentlyRenderingComponent();
             workInProgressHook = createWorkInProgressHook();
@@ -16631,12 +16631,12 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           },
           useState: function(initialState) {
             currentHookNameInDev = "useState";
-            return useReducer(basicStateReducer, initialState);
+            return useReducer2(basicStateReducer, initialState);
           },
           useInsertionEffect: noop,
           useLayoutEffect: noop,
           useCallback: function(callback, deps) {
-            return useMemo2(function() {
+            return useMemo3(function() {
               return callback;
             }, deps);
           },
@@ -16985,6 +16985,12 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
     return spawnErrorWithOriginOmittedFromStackTrace(errorMessageFormat, errorMessageArgs, spawnError);
   }
+  function logErrorToSentry(errorMessage, metadata) {
+    const blocksErrorReporter = window.blocksErrorReporter;
+    if (blocksErrorReporter?.reportWarning) {
+      blocksErrorReporter.reportWarning(errorMessage, metadata);
+    }
+  }
   function invariant(condition, errorMessageFormat) {
     if (!condition) {
       for (var _len2 = arguments.length, errorMessageArgs = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
@@ -16992,6 +16998,11 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
       }
       throw spawnErrorWithOriginOmittedFromStackTrace(errorMessageFormat, errorMessageArgs, invariant);
     }
+  }
+  function spawnUnknownSwitchCaseError(valueDescription, providedValue, key) {
+    const providedValueKey = providedValue[key];
+    const providedValueKeyString = providedValueKey !== null && providedValueKey !== void 0 ? providedValueKey : "null";
+    return spawnErrorWithOriginOmittedFromStackTrace("Unknown value %s for %s", [providedValueKeyString, valueDescription], spawnUnknownSwitchCaseError);
   }
   var init_error_utils = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/error_utils.js"() {
@@ -17019,49 +17030,45 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/types/airtable_interface.js
+  // node_modules/@airtable/blocks/dist/esm/base/types/airtable_interface.js
   var BlockRunContextType;
   var init_airtable_interface2 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/types/airtable_interface.js"() {
-      BlockRunContextType = /* @__PURE__ */ (function(BlockRunContextType3) {
-        BlockRunContextType3["PAGE_ELEMENT_IN_QUERY_CONTAINER"] = "pageElementInQueryContainer";
-        return BlockRunContextType3;
+    "node_modules/@airtable/blocks/dist/esm/base/types/airtable_interface.js"() {
+      BlockRunContextType = /* @__PURE__ */ (function(BlockRunContextType2) {
+        BlockRunContextType2["DASHBOARD_APP"] = "dashboardApp";
+        BlockRunContextType2["VIEW"] = "view";
+        return BlockRunContextType2;
       })({});
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/assert_run_context.js
+  // node_modules/@airtable/blocks/dist/esm/base/assert_run_context.js
   var init_assert_run_context = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/assert_run_context.js"() {
+    "node_modules/@airtable/blocks/dist/esm/base/assert_run_context.js"() {
       init_airtable_interface();
       init_error_utils();
       init_airtable_interface2();
       if (window.__getAirtableInterfaceAtVersion) {
         const runContextType = getAirtableInterface().sdkInitData.runContext.type;
-        if (runContextType !== BlockRunContextType.PAGE_ELEMENT_IN_QUERY_CONTAINER) {
-          throw spawnError("Unexpected import when running block in base");
+        if (runContextType !== BlockRunContextType.DASHBOARD_APP && runContextType !== BlockRunContextType.VIEW) {
+          throw spawnError("Unexpected import when running block in interface");
         }
       }
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/warning.js
-  function __injectSdkIntoWarning(_sdk) {
-    sdk = _sdk;
-  }
-  var sdk;
-  var init_warning = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/warning.js"() {
-    }
-  });
-
   // node_modules/@airtable/blocks/dist/esm/shared/ui/sdk_context.js
-  var React, SdkContext;
+  var React, SdkContext, useSdk;
   var init_sdk_context = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/sdk_context.js"() {
       React = __toESM(require_react(), 1);
       init_error_utils();
       SdkContext = /* @__PURE__ */ React.createContext(null);
+      useSdk = () => {
+        const sdk4 = React.useContext(SdkContext);
+        invariant(sdk4, "This component can only be used in a block. Make sure to use `initializeBlock` at the root of this component tree.");
+        return sdk4;
+      };
     }
   });
 
@@ -17075,6 +17082,9 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/private_utils.js
+  function cast(x) {
+    return x;
+  }
   function cloneDeep(obj) {
     const jsonString = JSON.stringify(obj);
     if (jsonString === void 0) {
@@ -17125,8 +17135,18 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
   function keys(obj) {
     return Object.keys(obj);
   }
+  function values(obj) {
+    return Object.values(obj);
+  }
   function entries(obj) {
     return Object.entries(obj);
+  }
+  function fireAndForgetPromise(fn) {
+    fn().catch((err) => {
+      setTimeout(() => {
+        throw err;
+      }, 0);
+    });
   }
   function has(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);
@@ -17152,6 +17172,13 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
     return null;
   }
+  function assertEnumValue(enumObj, valueToCheck) {
+    const enumValue = getEnumValueIfExists(enumObj, valueToCheck);
+    if (!enumValue) {
+      throw spawnError("Unknown enum value %s", valueToCheck);
+    }
+    return enumValue;
+  }
   function isEnumValue(enumObj, valueToCheck) {
     return getEnumValueIfExists(enumObj, valueToCheck) !== null;
   }
@@ -17162,6 +17189,15 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
       }
     }
     return true;
+  }
+  function compact(array) {
+    const result = [];
+    for (const item of array) {
+      if (item !== null && item !== void 0) {
+        result.push(item);
+      }
+    }
+    return result;
   }
   function getLocallyUniqueId() {
     let prefix = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : "";
@@ -17186,6 +17222,25 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
       currentValue = has(currentValue, part) ? currentValue[part] : void 0;
     }
     return currentValue;
+  }
+  function arrayDifference(a, b) {
+    const bSet = new Set(b);
+    return a.filter((item) => !bSet.has(item));
+  }
+  function debounce(fn, timeoutMs) {
+    let lastTimeoutId = null;
+    return function() {
+      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+      if (lastTimeoutId !== null) {
+        clearTimeout(lastTimeoutId);
+      }
+      lastTimeoutId = setTimeout(() => {
+        lastTimeoutId = null;
+        fn(...args);
+      }, timeoutMs);
+    };
   }
   var invertedEnumCache, idCount, plainObjectPrototype;
   var init_private_utils = __esm({
@@ -17330,6 +17385,436 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
+  // node_modules/@airtable/blocks/dist/esm/base/ui/global_css_helpers.js
+  var SPIN_SCALE_ANIMATION_NAME, BUTTON_LINK_CLASS_NAME, spinScaleKeyframesStyle, buttonLinkStyle, getCssContentToAddToHead;
+  var init_global_css_helpers = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/global_css_helpers.js"() {
+      SPIN_SCALE_ANIMATION_NAME = `spinScale_${Math.random().toString(36).substring(2, 11)}`;
+      BUTTON_LINK_CLASS_NAME = `buttonLink_${Math.random().toString(36).substring(2, 11)}`;
+      spinScaleKeyframesStyle = `
+    @keyframes ${SPIN_SCALE_ANIMATION_NAME} {
+        0% {
+            transform: rotate(0) scale(1);
+        }
+        50% {
+            transform: rotate(360deg) scale(0.9);
+        }
+        100% {
+            transform: rotate(720deg) scale(1);
+        }
+    }
+`;
+      buttonLinkStyle = `
+    .${BUTTON_LINK_CLASS_NAME} {
+        cursor: pointer;
+        padding-bottom: 0.14rem;
+        border-bottom: 2px solid hsla(0, 0%, 0%, 0.1);
+    }
+    .${BUTTON_LINK_CLASS_NAME}:hover {
+        opacity: 1;
+    }
+`;
+      getCssContentToAddToHead = () => {
+        return `${spinScaleKeyframesStyle}
+${buttonLinkStyle}`;
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/global_alert.js
+  var React2, WatchableGlobalAlertKeys, GlobalAlertInfo, GlobalAlert, global_alert_default;
+  var init_global_alert = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/global_alert.js"() {
+      React2 = __toESM(require_react(), 1);
+      init_private_utils();
+      init_watchable();
+      init_sdk_context();
+      init_global_css_helpers();
+      WatchableGlobalAlertKeys = Object.freeze({
+        __alertInfo: "__alertInfo"
+      });
+      GlobalAlertInfo = () => {
+        const sdk4 = useSdk();
+        return /* @__PURE__ */ React2.createElement("span", {
+          style: {
+            textAlign: "center",
+            lineHeight: 1.5,
+            fontWeight: 500
+          }
+        }, /* @__PURE__ */ React2.createElement("span", {
+          className: BUTTON_LINK_CLASS_NAME,
+          onClick: () => {
+            sdk4.reload();
+          }
+        }, "Please reload"));
+      };
+      GlobalAlert = class extends watchable_default {
+        /** @internal */
+        static _className = "GlobalAlert";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableGlobalAlertKeys, key);
+        }
+        /** @internal */
+        /** @hidden */
+        constructor() {
+          super();
+          this._alertInfo = null;
+          Object.seal(this);
+        }
+        /** @internal */
+        get __alertInfo() {
+          return this._alertInfo;
+        }
+        /** */
+        showReloadPrompt() {
+          this._alertInfo = {
+            content: /* @__PURE__ */ React2.createElement(GlobalAlertInfo, null)
+          };
+          this._onChange(WatchableGlobalAlertKeys.__alertInfo);
+        }
+      };
+      global_alert_default = GlobalAlert;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/warning.js
+  function __injectSdkIntoWarning(_sdk) {
+    sdk = _sdk;
+  }
+  var sdk;
+  var init_warning = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/warning.js"() {
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/models/abstract_model.js
+  var AbstractModel, abstract_model_default;
+  var init_abstract_model = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/abstract_model.js"() {
+      init_error_utils();
+      init_watchable();
+      AbstractModel = class extends watchable_default {
+        /** @internal */
+        static _className = "AbstractModel";
+        /**
+         * This method is essentially abstract, but as of this writing, TypeScript
+         * does not support abstract static methods. This necessitates a concrete
+         * implementation which must be explicitly ignored by the test coverage
+         * tooling.
+         *
+         * @internal
+         */
+        // istanbul ignore next
+        static _isWatchableKey(key) {
+          return false;
+        }
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /**
+         * @internal
+         */
+        constructor(sdk4, modelId) {
+          super();
+          invariant(typeof modelId === "string", "%s id should be a string", this.constructor._className);
+          this._sdk = sdk4;
+          this._baseData = sdk4.__airtableInterface.sdkInitData.baseData;
+          this._id = modelId;
+        }
+        /**
+         * The ID for this model.
+         */
+        get id() {
+          return this._id;
+        }
+        /**
+         * @internal
+         */
+        /**
+         * @internal
+         */
+        get _data() {
+          const data = this._dataOrNullIfDeleted;
+          if (data === null) {
+            throw this._spawnErrorForDeletion();
+          }
+          return data;
+        }
+        /**
+         * `true` if the model has been deleted, and `false` otherwise.
+         *
+         * In general, it's best to avoid keeping a reference to an object past the
+         * current event loop, since it may be deleted and trying to access any data
+         * of a deleted object (other than its ID) will throw. But if you keep a
+         * reference, you can use `isDeleted` to check that it's safe to access the
+         * model's data.
+         */
+        get isDeleted() {
+          return this._dataOrNullIfDeleted === null;
+        }
+        /**
+         * @internal
+         */
+        _spawnErrorForDeletion() {
+          return spawnError("%s has been deleted", this.constructor._className);
+        }
+        /**
+         * A string representation of the model for use in debugging.
+         */
+        toString() {
+          return `[${this.constructor._className} ${this.id}]`;
+        }
+      };
+      abstract_model_default = AbstractModel;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/models/abstract_model_with_async_data.js
+  var AbstractModelWithAsyncData;
+  var init_abstract_model_with_async_data = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/abstract_model_with_async_data.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_abstract_model();
+      AbstractModelWithAsyncData = class _AbstractModelWithAsyncData extends abstract_model_default {
+        /** @internal */
+        static __DATA_UNLOAD_DELAY_MS = 1e3;
+        /** @internal */
+        static _shouldLoadDataForKey(key) {
+          return false;
+        }
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /**
+         * This flag is used to keep track of models that have been
+         * forced to unload (regardless of the retain count). The force
+         * unload happens via _forceUnload method and the only proper use
+         * of that function is when the underlying data gets deleted while
+         * the model is still active. e.g. when a table is deleted in the
+         * main extension while an instance of record_store is still alive.
+         * NOTE: Once set to true, it never goes back to false.
+         *
+         * @internal
+         */
+        _isForceUnloaded = false;
+        /** @hidden */
+        constructor(sdk4, modelId) {
+          super(sdk4, modelId);
+          this._isDataLoaded = false;
+          this._pendingDataLoadPromise = null;
+          this._dataRetainCount = 0;
+          this._unloadDataTimeoutId = null;
+        }
+        /**
+         * Watching a key that needs to load data asynchronously will automatically
+         * cause the data to be fetched. Once the data is available, the callback
+         * will be called.
+         *
+         * @inheritdoc
+         */
+        watch(keys2, callback, context) {
+          this._assertNotForceUnloaded();
+          const validKeys = super.watch(keys2, callback, context);
+          for (const key of validKeys) {
+            if (this.constructor._shouldLoadDataForKey(key)) {
+              fireAndForgetPromise(this.loadDataAsync.bind(this));
+            }
+          }
+          return validKeys;
+        }
+        /**
+         * Unwatching a key that needs to load data asynchronously will automatically
+         * cause the data to be released. Once the data is available, the callback
+         * will be called.
+         *
+         * @inheritdoc
+         */
+        unwatch(keys2, callback, context) {
+          const validKeys = super.unwatch(keys2, callback, context);
+          for (const key of validKeys) {
+            if (this.constructor._shouldLoadDataForKey(key)) {
+              this.unloadData();
+            }
+          }
+          return validKeys;
+        }
+        /** @inheritdoc */
+        get isDeleted() {
+          if (this._isForceUnloaded) {
+            return true;
+          }
+          return super.isDeleted;
+        }
+        /** */
+        get isDataLoaded() {
+          if (this.isDeleted) {
+            return false;
+          }
+          return this._isDataLoaded;
+        }
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        // Override this method if your model is dependent on other models.
+        // Do NOT load other models' data from _loadDataAsync, since it can lead to
+        // unexpected behavior.
+        // IMPORTANT: always call super.loadDataAsync() from your override.
+        /**
+         * Will cause all the async data to be fetched and retained. Every call to
+         * `loadDataAsync` should have a matching call to `unloadData`.
+         *
+         * Returns a Promise that will resolve once the data is loaded.
+         */
+        async loadDataAsync() {
+          this._assertNotForceUnloaded();
+          if (this._unloadDataTimeoutId !== null) {
+            clearTimeout(this._unloadDataTimeoutId);
+            this._unloadDataTimeoutId = null;
+          }
+          this._dataRetainCount++;
+          if (this._isDataLoaded) {
+            return;
+          }
+          if (!this._pendingDataLoadPromise) {
+            this._pendingDataLoadPromise = this._loadDataAsync().then((changedKeys) => {
+              this._isDataLoaded = true;
+              this._pendingDataLoadPromise = null;
+              for (const key of changedKeys) {
+                this._onChange(key);
+              }
+              this._onChangeIsDataLoaded();
+              return changedKeys;
+            });
+          }
+          await this._pendingDataLoadPromise;
+        }
+        // Override this method if your model is dependent on other models.
+        // Do NOT unload other models' data from _unloadData, since it can lead to
+        // unexpected behavior.
+        // IMPORTANT: always call super.unloadData() from your override.
+        /** */
+        unloadData() {
+          if (this._isForceUnloaded) {
+            return;
+          }
+          this._dataRetainCount--;
+          if (this._dataRetainCount < 0) {
+            console.warn(`Block ${this.constructor._className} data over-released`);
+            this._dataRetainCount = 0;
+          }
+          if (this._dataRetainCount === 0) {
+            this._unloadDataTimeoutId = setTimeout(() => {
+              invariant(this._dataRetainCount === 0, "Unload data timeout fired with non-zero retain count");
+              this._isDataLoaded = false;
+              this._unloadData();
+              this._onChangeIsDataLoaded();
+            }, _AbstractModelWithAsyncData.__DATA_UNLOAD_DELAY_MS);
+          }
+        }
+        _forceUnload() {
+          while (this._dataRetainCount > 0) {
+            this.unloadData();
+          }
+          this._isForceUnloaded = true;
+        }
+        _assertNotForceUnloaded() {
+          invariant(!this._isForceUnloaded, "model (%s) permanently deleted", this.id);
+        }
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/perform_record_action.js
+  function __injectSdkIntoPerformRecordAction(_sdk) {
+    sdk2 = _sdk;
+  }
+  var WatchablePerformRecordActionKeys, PerformRecordAction, sdk2;
+  var init_perform_record_action = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/perform_record_action.js"() {
+      init_error_utils();
+      init_private_utils();
+      init_abstract_model_with_async_data();
+      WatchablePerformRecordActionKeys = Object.freeze({
+        // isDataLoaded must be a watchable key for a LoadableModel.
+        isDataLoaded: "isDataLoaded",
+        recordActionData: "recordActionData"
+      });
+      PerformRecordAction = class extends AbstractModelWithAsyncData {
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /**
+         * The data from the latest record action, or null if none have occurred yet.
+         *
+         * @internal */
+        /** @hidden */
+        constructor(sdk4, airtableInterface2) {
+          super(sdk4, "performRecordAction");
+          this._airtableInterface = airtableInterface2;
+          this._hasRegisteredHandler = false;
+          this._hasCompletedInitialDataLoad = false;
+          this.recordActionData = null;
+          this._handlePerformRecordAction = this._handlePerformRecordAction.bind(this);
+        }
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchablePerformRecordActionKeys, key);
+        }
+        /** @hidden */
+        _handlePerformRecordAction(data) {
+          this.recordActionData = data;
+          this._onChange(WatchablePerformRecordActionKeys.recordActionData, data);
+        }
+        /**
+         * This accessor method is defined solely to satisfy the contract of the
+         * AbstractModel class.
+         *
+         * @internal */
+        get _dataOrNullIfDeleted() {
+          return invariant(false, "The `data` property of PerformRecordAction should not be referenced");
+        }
+        /**
+         * This accessor method is defined because the parent implementation uses _dataOrNullIfDeleted
+         *
+         * @inheritdoc */
+        get isDeleted() {
+          return false;
+        }
+        /**
+         * AbstractModelWithAsyncData implementation
+         */
+        /** @internal */
+        _onChangeIsDataLoaded() {
+          this._onChange(WatchablePerformRecordActionKeys.isDataLoaded);
+          if (!this._hasCompletedInitialDataLoad) {
+            this._hasCompletedInitialDataLoad = true;
+            if (this.recordActionData) {
+              this._handlePerformRecordAction(this.recordActionData);
+            }
+          }
+        }
+        /** @internal */
+        async _loadDataAsync() {
+          if (!this._hasRegisteredHandler) {
+            this._hasRegisteredHandler = true;
+            this.recordActionData = await this._airtableInterface.fetchAndSubscribeToPerformRecordActionAsync(this._handlePerformRecordAction);
+          }
+          return [];
+        }
+        /** @internal */
+        _unloadData() {
+        }
+        /** @internal */
+        static _shouldLoadDataForKey(key) {
+          return key === WatchablePerformRecordActionKeys.recordActionData;
+        }
+      };
+    }
+  });
+
   // node_modules/@airtable/blocks/dist/esm/shared/types/mutations_core.js
   var MutationTypesCore;
   var init_mutations_core = __esm({
@@ -17364,11 +17849,11 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         /**
          * @internal
          */
-        constructor(initialKvValuesByKey, sdk3) {
+        constructor(initialKvValuesByKey, sdk4) {
           super();
           this._kvStore = initialKvValuesByKey;
-          this._sdk = sdk3;
-          this._airtableInterface = sdk3.__airtableInterface;
+          this._sdk = sdk4;
+          this._airtableInterface = sdk4.__airtableInterface;
         }
         /**
          * @internal
@@ -17767,555 +18252,306 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/models/abstract_model.js
-  var AbstractModel, abstract_model_default;
-  var init_abstract_model = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/models/abstract_model.js"() {
-      init_error_utils();
+  // node_modules/@airtable/blocks/dist/esm/base/viewport.js
+  var WatchableViewportKeys, compareWithNulls, Viewport, viewport_default;
+  var init_viewport = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/viewport.js"() {
       init_watchable();
-      AbstractModel = class extends watchable_default {
-        /** @internal */
-        static _className = "AbstractModel";
-        /**
-         * This method is essentially abstract, but as of this writing, TypeScript
-         * does not support abstract static methods. This necessitates a concrete
-         * implementation which must be explicitly ignored by the test coverage
-         * tooling.
-         *
-         * @internal
-         */
-        // istanbul ignore next
-        static _isWatchableKey(key) {
-          return false;
-        }
-        /** @internal */
-        /** @internal */
-        /** @internal */
-        /**
-         * @internal
-         */
-        constructor(sdk3, modelId) {
-          super();
-          invariant(typeof modelId === "string", "%s id should be a string", this.constructor._className);
-          this._sdk = sdk3;
-          this._baseData = sdk3.__airtableInterface.sdkInitData.baseData;
-          this._id = modelId;
-        }
-        /**
-         * The ID for this model.
-         */
-        get id() {
-          return this._id;
-        }
-        /**
-         * @internal
-         */
-        /**
-         * @internal
-         */
-        get _data() {
-          const data = this._dataOrNullIfDeleted;
-          if (data === null) {
-            throw this._spawnErrorForDeletion();
-          }
-          return data;
-        }
-        /**
-         * `true` if the model has been deleted, and `false` otherwise.
-         *
-         * In general, it's best to avoid keeping a reference to an object past the
-         * current event loop, since it may be deleted and trying to access any data
-         * of a deleted object (other than its ID) will throw. But if you keep a
-         * reference, you can use `isDeleted` to check that it's safe to access the
-         * model's data.
-         */
-        get isDeleted() {
-          return this._dataOrNullIfDeleted === null;
-        }
-        /**
-         * @internal
-         */
-        _spawnErrorForDeletion() {
-          return spawnError("%s has been deleted", this.constructor._className);
-        }
-        /**
-         * A string representation of the model for use in debugging.
-         */
-        toString() {
-          return `[${this.constructor._className} ${this.id}]`;
-        }
-      };
-      abstract_model_default = AbstractModel;
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/shared/models/session_core.js
-  var WatchableSessionKeys, SessionCore;
-  var init_session_core = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/models/session_core.js"() {
-      init_error_utils();
       init_private_utils();
-      init_abstract_model();
-      WatchableSessionKeys = Object.freeze({
-        permissionLevel: "permissionLevel",
-        // NOTE: the current user's identity will never change, but their name/email/profile pic/etc. can.
-        currentUser: "currentUser"
+      init_error_utils();
+      WatchableViewportKeys = Object.freeze({
+        isFullscreen: "isFullscreen",
+        size: "size",
+        minSize: "minSize",
+        maxFullscreenSize: "maxFullscreenSize"
       });
-      SessionCore = class extends abstract_model_default {
+      compareWithNulls = (a, b, compare) => {
+        if (a !== null && b !== null) {
+          return compare(a, b);
+        }
+        if (a === null) {
+          return b;
+        }
+        if (b === null) {
+          return a;
+        }
+        return null;
+      };
+      Viewport = class extends watchable_default {
         /** @internal */
-        static _className = "SessionCore";
+        static _className = "Viewport";
         /** @internal */
         static _isWatchableKey(key) {
-          return isEnumValue(WatchableSessionKeys, key);
+          return isEnumValue(WatchableViewportKeys, key);
         }
         /** @internal */
         /** @internal */
-        /**
-         * @internal
-         */
-        constructor(sdk3) {
-          super(sdk3, "session");
-          this._airtableInterface = sdk3.__airtableInterface;
-          const {
-            permissionLevel,
-            currentUserId,
-            enabledFeatureNames
-          } = this._airtableInterface.sdkInitData.baseData;
-          this._sessionData = {
-            permissionLevel,
-            currentUserId,
-            enabledFeatureNames
-          };
-          Object.seal(this);
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        _minSizes = /* @__PURE__ */ new Set();
+        /** @internal */
+        _maxFullscreenSizes = /* @__PURE__ */ new Set();
+        /** @internal */
+        _cachedMaxFullscreenSize = null;
+        /** @internal */
+        _cachedMinSize = null;
+        /** @internal */
+        constructor(isFullscreen, airtableInterface2) {
+          super();
+          this._isFullscreen = isFullscreen;
+          this._airtableInterface = airtableInterface2;
+          this._sizeWatchCount = 0;
+          this._onSizeChangeDebounced = debounce(this._onSizeChange.bind(this), 200);
+          this.watch(WatchableViewportKeys.maxFullscreenSize, () => {
+            this._airtableInterface.setFullscreenMaxSize(this.maxFullscreenSize);
+          });
         }
         /**
-         * @internal
-         */
-        get _dataOrNullIfDeleted() {
-          return this._sessionData;
-        }
-        /**
-         * The current user, or `null` if the extension is running in a publicly shared base.
+         * Request to enter fullscreen mode.
          *
-         * @example
-         * ```js
-         * import {useSession} from '@airtable/blocks/[placeholder-path]/ui';
-         *
-         * function CurrentUser() {
-         *     const session = useSession();
-         *
-         *     if (!session.currentUser) {
-         *         return <div>This extension is being used in a public share.</div>;
-         *     }
-         *
-         *     return <ul>
-         *         <li>ID: {session.currentUser.id}</li>
-         *         <li>E-mail: {session.currentUser.email}</li>
-         *         <li>Name: {session.currentUser.name}</li>
-         *     </ul>;
-         * }
-         * ```
+         * May fail if another extension is fullscreen or this extension doesn't have
+         * permission to fullscreen itself. Watch `isFullscreen` to know if the
+         * request succeeded.
          */
-        get currentUser() {
-          const userId = this._sessionData.currentUserId;
-          if (!userId) {
-            return null;
-          } else {
-            const {
-              base
-            } = this._sdk;
-            return base.getCollaboratorByIdIfExists(userId);
-          }
+        enterFullscreenIfPossible() {
+          this._airtableInterface.enterFullscreen();
+        }
+        /** Request to exit fullscreen mode */
+        exitFullscreen() {
+          this._airtableInterface.exitFullscreen();
         }
         /**
-         * Returns true if `featureName` is enabled and automatically tracks an exposure.
+         * The maximum dimensions of the extension when it is in
+         * fullscreen mode. Returns the smallest set of dimensions added with
+         * {@link addMaxFullscreenSize}.
          *
-         * @internal
+         * If `width` or `height` is null, it means there is
+         * no max size constraint on that dimension. If `maxFullscreenSize` would be
+         * smaller than {@link minSize}, it is constrained to be at least `minSize`.
          */
-        __isFeatureEnabled(featureName) {
-          this._airtableInterface.trackExposure(featureName);
-          return this.__peekIfFeatureIsEnabled(featureName);
-        }
-        /**
-         * Returns true if `featureName` is enabled; does not track an exposure.
-         *
-         * @internal
-         */
-        __peekIfFeatureIsEnabled(featureName) {
-          return this._sessionData.enabledFeatureNames.includes(featureName);
-        }
-        /**
-         * @internal
-         */
-        __applyChangesWithoutTriggeringEvents(changes) {
-          const changedKeys = {
-            [WatchableSessionKeys.permissionLevel]: false,
-            [WatchableSessionKeys.currentUser]: false
-          };
-          for (const {
-            path,
-            value
-          } of changes) {
-            if (path[0] === "permissionLevel") {
-              invariant(path.length === 1, "cannot set within permissionLevel");
-              invariant(typeof value === "string", "permissionLevel must be a string");
-              this._sessionData.permissionLevel = value;
-              changedKeys[WatchableSessionKeys.permissionLevel] = true;
-            }
-            if (path[0] === "collaboratorsById") {
-              changedKeys[WatchableSessionKeys.currentUser] = true;
-            }
-          }
-          return changedKeys;
-        }
-        /**
-         * @internal
-         */
-        __triggerOnChangeForChangedKeys(changedKeys) {
-          for (const [key, didChange] of entries(changedKeys)) {
-            if (didChange) {
-              this._onChange(key);
-            }
-          }
-        }
-      };
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/models/session.js
-  var Session;
-  var init_session = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/session.js"() {
-      init_session_core();
-      Session = class extends SessionCore {
-      };
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/shared/models/mutations_core.js
-  var MUTATIONS_MAX_BATCH_SIZE, MUTATIONS_MAX_BODY_SIZE, MUTATION_HOLD_FOR_MS, MutationsCore;
-  var init_mutations_core2 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/models/mutations_core.js"() {
-      init_mutations_core();
-      init_error_utils();
-      init_private_utils();
-      MUTATIONS_MAX_BATCH_SIZE = 50;
-      MUTATIONS_MAX_BODY_SIZE = 1.9 * 1024 * 1024;
-      MUTATION_HOLD_FOR_MS = 100;
-      MutationsCore = class {
-        /** @internal */
-        /** @internal */
-        /** @internal */
-        /** @internal */
-        /** @internal */
-        /** @internal */
-        /** @hidden */
-        constructor(sdk3, session, base, applyModelChanges, applyGlobalConfigUpdates) {
-          this._airtableInterface = sdk3.__airtableInterface;
-          this._session = session;
-          this._sdk = sdk3;
-          this._base = base;
-          this._applyModelChanges = applyModelChanges;
-          this._applyGlobalConfigUpdates = applyGlobalConfigUpdates;
-        }
-        /** @hidden */
-        async applyMutationAsync(mutation) {
-          this._assertMutationIsValid(mutation);
-          this._assertMutationUnderLimits(mutation);
-          const permissionCheck = this.checkPermissionsForMutation(mutation);
-          if (!permissionCheck.hasPermission) {
-            throw spawnError("Cannot apply %s mutation: %s", mutation.type, permissionCheck.reasonDisplayString);
-          }
-          const didApplyOptimisticUpdates = this._applyOptimisticUpdatesForMutation(mutation);
-          try {
-            await this._getAirtableInterfaceAsAirtableInterfaceCore().applyMutationAsync(mutation, {
-              holdForMs: MUTATION_HOLD_FOR_MS
+        get maxFullscreenSize() {
+          if (!this._cachedMaxFullscreenSize) {
+            const maxFullscreenSize = Array.from(this._maxFullscreenSizes).reduce((memo, size) => ({
+              width: compareWithNulls(memo.width, size.width, Math.min),
+              height: compareWithNulls(memo.height, size.height, Math.min)
+            }), {
+              width: null,
+              height: null
             });
-          } catch (err) {
-            if (didApplyOptimisticUpdates) {
-              setTimeout(() => {
-                throw err;
-              }, 0);
-              await new Promise(() => {
-              });
-            } else {
-              throw err;
-            }
+            const minSize = this.minSize;
+            this._cachedMaxFullscreenSize = {
+              width: maxFullscreenSize.width !== null && minSize.width !== null ? Math.max(maxFullscreenSize.width, minSize.width) : maxFullscreenSize.width,
+              height: maxFullscreenSize.height !== null && minSize.height !== null ? Math.max(maxFullscreenSize.height, minSize.height) : maxFullscreenSize.height
+            };
           }
+          return this._cachedMaxFullscreenSize;
         }
-        /** @hidden */
-        checkPermissionsForMutation(mutation) {
-          return this._getAirtableInterfaceAsAirtableInterfaceCore().checkPermissionsForMutation(mutation, this._base.__getBaseData());
-        }
-        // Not really sure why this is necessary. It seems like all callsites could just use
-        // this._airtableInterface directly, but TS complains.
-        /** @hidden */
-        _getAirtableInterfaceAsAirtableInterfaceCore() {
-          return this._airtableInterface;
-        }
-        /** @internal */
-        _assertMutationUnderLimits(mutation) {
-          if (encodeURIComponent(JSON.stringify(mutation)).length > MUTATIONS_MAX_BODY_SIZE) {
-            throw spawnError("Request exceeds maximum size limit of %s bytes", MUTATIONS_MAX_BODY_SIZE);
-          }
-          if (this._doesMutationExceedBatchSizeLimit(mutation)) {
-            throw spawnError("Request exceeds maximum batch size limit of %s items", MUTATIONS_MAX_BATCH_SIZE);
-          }
-        }
-        /** @internal */
-        _applyOptimisticUpdatesForMutation(mutation) {
-          if (mutation.type === MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS) {
-            const _mutation = mutation;
-            this._applyGlobalConfigUpdates(_mutation.updates);
-            return true;
-          }
-          const modelChanges = this._getOptimisticModelChangesForMutation(mutation);
-          if (modelChanges.length > 0) {
-            this._applyModelChanges(modelChanges);
-            return true;
-          }
-          return false;
-        }
-        /** @internal */
-        _doesMutationExceedBatchSizeLimit(mutation) {
-          switch (mutation.type) {
-            case MutationTypesCore.SET_MULTIPLE_RECORDS_CELL_VALUES:
-            case MutationTypesCore.CREATE_MULTIPLE_RECORDS:
-              return mutation.records.length > MUTATIONS_MAX_BATCH_SIZE;
-            case MutationTypesCore.DELETE_MULTIPLE_RECORDS:
-              return mutation.recordIds.length > MUTATIONS_MAX_BATCH_SIZE;
-            case MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS:
-              return mutation.updates.length > MUTATIONS_MAX_BATCH_SIZE;
-            // The "default" case cannot be reached because this method is only
-            // invoked after the mutation type has been validated.
-            // istanbul ignore next
-            default:
-              return false;
-          }
-        }
-        /** @internal */
-        _assertFieldIsValidForMutation(field) {
-          if (field.isComputed) {
-            throw spawnError("Can't set cell values: Field '%s' is computed and cannot be set", field.name);
-          }
-        }
-        /** @internal */
-        _assertMutationIsValid(mutation) {
-          const appInterface = this._sdk.__appInterface;
-          switch (mutation.type) {
-            case MutationTypesCore.SET_MULTIPLE_RECORDS_CELL_VALUES: {
-              const {
-                tableId,
-                records
-              } = mutation;
-              const table = this._base.getTableByIdIfExists(tableId);
-              if (!table) {
-                throw spawnError("Can't set cell values: No table with id %s exists", tableId);
-              }
-              const recordStore = this._base.__getRecordStore(tableId);
-              const checkedFieldIds = /* @__PURE__ */ new Set();
-              for (const record of records) {
-                let existingRecord = null;
-                if (this._isRecordStoreReadyForMutations(recordStore)) {
-                  existingRecord = recordStore.getRecordByIdIfExists(record.id);
-                  if (!existingRecord) {
-                    throw spawnError("Can't set cell values: No record with id %s exists", record.id);
-                  }
-                }
-                for (const fieldId of Object.keys(record.cellValuesByFieldId)) {
-                  const field = table.getFieldByIdIfExists(fieldId);
-                  if (!field) {
-                    throw spawnError("Can't set cell values: No field with id %s exists in table '%s'", fieldId, table.name);
-                  }
-                  if (!checkedFieldIds.has(fieldId)) {
-                    this._assertFieldIsValidForMutation(field);
-                    checkedFieldIds.add(fieldId);
-                  }
-                  if (existingRecord && this._isFieldAvailableForMutation(recordStore, field.id)) {
-                    const validationResult = this._airtableInterface.fieldTypeProvider.validateCellValueForUpdate(appInterface, record.cellValuesByFieldId[fieldId], existingRecord._getRawCellValue(field), field._data);
-                    if (!validationResult.isValid) {
-                      throw spawnError("Can't set cell values: invalid cell value for field '%s'.\n%s", field.name, validationResult.reason);
-                    }
-                  }
-                }
-              }
-              return;
-            }
-            case MutationTypesCore.DELETE_MULTIPLE_RECORDS: {
-              const {
-                tableId,
-                recordIds
-              } = mutation;
-              const table = this._base.getTableByIdIfExists(tableId);
-              if (!table) {
-                throw spawnError("Can't delete records: No table with id %s exists", tableId);
-              }
-              const recordStore = this._base.__getRecordStore(tableId);
-              if (this._isRecordStoreReadyForMutations(recordStore)) {
-                for (const recordId of recordIds) {
-                  const record = recordStore.getRecordByIdIfExists(recordId);
-                  if (!record) {
-                    throw spawnError("Can't delete records: No record with id %s exists in table '%s'", recordId, table.name);
-                  }
-                }
-              }
-              return;
-            }
-            case MutationTypesCore.CREATE_MULTIPLE_RECORDS: {
-              const {
-                tableId,
-                records
-              } = mutation;
-              const checkedFieldIds = /* @__PURE__ */ new Set();
-              const table = this._base.getTableByIdIfExists(tableId);
-              if (!table) {
-                throw spawnError("Can't create records: No table with id %s exists", tableId);
-              }
-              for (const record of records) {
-                for (const fieldId of Object.keys(record.cellValuesByFieldId)) {
-                  const field = table.getFieldByIdIfExists(fieldId);
-                  if (!field) {
-                    throw spawnError("Can't create records: No field with id %s exists in table '%s'", fieldId, table.name);
-                  }
-                  if (!checkedFieldIds.has(fieldId)) {
-                    this._assertFieldIsValidForMutation(field);
-                    checkedFieldIds.add(fieldId);
-                  }
-                  const validationResult = this._airtableInterface.fieldTypeProvider.validateCellValueForUpdate(appInterface, record.cellValuesByFieldId[fieldId], null, field._data);
-                  if (!validationResult.isValid) {
-                    throw spawnError("Can't create records: invalid cell value for field '%s'.\n%s", field.name, validationResult.reason);
-                  }
-                }
-              }
-              return;
-            }
-            case MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS: {
-              return;
-            }
-            default:
-              throw spawnError("unhandled mutation type: %s", mutation.type);
-          }
-        }
-        /** @internal */
-        _getOptimisticModelChangesForMutation(mutation) {
-          switch (mutation.type) {
-            case MutationTypesCore.SET_MULTIPLE_RECORDS_CELL_VALUES: {
-              const {
-                tableId,
-                records
-              } = mutation;
-              const recordStore = this._base.__getRecordStore(tableId);
-              return records.flatMap((record) => Object.keys(record.cellValuesByFieldId).filter((fieldId) => this._isFieldAvailableForMutation(recordStore, fieldId)).map((fieldId) => ({
-                path: ["tablesById", tableId, "recordsById", record.id, "cellValuesByFieldId", fieldId],
-                value: record.cellValuesByFieldId[fieldId]
-              })));
-            }
-            case MutationTypesCore.DELETE_MULTIPLE_RECORDS: {
-              const {
-                tableId,
-                recordIds
-              } = mutation;
-              return recordIds.map((recordId) => ({
-                path: ["tablesById", tableId, "recordsById", recordId],
-                value: void 0
-              }));
-            }
-            case MutationTypesCore.CREATE_MULTIPLE_RECORDS: {
-              const {
-                tableId,
-                records
-              } = mutation;
-              const recordStore = this._base.__getRecordStore(tableId);
-              return records.map((record) => {
-                const filteredCellValuesByFieldId = {};
-                for (const [fieldId, cellValue] of entries(record.cellValuesByFieldId)) {
-                  if (this._isFieldAvailableForMutation(recordStore, fieldId)) {
-                    filteredCellValuesByFieldId[fieldId] = cellValue;
-                  }
-                }
-                return {
-                  path: ["tablesById", tableId, "recordsById", record.id],
-                  value: __spreadProps(__spreadValues({}, this._getDefaultRecordProperties()), {
-                    id: record.id,
-                    cellValuesByFieldId: filteredCellValuesByFieldId
-                  })
-                };
-              });
-            }
-            // The following branch is unreachable because this method's only
-            // call site is preceded by an explicit guard for this condition.
-            // istanbul ignore next
-            case MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS: {
-              throw spawnError("attempting to generate model updates for SET_MULTIPLE_GLOBAL_CONFIG_PATH");
-            }
-            // The following branch is unreachable because this method's only
-            // call site is preceded by an explicit guard for this condition.
-            // istanbul ignore next
-            default:
-              throw spawnError("unhandled mutation type: %s", mutation.type);
-          }
-        }
-        /** @internal */
-        /** @internal */
-        /** @internal */
-      };
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/types/mutations.js
-  var MutationTypes;
-  var init_mutations = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/types/mutations.js"() {
-      init_mutations_core();
-      MutationTypes = Object.freeze(__spreadValues({}, MutationTypesCore));
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/models/mutations.js
-  var Mutations;
-  var init_mutations2 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/mutations.js"() {
-      init_mutations_core2();
-      init_mutations();
-      Mutations = class extends MutationsCore {
-        /** @internal */
-        _isRecordStoreReadyForMutations() {
-          return true;
-        }
-        /** @internal */
-        _isFieldAvailableForMutation() {
-          return true;
-        }
-        /** @internal */
-        _getDefaultRecordProperties() {
-          return {
-            createdTime: (/* @__PURE__ */ new Date()).toJSON()
+        /**
+         * Add a maximum fullscreen size constraint. Use `.maxFullscreenSize` to get
+         * the aggregate of all added constraints.
+         *
+         * Returns a function that can be called to remove the fullscreen size constraint that was added.
+         *
+         * @param sizeConstraint The width and height constraints to add. Both
+         * `width` and `height` are optional - if either is set to null, that means
+         * there is no max size in that dimension.
+         */
+        addMaxFullscreenSize(sizeConstraint) {
+          const {
+            width,
+            height
+          } = sizeConstraint;
+          const size = Object.freeze({
+            width: typeof width === "number" ? width : null,
+            height: typeof height === "number" ? height : null
+          });
+          this._cachedMaxFullscreenSize = null;
+          this._maxFullscreenSizes.add(size);
+          this._onChange(WatchableViewportKeys.maxFullscreenSize);
+          return () => {
+            invariant(this._maxFullscreenSizes.has(size), "UnsetFn can only be called once");
+            this._cachedMaxFullscreenSize = null;
+            this._maxFullscreenSizes.delete(size);
+            this._onChange(WatchableViewportKeys.maxFullscreenSize);
           };
         }
-        /** @internal */
-        _getOptimisticModelChangesForMutation(mutation) {
-          switch (mutation.type) {
-            case MutationTypes.CREATE_MULTIPLE_RECORDS: {
-              return super._getOptimisticModelChangesForMutation(mutation);
+        /**
+         * The minimum dimensions of the extension - if the viewport gets smaller than this
+         * size, an overlay will be shown asking the user to resize the extension to be bigger.
+         *
+         * The largest set of dimensions added with addMinSize. If `width` or `height` is null, it means
+         * there is no minSize constraint on that dimension.
+         */
+        get minSize() {
+          if (!this._cachedMinSize) {
+            this._cachedMinSize = Array.from(this._minSizes).reduce((memo, size) => ({
+              width: compareWithNulls(memo.width, size.width, Math.max),
+              height: compareWithNulls(memo.height, size.height, Math.max)
+            }), {
+              width: null,
+              height: null
+            });
+          }
+          return this._cachedMinSize;
+        }
+        /**
+         * Add a minimum frame size constraint. Use `.minSize`` to get the aggregate
+         * of all added constraints.
+         *
+         * Upon adding a constraint, if the extension is focused and the frame is smaller than the
+         * minimum size, the extension will enter fullscreen mode.
+         *
+         * Returns a function that can be called to remove the  size constraint that was added.
+         *
+         * @param sizeConstraint The width and height constraints to add. Both `width`
+         * and `height` are optional - if either is set to null, that means there is
+         * no min size in that dimension.
+         */
+        addMinSize(sizeConstraint) {
+          const {
+            width,
+            height
+          } = sizeConstraint;
+          const size = Object.freeze({
+            width: typeof width === "number" ? width : null,
+            height: typeof height === "number" ? height : null
+          });
+          this._cachedMinSize = null;
+          this._cachedMaxFullscreenSize = null;
+          this._minSizes.add(size);
+          this._onChange(WatchableViewportKeys.minSize);
+          this._onChange(WatchableViewportKeys.maxFullscreenSize);
+          if (this.isSmallerThanMinSize) {
+            this.enterFullscreenIfPossible();
+          }
+          return () => {
+            invariant(this._minSizes.has(size), "UnsetFn can only be called once");
+            this._cachedMinSize = null;
+            this._cachedMaxFullscreenSize = null;
+            this._minSizes.delete(size);
+            this._onChange(WatchableViewportKeys.minSize);
+            this._onChange(WatchableViewportKeys.maxFullscreenSize);
+          };
+        }
+        /**
+         * `true` if the extension frame is smaller than `minSize`, `false` otherwise.
+         */
+        get isSmallerThanMinSize() {
+          const {
+            width,
+            height
+          } = this.size;
+          const isWidthTooSmall = this.minSize.width !== null && this.minSize.width > width;
+          const isHeightTooSmall = this.minSize.height !== null && this.minSize.height > height;
+          return isWidthTooSmall || isHeightTooSmall;
+        }
+        /**
+         * `true` if the extension is fullscreen, `false` otherwise.
+         */
+        get isFullscreen() {
+          return this._isFullscreen;
+        }
+        /**
+         * The current size of the extension frame.
+         *
+         * Can be watched.
+         */
+        get size() {
+          return {
+            width: window.innerWidth,
+            height: window.innerHeight
+          };
+        }
+        /**
+         * Get notified of changes to the viewport.
+         *
+         * Watchable keys are:
+         * - `'isFullscreen'`
+         * - `'size'`
+         * - `'minSize'`
+         * - `'maxFullscreenSize'`
+         *
+         * Every call to `.watch` should have a matching call to `.unwatch`.
+         *
+         * Returns the array of keys that were watched.
+         *
+         * @param keys the keys to watch
+         * @param callback a function to call when those keys change
+         * @param context an optional context for `this` in `callback`.
+         */
+        watch(keys2, callback, context) {
+          const validKeys = super.watch(keys2, callback, context);
+          if (validKeys.includes(WatchableViewportKeys.size)) {
+            if (this._sizeWatchCount === 0) {
+              window.addEventListener("resize", this._onSizeChangeDebounced, false);
             }
-            case MutationTypes.DELETE_MULTIPLE_RECORDS: {
-              const {
-                tableId,
-                recordIds: deletedRecordIds
-              } = mutation;
-              const recordStore = this._base.__getRecordStore(tableId);
-              const deletedRecordIdsSet = new Set(deletedRecordIds);
-              return [{
-                path: ["tablesById", tableId, "recordOrder"],
-                value: recordStore.recordIds.filter((recordId) => !deletedRecordIdsSet.has(recordId))
-              }, ...super._getOptimisticModelChangesForMutation(mutation)];
-            }
-            default: {
-              return super._getOptimisticModelChangesForMutation(mutation);
+            this._sizeWatchCount++;
+          }
+          return validKeys;
+        }
+        /**
+         * Unwatch keys watched with `.watch`.
+         *
+         * Should be called with the same arguments given to `.watch`.
+         *
+         * Returns the array of keys that were unwatched
+         *
+         * @param keys the keys to unwatch
+         * @param callback the function passed to `.watch` for these keys
+         * @param context the context that was passed to `.watch` for this `callback`
+         */
+        unwatch(keys2, callback, context) {
+          const validKeys = super.unwatch(keys2, callback, context);
+          if (validKeys.includes(WatchableViewportKeys.size)) {
+            this._sizeWatchCount--;
+            if (this._sizeWatchCount === 0) {
+              window.removeEventListener("resize", this._onSizeChangeDebounced, false);
             }
           }
+          return validKeys;
+        }
+        /**
+         * @internal
+         */
+        __onEnterFullscreen() {
+          this._isFullscreen = true;
+          this._onChange(WatchableViewportKeys.isFullscreen);
+          this._onChange(WatchableViewportKeys.size);
+        }
+        /**
+         * @internal
+         */
+        __onExitFullscreen() {
+          this._isFullscreen = false;
+          this._onChange(WatchableViewportKeys.isFullscreen);
+          this._onChange(WatchableViewportKeys.size);
+        }
+        /**
+         * @internal
+         */
+        __focus() {
+          const {
+            body,
+            activeElement
+          } = document;
+          if (activeElement && activeElement !== body) {
+            activeElement.focus();
+          } else if (body) {
+            const input = document.createElement("input");
+            body.appendChild(input);
+            input.focus();
+            input.remove();
+          }
+        }
+        /**
+         * @internal
+         */
+        _onSizeChange() {
+          this._onChange(WatchableViewportKeys.size);
         }
       };
+      viewport_default = Viewport;
     }
   });
 
@@ -18349,10 +18585,10 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         /**
          * @internal
          */
-        constructor(sdk3) {
-          super(sdk3, sdk3.__airtableInterface.sdkInitData.baseData.id);
+        constructor(sdk4) {
+          super(sdk4, sdk4.__airtableInterface.sdkInitData.baseData.id);
           this._tableModelsById = {};
-          this.__billingPlanGrouping = sdk3.__airtableInterface.sdkInitData.baseData.billingPlanGrouping;
+          this.__billingPlanGrouping = sdk4.__airtableInterface.sdkInitData.baseData.billingPlanGrouping;
         }
         /**
          * Aliased to communicate stability for internal use by Sdk code.
@@ -18751,6 +18987,147 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
+  // node_modules/@airtable/blocks/dist/esm/base/types/mutations.js
+  var MutationTypes;
+  var init_mutations = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/types/mutations.js"() {
+      init_mutations_core();
+      MutationTypes = Object.freeze(__spreadProps(__spreadValues({}, MutationTypesCore), {
+        CREATE_SINGLE_FIELD: "createSingleField",
+        UPDATE_SINGLE_FIELD_CONFIG: "updateSingleFieldConfig",
+        UPDATE_SINGLE_FIELD_DESCRIPTION: "updateSingleFieldDescription",
+        UPDATE_SINGLE_FIELD_NAME: "updateSingleFieldName",
+        CREATE_SINGLE_TABLE: "createSingleTable",
+        UPDATE_VIEW_METADATA: "updateViewMetadata"
+      }));
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/models/record_store_core.js
+  var WatchableRecordStoreKeysCore, WatchableCellValuesInFieldKeyPrefix, RecordStoreCore, record_store_core_default;
+  var init_record_store_core = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/record_store_core.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_abstract_model();
+      WatchableRecordStoreKeysCore = Object.freeze({
+        records: "records",
+        recordIds: "recordIds",
+        cellValues: "cellValues"
+      });
+      WatchableCellValuesInFieldKeyPrefix = "cellValuesInField:";
+      RecordStoreCore = class extends abstract_model_default {
+        static _className = "RecordStoreCore";
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableRecordStoreKeysCore, key) || key.startsWith(WatchableCellValuesInFieldKeyPrefix);
+        }
+        _recordModelsById = {};
+        constructor(sdk4, tableId) {
+          super(sdk4, `${tableId}-RecordStore`);
+          this.tableId = tableId;
+        }
+        get _dataOrNullIfDeleted() {
+          return this._baseData.tablesById[this.tableId] ?? null;
+        }
+        watch(keys2, callback, context) {
+          const validKeys = super.watch(keys2, callback, context);
+          return validKeys;
+        }
+        unwatch(keys2, callback, context) {
+          const validKeys = super.unwatch(keys2, callback, context);
+          return validKeys;
+        }
+        /**
+         * The records in this table.
+         */
+        get records() {
+          const recordsById = this._data.recordsById;
+          invariant(recordsById, "Record metadata is not loaded");
+          const records = this.recordIds.map((recordId) => {
+            const record = this.getRecordByIdIfExists(recordId);
+            invariant(record, "record not found");
+            return record;
+          });
+          return records;
+        }
+        /**
+         * The record IDs in this table.
+         */
+        getRecordByIdIfExists(recordId) {
+          const recordsById = this._data.recordsById;
+          invariant(recordsById, "Record metadata is not loaded");
+          invariant(typeof recordId === "string", "getRecordById expects a string");
+          if (!recordsById[recordId]) {
+            return null;
+          } else {
+            if (this._recordModelsById[recordId]) {
+              return this._recordModelsById[recordId];
+            }
+            const newRecord = this._constructRecord(recordId, this._sdk.base.getTableById(this.tableId));
+            this._recordModelsById[recordId] = newRecord;
+            return newRecord;
+          }
+        }
+        triggerOnChangeForDirtyPaths(dirtyPaths) {
+          if (dirtyPaths.recordsById) {
+            const dirtyFieldIdsSet = {};
+            const addedRecordIds = [];
+            const removedRecordIds = [];
+            for (const [recordId, dirtyRecordPaths] of entries(dirtyPaths.recordsById)) {
+              if (dirtyRecordPaths && dirtyRecordPaths._isDirty) {
+                invariant(this._data.recordsById, "No recordsById");
+                if (has(this._data.recordsById, recordId)) {
+                  addedRecordIds.push(recordId);
+                } else {
+                  removedRecordIds.push(recordId);
+                  const recordModel = this._recordModelsById[recordId];
+                  if (recordModel) {
+                    delete this._recordModelsById[recordId];
+                  }
+                }
+              } else {
+                const recordModel = this._recordModelsById[recordId];
+                if (recordModel) {
+                  recordModel.__triggerOnChangeForDirtyPaths(dirtyRecordPaths);
+                }
+              }
+              const {
+                cellValuesByFieldId
+              } = dirtyRecordPaths;
+              if (cellValuesByFieldId) {
+                for (const fieldId of Object.keys(cellValuesByFieldId)) {
+                  dirtyFieldIdsSet[fieldId] = true;
+                }
+              }
+            }
+            if (addedRecordIds.length > 0 || removedRecordIds.length > 0) {
+              this._onChange(WatchableRecordStoreKeysCore.records, {
+                addedRecordIds,
+                removedRecordIds
+              });
+              this._onChange(WatchableRecordStoreKeysCore.recordIds, {
+                addedRecordIds,
+                removedRecordIds
+              });
+            }
+            const fieldIds = Object.freeze(Object.keys(dirtyFieldIdsSet));
+            const recordIds = Object.freeze(Object.keys(dirtyPaths.recordsById));
+            if (fieldIds.length > 0 && recordIds.length > 0) {
+              this._onChange(WatchableRecordStoreKeysCore.cellValues, {
+                recordIds,
+                fieldIds
+              });
+            }
+            for (const fieldId of fieldIds) {
+              this._onChange(WatchableCellValuesInFieldKeyPrefix + fieldId, recordIds, fieldId);
+            }
+          }
+        }
+      };
+      record_store_core_default = RecordStoreCore;
+    }
+  });
+
   // node_modules/@airtable/blocks/dist/esm/shared/types/field_core.js
   var FieldType;
   var init_field_core = __esm({
@@ -18821,8 +19198,8 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         /**
          * @internal
          */
-        constructor(sdk3, parentTable, fieldId) {
-          super(sdk3, fieldId);
+        constructor(sdk4, parentTable, fieldId) {
+          super(sdk4, fieldId);
           this._parentTable = parentTable;
           this._cachedFieldTypeConfigOrNull = null;
         }
@@ -19046,6 +19423,2522 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
+  // node_modules/@airtable/blocks/dist/esm/shared/models/record_core.js
+  var WatchableRecordKeysCore, WatchableCellValueInFieldKeyPrefix, RecordCore;
+  var init_record_core = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/record_core.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_field_core();
+      init_abstract_model();
+      init_field_core2();
+      WatchableRecordKeysCore = Object.freeze({
+        name: "name",
+        // TODO(kasra): these keys don't have matching getters (not that they should
+        // it's just inconsistent...)
+        cellValues: "cellValues"
+      });
+      WatchableCellValueInFieldKeyPrefix = "cellValueInField:";
+      RecordCore = class extends abstract_model_default {
+        /** @internal */
+        static _className = "RecordCore";
+        /** @internal */
+        /** @internal */
+        /**
+         * @internal
+         */
+        constructor(sdk4, parentRecordStore, parentTable, recordId) {
+          super(sdk4, recordId);
+          this._parentRecordStore = parentRecordStore;
+          this._parentTable = parentTable;
+        }
+        /**
+         * @internal
+         */
+        get _dataOrNullIfDeleted() {
+          const tableData = this._baseData.tablesById[this.parentTable.id];
+          if (!tableData) {
+            return null;
+          }
+          const recordsById = tableData.recordsById;
+          invariant(recordsById, "Record data is not loaded");
+          return recordsById[this._id] ?? null;
+        }
+        /**
+         * The primary cell value in this record, formatted as a `string`.
+         *
+         * @example
+         * ```js
+         * console.log(myRecord.name);
+         * // => '42'
+         * ```
+         */
+        get name() {
+          return this.getCellValueAsString(this.parentTable.primaryField);
+        }
+        /**
+         * The created time of this record.
+         *
+         * @example
+         * ```js
+         * console.log(`
+         *     This record was created at ${myRecord.createdTime.toISOString()}
+         * `);
+         * ```
+         */
+        get createdTime() {
+          return new Date(this._data.createdTime);
+        }
+        /**
+         * The table that this record belongs to. Should never change because records aren't moved between tables.
+         *
+         * @internal (since we may not be able to return parent model instances in the immutable models world)
+         * @example
+         * ```js
+         * import {useRecords} from '@airtable/blocks/base/ui';
+         * const records = useRecords(myTable);
+         * console.log(records[0].parentTable.id === myTable.id);
+         * // => true
+         * ```
+         */
+        get parentTable() {
+          return this._parentTable;
+        }
+        /**
+         * @internal
+         */
+        _getFieldMatching(fieldOrFieldIdOrFieldName) {
+          if (fieldOrFieldIdOrFieldName instanceof FieldCore) {
+            return this._parentTable.__getFieldMatching(fieldOrFieldIdOrFieldName.id);
+          }
+          return this.parentTable.__getFieldMatching(fieldOrFieldIdOrFieldName);
+        }
+        /**
+         * @internal
+         *
+         * For use when we need the raw public API cell value. Specifically makes a difference
+         * for lookup fields, where we translate the format to a blocks-specific format in getCellValue.
+         * That format is incompatible with fieldTypeProvider methods, which expect the public API
+         * format - use _getRawCellValue instead.
+         */
+        _getRawCellValue(field) {
+          const {
+            cellValuesByFieldId
+          } = this._data;
+          if (!cellValuesByFieldId) {
+            return null;
+          }
+          const cellValue = cellValuesByFieldId[field.id] !== void 0 ? cellValuesByFieldId[field.id] : null;
+          if (typeof cellValue === "object" && cellValue !== null) {
+            return cloneDeep(cellValue);
+          } else {
+            return cellValue;
+          }
+        }
+        /**
+         * Gets the cell value of the given field for this record.
+         *
+         * @param fieldOrFieldIdOrFieldName The field (or field ID or field name) whose cell value you'd like to get.
+         * @example
+         * ```js
+         * const cellValue = myRecord.getCellValue(mySingleLineTextField);
+         * console.log(cellValue);
+         * // => 'cell value'
+         * ```
+         */
+        getCellValue(fieldOrFieldIdOrFieldName) {
+          const field = this._getFieldMatching(fieldOrFieldIdOrFieldName);
+          const cellValue = this._getRawCellValue(field);
+          if (typeof cellValue === "object" && cellValue !== null && field.type === FieldType.MULTIPLE_LOOKUP_VALUES && !this._sdk.__airtableInterface.sdkInitData.isUsingNewLookupCellValueFormat) {
+            const cellValueForMigration = [];
+            invariant(Array.isArray(cellValue.linkedRecordIds), "linkedRecordIds");
+            for (const linkedRecordId of cellValue.linkedRecordIds) {
+              invariant(typeof linkedRecordId === "string", "linkedRecordId");
+              const {
+                valuesByLinkedRecordId
+              } = cellValue;
+              invariant(valuesByLinkedRecordId && typeof valuesByLinkedRecordId === "object", "valuesByLinkedRecordId");
+              const value = valuesByLinkedRecordId[linkedRecordId];
+              if (Array.isArray(value)) {
+                for (const v of value) {
+                  cellValueForMigration.push({
+                    linkedRecordId,
+                    value: v
+                  });
+                }
+              } else {
+                cellValueForMigration.push({
+                  linkedRecordId,
+                  value
+                });
+              }
+            }
+            return cellValueForMigration;
+          }
+          return cellValue;
+        }
+        /**
+         * Gets the cell value of the given field for this record, formatted as a `string`.
+         *
+         * @param fieldOrFieldIdOrFieldName The field (or field ID or field name) whose cell value you'd like to get.
+         * @example
+         * ```js
+         * const stringValue = myRecord.getCellValueAsString(myNumberField);
+         * console.log(stringValue);
+         * // => '42'
+         * ```
+         */
+        getCellValueAsString(fieldOrFieldIdOrFieldName) {
+          const field = this._getFieldMatching(fieldOrFieldIdOrFieldName);
+          const cellValue = this._getRawCellValue(field);
+          if (cellValue === null || cellValue === void 0) {
+            return "";
+          } else {
+            const airtableInterface2 = this._sdk.__airtableInterface;
+            const appInterface = this._sdk.__appInterface;
+            return airtableInterface2.fieldTypeProvider.convertCellValueToString(appInterface, cellValue, field._data);
+          }
+        }
+        /**
+         * Returns a URL that is suitable for rendering an attachment on the current client.
+         * The URL that is returned will only work for the current user.
+         *
+         * @param attachmentId The ID of the attachment.
+         * @param attachmentUrl The attachment's URL (which is not suitable for rendering on the client).
+         * @example
+         * ```js
+         * import React from 'react';
+         *
+         * function RecordAttachments(props) {
+         *     const {record, attachmentField} = props;
+         *     const attachmentCellValue = record.getCellValue(attachmentField);
+         *     if (attachmentCellValue === null) {
+         *         return null;
+         *     }
+         *     return (
+         *         <div>
+         *             {attachmentCellValue.map(attachmentObj => {
+         *                 const clientUrl =
+         *                     record.getAttachmentClientUrlFromCellValueUrl(
+         *                         attachmentObj.id,
+         *                         attachmentObj.url
+         *                     );
+         *                 return (
+         *                     <img key={attachmentObj.id} src={clientUrl} width={200} />
+         *                 );
+         *             })}
+         *         </div>
+         *     );
+         * }
+         * ```
+         */
+        getAttachmentClientUrlFromCellValueUrl(attachmentId, attachmentUrl) {
+          const airtableInterface2 = this._sdk.__airtableInterface;
+          const appInterface = this._sdk.__appInterface;
+          return airtableInterface2.urlConstructor.getAttachmentClientUrl(appInterface, attachmentId, attachmentUrl);
+        }
+        /**
+         * @internal
+         */
+        __triggerOnChangeForDirtyPaths(dirtyPaths) {
+          const {
+            cellValuesByFieldId
+          } = dirtyPaths;
+          if (cellValuesByFieldId && !isObjectEmpty(cellValuesByFieldId)) {
+            this._onChange(WatchableRecordKeysCore.cellValues, Object.keys(cellValuesByFieldId));
+            for (const fieldId of Object.keys(cellValuesByFieldId)) {
+              this._onChange(WatchableCellValueInFieldKeyPrefix + fieldId, fieldId);
+            }
+            if (cellValuesByFieldId[this.parentTable.primaryField.id]) {
+              this._onChange(WatchableRecordKeysCore.name);
+            }
+          }
+        }
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/colors.js
+  var Colors, colors_default, rgbTuplesByColor;
+  var init_colors = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/colors.js"() {
+      Colors = {
+        /** @docsPath UI/utils/Colors */
+        BLUE_BRIGHT: "blueBright",
+        /** @docsPath UI/utils/Colors */
+        BLUE_DARK_1: "blueDark1",
+        /** @docsPath UI/utils/Colors */
+        BLUE_LIGHT_1: "blueLight1",
+        /** @docsPath UI/utils/Colors */
+        BLUE_LIGHT_2: "blueLight2",
+        /** @docsPath UI/utils/Colors */
+        BLUE: "blue",
+        /** @docsPath UI/utils/Colors */
+        CYAN_BRIGHT: "cyanBright",
+        /** @docsPath UI/utils/Colors */
+        CYAN_DARK_1: "cyanDark1",
+        /** @docsPath UI/utils/Colors */
+        CYAN_LIGHT_1: "cyanLight1",
+        /** @docsPath UI/utils/Colors */
+        CYAN_LIGHT_2: "cyanLight2",
+        /** @docsPath UI/utils/Colors */
+        CYAN: "cyan",
+        /** @docsPath UI/utils/Colors */
+        GRAY_BRIGHT: "grayBright",
+        /** @docsPath UI/utils/Colors */
+        GRAY_DARK_1: "grayDark1",
+        /** @docsPath UI/utils/Colors */
+        GRAY_LIGHT_1: "grayLight1",
+        /** @docsPath UI/utils/Colors */
+        GRAY_LIGHT_2: "grayLight2",
+        /** @docsPath UI/utils/Colors */
+        GRAY: "gray",
+        /** @docsPath UI/utils/Colors */
+        GREEN_BRIGHT: "greenBright",
+        /** @docsPath UI/utils/Colors */
+        GREEN_DARK_1: "greenDark1",
+        /** @docsPath UI/utils/Colors */
+        GREEN_LIGHT_1: "greenLight1",
+        /** @docsPath UI/utils/Colors */
+        GREEN_LIGHT_2: "greenLight2",
+        /** @docsPath UI/utils/Colors */
+        GREEN: "green",
+        /** @docsPath UI/utils/Colors */
+        ORANGE_BRIGHT: "orangeBright",
+        /** @docsPath UI/utils/Colors */
+        ORANGE_DARK_1: "orangeDark1",
+        /** @docsPath UI/utils/Colors */
+        ORANGE_LIGHT_1: "orangeLight1",
+        /** @docsPath UI/utils/Colors */
+        ORANGE_LIGHT_2: "orangeLight2",
+        /** @docsPath UI/utils/Colors */
+        ORANGE: "orange",
+        /** @docsPath UI/utils/Colors */
+        PINK_BRIGHT: "pinkBright",
+        /** @docsPath UI/utils/Colors */
+        PINK_DARK_1: "pinkDark1",
+        /** @docsPath UI/utils/Colors */
+        PINK_LIGHT_1: "pinkLight1",
+        /** @docsPath UI/utils/Colors */
+        PINK_LIGHT_2: "pinkLight2",
+        /** @docsPath UI/utils/Colors */
+        PINK: "pink",
+        /** @docsPath UI/utils/Colors */
+        PURPLE_BRIGHT: "purpleBright",
+        /** @docsPath UI/utils/Colors */
+        PURPLE_DARK_1: "purpleDark1",
+        /** @docsPath UI/utils/Colors */
+        PURPLE_LIGHT_1: "purpleLight1",
+        /** @docsPath UI/utils/Colors */
+        PURPLE_LIGHT_2: "purpleLight2",
+        /** @docsPath UI/utils/Colors */
+        PURPLE: "purple",
+        /** @docsPath UI/utils/Colors */
+        RED_BRIGHT: "redBright",
+        /** @docsPath UI/utils/Colors */
+        RED_DARK_1: "redDark1",
+        /** @docsPath UI/utils/Colors */
+        RED_LIGHT_1: "redLight1",
+        /** @docsPath UI/utils/Colors */
+        RED_LIGHT_2: "redLight2",
+        /** @docsPath UI/utils/Colors */
+        RED: "red",
+        /** @docsPath UI/utils/Colors */
+        TEAL_BRIGHT: "tealBright",
+        /** @docsPath UI/utils/Colors */
+        TEAL_DARK_1: "tealDark1",
+        /** @docsPath UI/utils/Colors */
+        TEAL_LIGHT_1: "tealLight1",
+        /** @docsPath UI/utils/Colors */
+        TEAL_LIGHT_2: "tealLight2",
+        /** @docsPath UI/utils/Colors */
+        TEAL: "teal",
+        /** @docsPath UI/utils/Colors */
+        YELLOW_BRIGHT: "yellowBright",
+        /** @docsPath UI/utils/Colors */
+        YELLOW_DARK_1: "yellowDark1",
+        /** @docsPath UI/utils/Colors */
+        YELLOW_LIGHT_1: "yellowLight1",
+        /** @docsPath UI/utils/Colors */
+        YELLOW_LIGHT_2: "yellowLight2",
+        /** @docsPath UI/utils/Colors */
+        YELLOW: "yellow"
+      };
+      colors_default = Colors;
+      rgbTuplesByColor = {
+        [Colors.BLUE_BRIGHT]: [45, 127, 249],
+        [Colors.BLUE_DARK_1]: [39, 80, 174],
+        [Colors.BLUE_LIGHT_1]: [156, 199, 255],
+        [Colors.BLUE_LIGHT_2]: [207, 223, 255],
+        [Colors.BLUE]: [18, 131, 218],
+        [Colors.CYAN_BRIGHT]: [24, 191, 255],
+        [Colors.CYAN_DARK_1]: [11, 118, 183],
+        [Colors.CYAN_LIGHT_1]: [119, 209, 243],
+        [Colors.CYAN_LIGHT_2]: [208, 240, 253],
+        [Colors.CYAN]: [1, 169, 219],
+        [Colors.GRAY_BRIGHT]: [102, 102, 102],
+        [Colors.GRAY_DARK_1]: [68, 68, 68],
+        [Colors.GRAY_LIGHT_1]: [204, 204, 204],
+        [Colors.GRAY_LIGHT_2]: [238, 238, 238],
+        [Colors.GRAY]: [102, 102, 102],
+        [Colors.GREEN_BRIGHT]: [32, 201, 51],
+        [Colors.GREEN_DARK_1]: [51, 138, 23],
+        [Colors.GREEN_LIGHT_1]: [147, 224, 136],
+        [Colors.GREEN_LIGHT_2]: [209, 247, 196],
+        [Colors.GREEN]: [17, 175, 34],
+        [Colors.ORANGE_BRIGHT]: [255, 111, 44],
+        [Colors.ORANGE_DARK_1]: [215, 77, 38],
+        [Colors.ORANGE_LIGHT_1]: [255, 169, 129],
+        [Colors.ORANGE_LIGHT_2]: [254, 226, 213],
+        [Colors.ORANGE]: [247, 101, 59],
+        [Colors.PINK_BRIGHT]: [255, 8, 194],
+        [Colors.PINK_DARK_1]: [178, 21, 139],
+        [Colors.PINK_LIGHT_1]: [249, 157, 226],
+        [Colors.PINK_LIGHT_2]: [255, 218, 246],
+        [Colors.PINK]: [233, 41, 186],
+        [Colors.PURPLE_BRIGHT]: [139, 70, 255],
+        [Colors.PURPLE_DARK_1]: [107, 28, 176],
+        [Colors.PURPLE_LIGHT_1]: [205, 176, 255],
+        [Colors.PURPLE_LIGHT_2]: [237, 226, 254],
+        [Colors.PURPLE]: [124, 57, 237],
+        [Colors.RED_BRIGHT]: [248, 43, 96],
+        [Colors.RED_DARK_1]: [186, 30, 69],
+        [Colors.RED_LIGHT_1]: [255, 158, 183],
+        [Colors.RED_LIGHT_2]: [255, 220, 229],
+        [Colors.RED]: [239, 48, 97],
+        [Colors.TEAL_BRIGHT]: [32, 217, 210],
+        [Colors.TEAL_DARK_1]: [6, 160, 155],
+        [Colors.TEAL_LIGHT_1]: [114, 221, 195],
+        [Colors.TEAL_LIGHT_2]: [194, 245, 233],
+        [Colors.TEAL]: [2, 170, 164],
+        [Colors.YELLOW_BRIGHT]: [252, 180, 0],
+        [Colors.YELLOW_DARK_1]: [184, 117, 3],
+        [Colors.YELLOW_LIGHT_1]: [255, 214, 110],
+        [Colors.YELLOW_LIGHT_2]: [255, 234, 182],
+        [Colors.YELLOW]: [224, 141, 0]
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/color_utils.js
+  var colorUtils, color_utils_default;
+  var init_color_utils = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/color_utils.js"() {
+      init_private_utils();
+      init_colors();
+      colorUtils = {
+        getHexForColor: (colorString) => {
+          const color = getEnumValueIfExists(colors_default, colorString);
+          if (!color) {
+            return null;
+          }
+          const rgbTuple = rgbTuplesByColor[color];
+          const hexNumber = rgbTuple[0] << 16 | rgbTuple[1] << 8 | rgbTuple[2];
+          return `#${hexNumber.toString(16).padStart(6, "0")}`;
+        },
+        getRgbForColor: (colorString) => {
+          const color = getEnumValueIfExists(colors_default, colorString);
+          if (!color) {
+            return null;
+          }
+          const rgbTuple = rgbTuplesByColor[color];
+          return {
+            r: rgbTuple[0],
+            g: rgbTuple[1],
+            b: rgbTuple[2]
+          };
+        },
+        shouldUseLightTextOnColor: (colorString) => {
+          if (!has(rgbTuplesByColor, colorString)) {
+            return false;
+          }
+          const shouldUseDarkText = colorString.endsWith("Light1") || colorString.endsWith("Light2");
+          return !shouldUseDarkText;
+        }
+      };
+      color_utils_default = colorUtils;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/models/object_pool.js
+  var WEAK_RETAIN_TIME_MS, ObjectPool;
+  var init_object_pool = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/object_pool.js"() {
+      init_error_utils();
+      WEAK_RETAIN_TIME_MS = 1e4;
+      ObjectPool = class {
+        /** @internal */
+        _objectsByKey = {};
+        /** @internal */
+        _weakObjectsByKey = {};
+        /** @internal */
+        /** @hidden */
+        constructor(ctor) {
+          this._Ctor = ctor;
+        }
+        // we have two different ways we can register an object for reuse - weak and strong. This one,
+        // strong, will make sure that the object is kept in the pool until it is explicitly removed.
+        /** @hidden */
+        registerObjectForReuseStrong(object) {
+          this._unregisterObjectForReuseWeakIfExists(object);
+          const objectKey = object.__poolKey;
+          const pooledObjects = this._objectsByKey[objectKey];
+          if (pooledObjects) {
+            pooledObjects.push(object);
+          } else {
+            this._objectsByKey[objectKey] = [object];
+          }
+        }
+        /** @hidden */
+        unregisterObjectForReuseStrong(object) {
+          const objectKey = object.__poolKey;
+          const pooledObjects = this._objectsByKey[objectKey];
+          invariant(pooledObjects, "pooledObjects");
+          const index = pooledObjects.indexOf(object);
+          invariant(index !== -1, "object not registered");
+          pooledObjects.splice(index, 1);
+          if (pooledObjects.length === 0) {
+            this._objectsByKey[objectKey] = void 0;
+          }
+        }
+        // we have two different ways we can register an object for reuse - weak and strong. This one,
+        // weak, will automatically unregister the object after a few seconds go by without it being
+        // used.
+        /** @hidden */
+        _registerObjectForReuseWeak(object) {
+          const objectKey = object.__poolKey;
+          const pooledObjects = this._weakObjectsByKey[objectKey];
+          const toStore = {
+            object,
+            timeoutId: setTimeout(() => this._unregisterObjectForReuseWeakIfExists(object), WEAK_RETAIN_TIME_MS)
+          };
+          if (pooledObjects) {
+            pooledObjects.push(toStore);
+          } else {
+            this._weakObjectsByKey[objectKey] = [toStore];
+          }
+        }
+        /** @internal */
+        _unregisterObjectForReuseWeakIfExists(object) {
+          const objectKey = object.__poolKey;
+          const pooledObjects = this._weakObjectsByKey[objectKey];
+          if (!pooledObjects) {
+            return false;
+          }
+          const index = pooledObjects.findIndex((stored2) => stored2.object === object);
+          if (index === -1) {
+            return false;
+          }
+          const stored = pooledObjects[index];
+          clearTimeout(stored.timeoutId);
+          pooledObjects.splice(index, 1);
+          if (pooledObjects.length === 0) {
+            this._weakObjectsByKey[objectKey] = void 0;
+          }
+          return true;
+        }
+        /** @internal */
+        _getObjectForReuseStrong(key) {
+          const pooledObjects = this._objectsByKey[key];
+          if (pooledObjects) {
+            for (const object of pooledObjects) {
+              if (object.__poolKey === key) {
+                return object;
+              }
+            }
+          }
+          return null;
+        }
+        /** @internal */
+        _getObjectForReuseWeak(key) {
+          const pooledObjects = this._weakObjectsByKey[key];
+          if (!pooledObjects) {
+            return null;
+          }
+          const stored = pooledObjects.find((_ref) => {
+            let {
+              object: object2
+            } = _ref;
+            return object2.__poolKey === key;
+          });
+          if (!stored) {
+            return null;
+          }
+          const {
+            object,
+            timeoutId
+          } = stored;
+          clearTimeout(timeoutId);
+          stored.timeoutId = setTimeout(() => this._unregisterObjectForReuseWeakIfExists(object), WEAK_RETAIN_TIME_MS);
+          return object;
+        }
+        /** @hidden */
+        getObjectForReuse() {
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          const newObject = new this._Ctor(...args);
+          const key = newObject.__poolKey;
+          const existingObject = this._getObjectForReuseStrong(key) || this._getObjectForReuseWeak(key);
+          if (existingObject) {
+            return existingObject;
+          }
+          this._registerObjectForReuseWeak(newObject);
+          return newObject;
+        }
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/field.js
+  var Field, field_default;
+  var init_field = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/field.js"() {
+      init_field_core2();
+      init_mutations();
+      init_private_utils();
+      Field = class extends FieldCore {
+        /** @internal */
+        static _className = "Field";
+        // The following method is untested because its implementation resists
+        // testing and because it is expected to be redesigned.
+        // istanbul ignore next
+        /**
+         * A list of available aggregators given this field's configuration.
+         *
+         * @example
+         * ```js
+         * const fieldAggregators = myField.availableAggregators;
+         * ```
+         */
+        get availableAggregators() {
+          const airtableInterface2 = this._sdk.__airtableInterface;
+          const availableAggregatorKeysSet = new Set(airtableInterface2.aggregators.getAvailableAggregatorKeysForField(this._data));
+          const base2 = this.parentTable.parentBase;
+          return values(base2.aggregators).filter((aggregator) => {
+            return availableAggregatorKeysSet.has(aggregator.key);
+          });
+        }
+        // The following method is untested because its implementation resists
+        // testing and because it is expected to be redesigned.
+        // istanbul ignore next
+        /**
+         * Checks if the given aggregator is available for this field.
+         *
+         * @param aggregator The aggregator object or aggregator key.
+         * @example
+         * ```js
+         * import {base} from '@airtable/blocks/base';
+         *
+         * const aggregator = base.aggregators.totalAttachmentSize;
+         *
+         * // Using an aggregator object
+         * console.log(myAttachmentField.isAggregatorAvailable(aggregator));
+         * // => true
+         *
+         * // Using an aggregator key
+         * console.log(myTextField.isAggregatorAvailable('totalAttachmentSize'));
+         * // => false
+         * ```
+         */
+        isAggregatorAvailable(aggregator) {
+          const aggregatorKey = typeof aggregator === "string" ? aggregator : aggregator.key;
+          const airtableInterface2 = this._sdk.__airtableInterface;
+          const availableAggregatorKeys = airtableInterface2.aggregators.getAvailableAggregatorKeysForField(this._data);
+          return availableAggregatorKeys.some((key) => key === aggregatorKey);
+        }
+        /**
+         * Checks whether the current user has permission to perform the given name update.
+         *
+         * Accepts partial input, in the same format as {@link updateNameAsync}.
+         *
+         * Returns `{hasPermission: true}` if the current user can update the specified field,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @param name new name for the field
+         *
+         * @example
+         * ```js
+         * const updateFieldCheckResult = field.checkPermissionsForUpdateName();
+         *
+         * if (!updateFieldCheckResult.hasPermission) {
+         *     alert(updateFieldCheckResult.reasonDisplayString);
+         * }
+         * ```
+         */
+        checkPermissionsForUpdateName(name) {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.UPDATE_SINGLE_FIELD_NAME,
+            tableId: this.parentTable.id,
+            id: this.id,
+            name
+          });
+        }
+        /**
+         * An alias for `checkPermissionsForUpdateName(options).hasPermission`.
+         *
+         * Checks whether the current user has permission to perform the name update.
+         *
+         * Accepts partial input, in the same format as {@link updateNameAsync}.
+         *
+         * @param name new name for the field
+         *
+         * @example
+         * ```js
+         * const canUpdateField = field.hasPermissionToUpdateName();
+         *
+         * if (!canUpdateField) {
+         *     alert('not allowed!');
+         * }
+         * ```
+         */
+        hasPermissionToUpdateName(name) {
+          return this.checkPermissionsForUpdateName(name).hasPermission;
+        }
+        /**
+         * Updates the name for this field.
+         *
+         * Throws an error if the user does not have permission to update the field, or if an invalid
+         * name is provided.
+         *
+         * This action is asynchronous. Unlike updates to cell values, updates to field name are
+         * **not** applied optimistically locally. You must `await` the returned promise before
+         * relying on the change in your extension.
+         *
+         * @param name new name for the field
+         *
+         * @example
+         * ```js
+         * await myTextField.updateNameAsync('My New Name');
+         * ```
+         */
+        async updateNameAsync(name) {
+          await this._sdk.__mutations.applyMutationAsync({
+            type: MutationTypes.UPDATE_SINGLE_FIELD_NAME,
+            tableId: this.parentTable.id,
+            id: this.id,
+            name
+          });
+        }
+        /**
+         * Checks whether the current user has permission to perform the given description update.
+         *
+         * Accepts partial input, in the same format as {@link updateDescriptionAsync}.
+         *
+         * Returns `{hasPermission: true}` if the current user can update the specified field,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @param description new description for the field
+         *
+         * @example
+         * ```js
+         * const updateFieldCheckResult = field.checkPermissionsForUpdateDescription();
+         *
+         * if (!updateFieldCheckResult.hasPermission) {
+         *     alert(updateFieldCheckResult.reasonDisplayString);
+         * }
+         * ```
+         */
+        checkPermissionsForUpdateDescription(description) {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.UPDATE_SINGLE_FIELD_DESCRIPTION,
+            tableId: this.parentTable.id,
+            id: this.id,
+            description
+          });
+        }
+        /**
+         * An alias for `checkPermissionsForUpdateDescription(options).hasPermission`.
+         *
+         * Checks whether the current user has permission to perform the description update.
+         *
+         * Accepts partial input, in the same format as {@link updateDescriptionAsync}.
+         *
+         * @param description new description for the field
+         *
+         * @example
+         * ```js
+         * const canUpdateField = field.hasPermissionToUpdateDescription();
+         *
+         * if (!canUpdateField) {
+         *     alert('not allowed!');
+         * }
+         * ```
+         */
+        hasPermissionToUpdateDescription(description) {
+          return this.checkPermissionsForUpdateDescription(description).hasPermission;
+        }
+        /**
+         * Updates the description for this field.
+         *
+         * To remove an existing description, pass `''` as the new description.
+         * `null` is also accepted and will be coerced to `''` for consistency with field creation.
+         *
+         * Throws an error if the user does not have permission to update the field, or if an invalid
+         * description is provided.
+         *
+         * This action is asynchronous. Unlike updates to cell values, updates to field descriptions are
+         * **not** applied optimistically locally. You must `await` the returned promise before
+         * relying on the change in your extension.
+         *
+         * @param description new description for the field
+         *
+         * @example
+         * ```js
+         * await myTextField.updateDescriptionAsync('This is a text field');
+         * ```
+         */
+        async updateDescriptionAsync(description) {
+          await this._sdk.__mutations.applyMutationAsync({
+            type: MutationTypes.UPDATE_SINGLE_FIELD_DESCRIPTION,
+            tableId: this.parentTable.id,
+            id: this.id,
+            description
+          });
+        }
+        /**
+         * Checks whether the current user has permission to perform the given options update.
+         *
+         * Accepts partial input, in the same format as {@link updateOptionsAsync}.
+         *
+         * Returns `{hasPermission: true}` if the current user can update the specified field,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @param options new options for the field
+         *
+         * @example
+         * ```js
+         * const updateFieldCheckResult = field.checkPermissionsForUpdateOptions();
+         *
+         * if (!updateFieldCheckResult.hasPermission) {
+         *     alert(updateFieldCheckResult.reasonDisplayString);
+         * }
+         * ```
+         */
+        checkPermissionsForUpdateOptions(options) {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.UPDATE_SINGLE_FIELD_CONFIG,
+            tableId: this.parentTable.id,
+            id: this.id,
+            config: {
+              type: this.type,
+              options
+            }
+          });
+        }
+        /**
+         * An alias for `checkPermissionsForUpdateOptions(options).hasPermission`.
+         *
+         * Checks whether the current user has permission to perform the options update.
+         *
+         * Accepts partial input, in the same format as {@link updateOptionsAsync}.
+         *
+         * @param options new options for the field
+         *
+         * @example
+         * ```js
+         * const canUpdateField = field.hasPermissionToUpdateOptions();
+         *
+         * if (!canUpdateField) {
+         *     alert('not allowed!');
+         * }
+         * ```
+         */
+        hasPermissionToUpdateOptions(options) {
+          return this.checkPermissionsForUpdateOptions(options).hasPermission;
+        }
+        /**
+         * Updates the options for this field.
+         *
+         * Throws an error if the user does not have permission to update the field, if invalid
+         * options are provided, if this field has no writable options, or if updates to this field
+         * type is not supported.
+         *
+         * Refer to {@link FieldType} for supported field types, the write format for options, and
+         * other specifics for certain field types.
+         *
+         * This action is asynchronous. Unlike updates to cell values, updates to field options are
+         * **not** applied optimistically locally. You must `await` the returned promise before
+         * relying on the change in your extension.
+         *
+         * Optionally, you can pass an `opts` object as the second argument. See {@link UpdateFieldOptionsOpts}
+         * for available options.
+         *
+         * @param options new options for the field
+         * @param opts optional options to affect the behavior of the update
+         *
+         * @example
+         * ```js
+         * async function addChoiceToSelectField(selectField, nameForNewOption) {
+         *     const updatedOptions = {
+         *         choices: [
+         *             ...selectField.options.choices,
+         *             {name: nameForNewOption},
+         *         ]
+         *     };
+         *
+         *     if (selectField.hasPermissionToUpdateOptions(updatedOptions)) {
+         *         await selectField.updateOptionsAsync(updatedOptions);
+         *     }
+         * }
+         * ```
+         */
+        async updateOptionsAsync(options) {
+          let opts = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+          await this._sdk.__mutations.applyMutationAsync({
+            type: MutationTypes.UPDATE_SINGLE_FIELD_CONFIG,
+            tableId: this.parentTable.id,
+            id: this.id,
+            config: {
+              type: this.type,
+              options
+            },
+            opts
+          });
+        }
+      };
+      field_default = Field;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/record_coloring.js
+  var ModeTypes, serialize, modes;
+  var init_record_coloring = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/record_coloring.js"() {
+      ModeTypes = {
+        /**
+         * @alias recordColoring.ModeTypes.NONE
+         */
+        NONE: "none",
+        /**
+         * @alias recordColoring.ModeTypes.BY_SELECT_FIELD
+         */
+        BY_SELECT_FIELD: "bySelectField",
+        /**
+         * @alias recordColoring.ModeTypes.BY_VIEW
+         */
+        BY_VIEW: "byView"
+      };
+      serialize = (mode) => {
+        let result = mode.type;
+        if (mode.type === ModeTypes.BY_SELECT_FIELD) {
+          result += `-${mode.selectField.id}`;
+        } else if (mode.type === ModeTypes.BY_VIEW) {
+          result += `-${mode.view.id}`;
+        }
+        return result;
+      };
+      modes = {
+        /**
+         * Returns a {@link RecordColorMode} that represents no record coloring.
+         *
+         * @alias recordColoring.modes.none
+         */
+        none() {
+          return {
+            type: ModeTypes.NONE
+          };
+        },
+        /**
+         * Returns a {@link RecordColorMode} that colors records by the specified Select field.
+         *
+         * @alias recordColoring.modes.bySelectField
+         * @param selectField
+         */
+        bySelectField(selectField) {
+          return {
+            type: ModeTypes.BY_SELECT_FIELD,
+            selectField
+          };
+        },
+        /**
+         * Returns a {@link RecordColorMode} that colors records by the specified View.
+         *
+         * @alias recordColoring.modes.byView
+         * @param view
+         */
+        byView(view) {
+          return {
+            type: ModeTypes.BY_VIEW,
+            view
+          };
+        }
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/record_query_result.js
+  function _normalizeSortOrGroup(table, sortOrGroup) {
+    const field = table.__getFieldMatching(sortOrGroup.field);
+    if (sortOrGroup.direction !== void 0 && sortOrGroup.direction !== "asc" && sortOrGroup.direction !== "desc") {
+      throw spawnError("Invalid sort direction: %s", sortOrGroup.direction);
+    }
+    return {
+      fieldId: field.id,
+      direction: sortOrGroup.direction ?? "asc"
+    };
+  }
+  function normalizeSortsOrGroups(table, sortsOrGroups) {
+    if (sortsOrGroups === void 0 || sortsOrGroups === null) {
+      return sortsOrGroups;
+    }
+    return sortsOrGroups.map((sortOrGroup) => _normalizeSortOrGroup(table, sortOrGroup));
+  }
+  var WatchableRecordQueryResultKeys, WatchableCellValuesInFieldKeyPrefix2, RecordQueryResult, record_query_result_default;
+  var init_record_query_result = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/record_query_result.js"() {
+      init_colors();
+      init_field_core();
+      init_private_utils();
+      init_error_utils();
+      init_abstract_model_with_async_data();
+      init_field();
+      init_record_coloring();
+      WatchableRecordQueryResultKeys = Object.freeze({
+        records: "records",
+        recordIds: "recordIds",
+        cellValues: "cellValues",
+        recordColors: "recordColors",
+        groups: "groups",
+        groupLevels: "groupLevels",
+        isDataLoaded: "isDataLoaded"
+      });
+      WatchableCellValuesInFieldKeyPrefix2 = "cellValuesInField:";
+      RecordQueryResult = class _RecordQueryResult extends AbstractModelWithAsyncData {
+        // Abstract properties - classes extending QueryResult must override these:
+        /** @internal */
+        static _className = "RecordQueryResult";
+        /**
+         * The record IDs in this QueryResult.
+         * Throws if data is not loaded yet.
+         * Can be watched.
+         */
+        /**
+         * The set of record IDs in this QueryResult.
+         * Throws if data is not loaded yet.
+         *
+         * @internal
+         */
+        /**
+         * The fields that were used to create this QueryResult.
+         * Null if fields were not specified, which means the QueryResult
+         * will load all fields in the table.
+         */
+        /**
+         * @internal (since we may not be able to return parent model instances in the immutable models world)
+         * The table that records in this QueryResult are part of
+         */
+        // provided properties + methods:
+        /** @internal */
+        static WatchableKeys = WatchableRecordQueryResultKeys;
+        /** @internal */
+        static WatchableCellValuesInFieldKeyPrefix = WatchableCellValuesInFieldKeyPrefix2;
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableRecordQueryResultKeys, key) || key.startsWith(WatchableCellValuesInFieldKeyPrefix2);
+        }
+        /** @internal */
+        static _shouldLoadDataForKey(key) {
+          return key === _RecordQueryResult.WatchableKeys.records || key === _RecordQueryResult.WatchableKeys.recordIds || key === _RecordQueryResult.WatchableKeys.cellValues || key === _RecordQueryResult.WatchableKeys.recordColors || key === _RecordQueryResult.WatchableKeys.groups || key === _RecordQueryResult.WatchableKeys.groupLevels || key.startsWith(_RecordQueryResult.WatchableCellValuesInFieldKeyPrefix);
+        }
+        /** @internal */
+        static _normalizeOpts(table, recordStore, opts) {
+          const sorts = normalizeSortsOrGroups(table, opts.sorts) ?? null;
+          let fieldIdsOrNullIfAllFields = null;
+          if (opts.fields) {
+            invariant(Array.isArray(opts.fields), "Must specify an array of fields");
+            fieldIdsOrNullIfAllFields = [];
+            for (const fieldOrFieldIdOrFieldName of opts.fields) {
+              if (!fieldOrFieldIdOrFieldName) {
+                continue;
+              }
+              if (typeof fieldOrFieldIdOrFieldName !== "string" && !(fieldOrFieldIdOrFieldName instanceof field_default)) {
+                throw spawnError("Invalid value for field, expected a field, id, or name but got: %s", fieldOrFieldIdOrFieldName);
+              }
+              const field = table.__getFieldMatching(fieldOrFieldIdOrFieldName);
+              fieldIdsOrNullIfAllFields.push(field.id);
+            }
+          }
+          const recordColorMode = opts.recordColorMode || modes.none();
+          switch (recordColorMode.type) {
+            case ModeTypes.NONE:
+              break;
+            case ModeTypes.BY_SELECT_FIELD:
+              invariant(recordColorMode.selectField.type === FieldType.SINGLE_SELECT, "Invalid field for coloring records by select field: expected a %s, but got a %s", FieldType.SINGLE_SELECT, recordColorMode.selectField.type);
+              invariant(recordColorMode.selectField.parentTable === table, "Invalid field for coloring records by select field: the single select field is not in the same table as the records");
+              if (fieldIdsOrNullIfAllFields) {
+                fieldIdsOrNullIfAllFields.push(recordColorMode.selectField.id);
+              }
+              break;
+            case ModeTypes.BY_VIEW:
+              invariant(recordColorMode.view.parentTable === table, "Invalid view for coloring records from view: the view is not in the same table as the records");
+              break;
+            default:
+              throw spawnError("Unknown record coloring mode type: %s", cast(recordColorMode).type);
+          }
+          invariant(table.id === recordStore.tableId, "record store and table must match");
+          return {
+            sorts,
+            fieldIdsOrNullIfAllFields,
+            recordColorMode,
+            table,
+            recordStore
+          };
+        }
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        _recordColorChangeHandler = null;
+        /**
+         * @internal
+         */
+        constructor(sdk4, normalizedOpts) {
+          super(sdk4, getLocallyUniqueId("RecordQueryResult"));
+          this._normalizedOpts = normalizedOpts;
+          this._recordStore = normalizedOpts.recordStore;
+        }
+        /**
+         * @internal
+         */
+        get _serializedOpts() {
+          return JSON.stringify([this._normalizedOpts.sorts, this._normalizedOpts.fieldIdsOrNullIfAllFields, this._normalizedOpts.table.id, serialize(this._normalizedOpts.recordColorMode)]);
+        }
+        /**
+         * The records in this RecordQueryResult.
+         * Throws if data is not loaded yet.
+         * Can be watched.
+         */
+        get records() {
+          return this.recordIds.map((recordId) => {
+            const record = this._recordStore.getRecordByIdIfExists(recordId);
+            invariant(record, "Record missing in table");
+            return record;
+          });
+        }
+        /**
+         * Get a specific record in the query result, or null if that record doesn't exist or is
+         * filtered out. Throws if data is not loaded yet. Watch using `'recordIds'`.
+         *
+         * @param recordId the ID of the {@link Record} you want
+         */
+        getRecordByIdIfExists(recordId) {
+          const record = this._recordStore.getRecordByIdIfExists(recordId);
+          if (!record || !this.hasRecord(record)) {
+            return null;
+          }
+          return record;
+        }
+        /**
+         * Get a specific record in the query result, or throws if that record doesn't exist or is
+         * filtered out. Throws if data is not loaded yet. Watch using `'recordIds'`.
+         *
+         * @param recordId the ID of the {@link Record} you want
+         */
+        getRecordById(recordId) {
+          const record = this.getRecordByIdIfExists(recordId);
+          if (!record) {
+            throw spawnError("No record with ID %s in this query result", recordId);
+          }
+          return record;
+        }
+        /**
+         * @internal
+         */
+        _getRecord(recordOrRecordId) {
+          return this.getRecordById(typeof recordOrRecordId === "string" ? recordOrRecordId : recordOrRecordId.id);
+        }
+        /**
+         * Check to see if a particular record or record id is present in this query result. Returns
+         * false if the record has been deleted or is filtered out.
+         *
+         * @param recordOrRecordId the record or record id to check the presence of
+         */
+        hasRecord(recordOrRecordId) {
+          const recordId = typeof recordOrRecordId === "string" ? recordOrRecordId : recordOrRecordId.id;
+          return this._getOrGenerateRecordIdsSet()[recordId] === true;
+        }
+        /**
+         * Get the {@link Color} of a specific record in the query result. Returns null if the record
+         * has no color in this query result. Throws if the record isn't in the RecordQueryResult. Watch
+         * with the `'recordColors'` and `'recordIds` keys.
+         *
+         * @param recordOrRecordId the record or record ID you want the color of.
+         */
+        getRecordColor(recordOrRecordId) {
+          const record = this._getRecord(recordOrRecordId);
+          const recordColorMode = this._normalizedOpts.recordColorMode;
+          switch (recordColorMode.type) {
+            case ModeTypes.NONE:
+              return null;
+            case ModeTypes.BY_SELECT_FIELD: {
+              if (recordColorMode.selectField.type !== FieldType.SINGLE_SELECT) {
+                return null;
+              }
+              const value = record.getCellValue(recordColorMode.selectField);
+              return value && typeof value === "object" && typeof value.color === "string" ? assertEnumValue(colors_default, value.color) : null;
+            }
+            case ModeTypes.BY_VIEW:
+              return this._recordStore.getViewDataStore(recordColorMode.view.id).getRecordColor(record);
+            // istanbul ignore next
+            default:
+              throw spawnError("Unknown record coloring mode type: %s", cast(recordColorMode).type);
+          }
+        }
+        /**
+         * @internal
+         */
+        _onChangeIsDataLoaded() {
+          this._onChange(WatchableRecordQueryResultKeys.isDataLoaded);
+        }
+        /**
+         * Get notified of changes to the query result.
+         *
+         * Watchable keys are:
+         * - `'records'`
+         * - `'recordIds'`
+         * - `'cellValues'`
+         * - `'recordColors'`
+         * - `'isDataLoaded'`
+         * - `'cellValuesInField:' + someFieldId`
+         *
+         * Every call to `.watch` should have a matching call to `.unwatch`.
+         *
+         * Watching a key that needs to load data asynchronously will automatically
+         * cause the data to be fetched. Once the data is available, the `callback`
+         * will be called.
+         *
+         * Returns the array of keys that were watched.
+         *
+         * @param keys the keys to watch
+         * @param callback a function to call when those keys change
+         * @param context an optional context for `this` in `callback`.
+         */
+        watch(keys2, callback, context) {
+          const validKeys = super.watch(keys2, callback, context);
+          for (const key of validKeys) {
+            if (key === WatchableRecordQueryResultKeys.recordColors) {
+              this._watchRecordColorsIfNeeded();
+            }
+          }
+          return validKeys;
+        }
+        /**
+         * Unwatch keys watched with `.watch`.
+         *
+         * Should be called with the same arguments given to `.watch`.
+         *
+         * Unwatching a key that needs to load data asynchronously will automatically
+         * cause the data to be unloaded.
+         *
+         * Returns the array of keys that were unwatched
+         *
+         * @param keys the keys to unwatch
+         * @param callback the function passed to `.watch` for these keys
+         * @param context the context that was passed to `.watch` for this `callback`
+         */
+        unwatch(keys2, callback, context) {
+          const validKeys = super.unwatch(keys2, callback, context);
+          for (const key of validKeys) {
+            if (key === WatchableRecordQueryResultKeys.recordColors) {
+              this._unwatchRecordColorsIfPossible();
+            }
+          }
+          return validKeys;
+        }
+        /**
+         * @internal
+         */
+        _watchRecordColorsIfNeeded() {
+          invariant(this._changeWatchersByKey[WatchableRecordQueryResultKeys.recordColors], "method may only be called when `recordColors` key has been watched");
+          const watchCount = this._changeWatchersByKey[WatchableRecordQueryResultKeys.recordColors].length;
+          if (!this._recordColorChangeHandler && watchCount >= 1) {
+            this._watchRecordColors();
+          }
+        }
+        /**
+         * @internal
+         */
+        _watchRecordColors() {
+          const recordColorMode = this._normalizedOpts.recordColorMode;
+          const handler = (model, key, recordIds) => {
+            if (model === this) {
+              this._onChange(WatchableRecordQueryResultKeys.recordColors, recordIds);
+            } else {
+              this._onChange(WatchableRecordQueryResultKeys.recordColors);
+            }
+          };
+          switch (recordColorMode.type) {
+            case ModeTypes.NONE:
+              break;
+            case ModeTypes.BY_SELECT_FIELD:
+              this.watch(`${WatchableCellValuesInFieldKeyPrefix2}${recordColorMode.selectField.id}`, handler);
+              recordColorMode.selectField.watch("options", handler);
+              break;
+            case ModeTypes.BY_VIEW: {
+              this._recordStore.getViewDataStore(recordColorMode.view.id).watch("recordColors", handler);
+              break;
+            }
+            // istanbul ignore next
+            default:
+              throw spawnError("Unknown record coloring mode type: %s", cast(recordColorMode).type);
+          }
+          this._recordColorChangeHandler = handler;
+        }
+        /**
+         * @internal
+         */
+        _unwatchRecordColorsIfPossible() {
+          const watchCount = (this._changeWatchersByKey[WatchableRecordQueryResultKeys.recordColors] || []).length;
+          if (this._recordColorChangeHandler && watchCount === 0) {
+            this._unwatchRecordColors();
+          }
+        }
+        /**
+         * @internal
+         */
+        _unwatchRecordColors() {
+          const recordColorMode = this._normalizedOpts.recordColorMode;
+          const handler = this._recordColorChangeHandler;
+          invariant(handler, "record color change handler must exist");
+          switch (recordColorMode.type) {
+            case ModeTypes.NONE:
+              break;
+            case ModeTypes.BY_SELECT_FIELD:
+              this.unwatch(`${WatchableCellValuesInFieldKeyPrefix2}${recordColorMode.selectField.id}`, handler);
+              recordColorMode.selectField.unwatch("options", handler);
+              break;
+            case ModeTypes.BY_VIEW: {
+              if (!recordColorMode.view.isDeleted) {
+                this._recordStore.getViewDataStore(recordColorMode.view.id).unwatch("recordColors", handler);
+              }
+              break;
+            }
+            // istanbul ignore next
+            default:
+              throw spawnError("Unknown record coloring mode type: %s", cast(recordColorMode).type);
+          }
+          this._recordColorChangeHandler = null;
+        }
+        /**
+         * @internal
+         */
+        async _loadRecordColorsAsync() {
+          const recordColorMode = this._normalizedOpts.recordColorMode;
+          switch (recordColorMode.type) {
+            case ModeTypes.NONE:
+              return;
+            case ModeTypes.BY_SELECT_FIELD:
+              return;
+            case ModeTypes.BY_VIEW:
+              await this._recordStore.getViewDataStore(recordColorMode.view.id).loadDataAsync();
+              return;
+            // istanbul ignore next
+            default:
+              throw spawnUnknownSwitchCaseError("record color mode type", recordColorMode, "type");
+          }
+        }
+        /**
+         * @internal
+         */
+        _unloadRecordColors() {
+          const recordColorMode = this._normalizedOpts.recordColorMode;
+          switch (recordColorMode.type) {
+            case ModeTypes.NONE:
+              return;
+            case ModeTypes.BY_SELECT_FIELD:
+              return;
+            case ModeTypes.BY_VIEW:
+              if (!recordColorMode.view.isDeleted) {
+                this._recordStore.getViewDataStore(recordColorMode.view.id).unloadData();
+              }
+              break;
+            // istanbul ignore next
+            default:
+              throw spawnUnknownSwitchCaseError("record color mode type", recordColorMode, "type");
+          }
+        }
+      };
+      record_query_result_default = RecordQueryResult;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/linked_records_query_result.js
+  var getLinkedTableId, LinkedRecordsQueryResult, linked_records_query_result_default;
+  var init_linked_records_query_result = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/linked_records_query_result.js"() {
+      init_field_core();
+      init_error_utils();
+      init_record_query_result();
+      getLinkedTableId = (field) => {
+        const options = field.options;
+        const linkedTableId = options && options.linkedTableId;
+        invariant(typeof linkedTableId === "string", "linkedTableId must exist");
+        return linkedTableId;
+      };
+      LinkedRecordsQueryResult = class extends record_query_result_default {
+        /** @internal */
+        static _className = "LinkedRecordsQueryResult";
+        // the record containing the linked-record cell this is a query of.
+        /** @internal */
+        // the cell's field in the record
+        /** @internal */
+        // the table we're linking to
+        /** @internal */
+        // the records store for the origin table
+        /** @internal */
+        // the records store for the linked table
+        /** @internal */
+        // a RecordQueryResult containing all the rows in the linked table
+        /** @internal */
+        // is the query result currently valid. if the field config changes to link
+        // to another table or not be a linked record field at all, isValid will
+        // become false. once a LinkedRecordsQueryResult has become invalid, it will
+        // not become valid again.
+        /** @internal */
+        _isValid = true;
+        // a lazily-generated set of the record ids in the result set.
+        /** @internal */
+        _computedRecordIdsSet = null;
+        // a lazily-generated array of the record ids in the query result.
+        /** @internal */
+        _computedFilteredSortedRecordIds = null;
+        // how many times has each 'cellValuesInField:$FieldId' been watched?
+        /** @internal */
+        _cellValueChangeHandlerByFieldId = {};
+        /** @internal */
+        constructor(record, field, normalizedOpts, sdk4) {
+          super(sdk4, normalizedOpts);
+          invariant(record.parentTable === field.parentTable, "record and field must belong to the same table");
+          this._record = record;
+          this._field = field;
+          this._linkedTable = normalizedOpts.table;
+          this._originRecordStore = this._sdk.base.__getRecordStore(this._record.parentTable.id);
+          this._linkedRecordStore = normalizedOpts.recordStore;
+          this._linkedQueryResult = this._linkedTable.__tableOrViewQueryResultPool.getObjectForReuse(this._sdk, this._linkedTable, normalizedOpts);
+        }
+        /**
+         * Is the query result currently valid? This value always starts as 'true',
+         * but can become false if the record from which this result was created is
+         * deleted, if the field is deleted, if the field config changes to link to
+         * a different table, or if the field config changes to link to a type
+         * other than MULTIPLE_RECORD_LINKS. Once `isValid` has become false, it
+         * will never become true again. Many fields will throw on attempting to
+         * access them, and watches will no longer fire.
+         */
+        get isValid() {
+          return this._isValid;
+        }
+        /**
+         * The table that records in this RecordQueryResult are part of
+         *
+         * @internal (since we may not be able to return parent model instances in the immutable models world)
+         */
+        get parentTable() {
+          invariant(this.isValid, "LinkedRecordsQueryResult is no longer valid");
+          return this._linkedTable;
+        }
+        /**
+         * Ordered array of all the linked record ids. Watchable.
+         */
+        get recordIds() {
+          invariant(this.isValid, "LinkedRecordsQueryResult is no longer valid");
+          invariant(this.isDataLoaded, "LinkedRecordsQueryResult data is not loaded");
+          this._generateComputedDataIfNeeded();
+          invariant(this._computedFilteredSortedRecordIds, "no recordIds");
+          return this._computedFilteredSortedRecordIds;
+        }
+        /**
+         * Ordered array of all the linked records. Watchable.
+         */
+        get records() {
+          invariant(this.isValid, "LinkedRecordsQueryResult is no longer valid");
+          return this.recordIds.map((recordId) => {
+            const record = this._linkedRecordStore.getRecordByIdIfExists(recordId);
+            invariant(record, "No record for id: %s", recordId);
+            return record;
+          });
+        }
+        /**
+         * The fields that were used to create this LinkedRecordsQueryResult.
+         */
+        get fields() {
+          invariant(this.isValid, "LinkedRecordsQueryResult is no longer valid");
+          return this._linkedQueryResult.fields;
+        }
+        /** @inheritdoc */
+        watch(keys2, callback, context) {
+          invariant(this.isValid, "cannot watch an invalid LinkedRecordsQueryResult");
+          const validKeys = super.watch(keys2, callback, context);
+          for (const key of validKeys) {
+            if (key === record_query_result_default.WatchableKeys.cellValues) {
+              this._watchLinkedQueryCellValuesIfNeededAfterWatch();
+            }
+            if (key.startsWith(record_query_result_default.WatchableCellValuesInFieldKeyPrefix)) {
+              const fieldId = key.substring(record_query_result_default.WatchableCellValuesInFieldKeyPrefix.length);
+              this._watchLinkedQueryCellValuesInFieldIfNeededAfterWatch(fieldId);
+            }
+          }
+          return validKeys;
+        }
+        /** @inheritdoc */
+        unwatch(keys2, callback, context) {
+          const arrayKeys = Array.isArray(keys2) ? keys2 : [keys2];
+          for (const key of arrayKeys) {
+            if (key === record_query_result_default.WatchableKeys.cellValues) {
+              this._unwatchLinkedQueryCellValuesIfPossibleBeforeUnwatch();
+            }
+            if (key.startsWith(record_query_result_default.WatchableCellValuesInFieldKeyPrefix)) {
+              const fieldId = key.substring(record_query_result_default.WatchableCellValuesInFieldKeyPrefix.length);
+              this._unwatchLinkedQueryCellValuesInFieldIfPossibleBeforeUnwatch(fieldId);
+            }
+          }
+          return super.unwatch(arrayKeys, callback, context);
+        }
+        /** @inheritdoc */
+        async loadDataAsync() {
+          await super.loadDataAsync();
+          if (!this.isDataLoaded) {
+            await this.loadDataAsync();
+            this.unloadData();
+          }
+        }
+        /** @internal */
+        async _loadDataAsync() {
+          this._record.__linkedRecordsQueryResultPool.registerObjectForReuseStrong(this);
+          this._watchOrigin();
+          this._watchLinkedQueryResult();
+          const initiallyLoaded = this._linkedQueryResult.isDataLoaded;
+          await Promise.all([this._sdk.base.__getRecordStore(this._record.parentTable.id).loadCellValuesInFieldIdsAsync([this._field.id]), this._linkedQueryResult.loadDataAsync(), this._loadRecordColorsAsync()]);
+          this._invalidateComputedData();
+          const changedKeys = ["records", "recordIds", "recordColors"];
+          if (initiallyLoaded) {
+            changedKeys.push("cellValues");
+          }
+          const fieldIds = this._normalizedOpts.fieldIdsOrNullIfAllFields || this.parentTable.fields.map((field) => field.id);
+          for (const fieldId of fieldIds) {
+            changedKeys.push(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId);
+          }
+          return changedKeys;
+        }
+        /** @internal */
+        _unloadData() {
+          if (this.isValid) {
+            this._record.__linkedRecordsQueryResultPool.unregisterObjectForReuseStrong(this);
+            this._unwatchOrigin();
+            this._unwatchLinkedQueryResult();
+            this._originRecordStore.unloadCellValuesInFieldIds([this._field.id]);
+            this._linkedQueryResult.unloadData();
+            this._unloadRecordColors();
+            this._invalidateComputedData();
+          }
+        }
+        /**
+         * the key used to identify this query result in ObjectPool
+         *
+         * @hidden
+         */
+        get __poolKey() {
+          return `${this._serializedOpts}::${this._field.id}::${this._linkedTable.id}::${this.isValid}`;
+        }
+        /** @internal */
+        get _cellValuesWatchCount() {
+          return (this._changeWatchersByKey[record_query_result_default.WatchableKeys.cellValues] || []).length;
+        }
+        /** @internal */
+        _watchLinkedQueryCellValuesIfNeededAfterWatch() {
+          if (this._cellValuesWatchCount === 1) {
+            this._watchLinkedQueryCellValues();
+          }
+        }
+        /** @internal */
+        _unwatchLinkedQueryCellValuesIfPossibleBeforeUnwatch() {
+          if (this._cellValuesWatchCount === 1 && this.isValid) {
+            this._unwatchLinkedQueryCellValues();
+          }
+        }
+        /** @internal */
+        get _cellValueWatchCountByFieldId() {
+          const countByFieldId = {};
+          const watchKeys = Object.keys(this._changeWatchersByKey).filter((key) => {
+            return key.startsWith(record_query_result_default.WatchableCellValuesInFieldKeyPrefix);
+          });
+          for (const watchKey of watchKeys) {
+            const fieldId = watchKey.slice(record_query_result_default.WatchableCellValuesInFieldKeyPrefix.length);
+            countByFieldId[fieldId] = this._changeWatchersByKey[watchKey].length;
+          }
+          return countByFieldId;
+        }
+        /** @internal */
+        _watchLinkedQueryCellValuesInFieldIfNeededAfterWatch(fieldId) {
+          if (this._cellValueWatchCountByFieldId[fieldId] === 1 && this.isValid) {
+            this._watchLinkedQueryCellValuesInField(fieldId);
+          }
+        }
+        /** @internal */
+        _unwatchLinkedQueryCellValuesInFieldIfPossibleBeforeUnwatch(fieldId) {
+          invariant(this._cellValueWatchCountByFieldId[fieldId], "cellValuesInField:%s over-free'd", fieldId);
+          if (this._cellValueWatchCountByFieldId[fieldId] === 1 && this.isValid) {
+            this._unwatchLinkedQueryCellValuesInField(fieldId);
+          }
+        }
+        /** @internal */
+        _watchOrigin() {
+          this._record.watch(`cellValueInField:${this._field.id}`, this._onOriginCellValueChange, this);
+          this._field.watch("type", this._onOriginFieldConfigChange, this);
+          this._field.watch("options", this._onOriginFieldConfigChange, this);
+          this._originRecordStore.watch("recordIds", this._onOriginRecordsChange, this);
+          this._record.parentTable.watch("fields", this._onOriginFieldsChange, this);
+        }
+        /** @internal */
+        _unwatchOrigin() {
+          this._record.unwatch(`cellValueInField:${this._field.id}`, this._onOriginCellValueChange, this);
+          this._field.unwatch("type", this._onOriginFieldConfigChange, this);
+          this._field.unwatch("options", this._onOriginFieldConfigChange, this);
+          this._originRecordStore.unwatch("recordIds", this._onOriginRecordsChange, this);
+          this._record.parentTable.unwatch("fields", this._onOriginFieldsChange, this);
+        }
+        /** @internal */
+        _watchLinkedQueryResult() {
+          this._linkedQueryResult.watch("recordIds", this._onLinkedRecordIdsChange, this);
+        }
+        /** @internal */
+        _unwatchLinkedQueryResult() {
+          this._linkedQueryResult.unwatch("recordIds", this._onLinkedRecordIdsChange, this);
+        }
+        /** @internal */
+        _watchLinkedQueryCellValues() {
+          this._linkedQueryResult.watch("cellValues", this._onLinkedCellValuesChange, this);
+        }
+        /** @internal */
+        _unwatchLinkedQueryCellValues() {
+          this._linkedQueryResult.unwatch("cellValues", this._onLinkedCellValuesChange, this);
+        }
+        /** @internal */
+        _watchLinkedQueryCellValuesInField(fieldId) {
+          this._linkedQueryResult.watch(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId, this._getOnLinkedCellValuesInFieldChange(fieldId), this);
+        }
+        /** @internal */
+        _unwatchLinkedQueryCellValuesInField(fieldId) {
+          this._linkedQueryResult.unwatch(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId, this._getOnLinkedCellValuesInFieldChange(fieldId), this);
+        }
+        /** @internal */
+        _onLinkedRecordIdsChange() {
+          if (!this.isDataLoaded || this._record.isDeleted) {
+            return;
+          }
+          invariant(this.isValid, "watch key change event whilst invalid");
+          this._invalidateComputedData();
+          this._onChange("records");
+          this._onChange("recordIds");
+        }
+        /**
+         * This model doesn't use the `_data` computed property it inherits from
+         * AbstractModel. It implements the following method only so that internal
+         * checks for model deletion behave appropriately (the data itself is
+         * inconsequential).
+         *
+         * @internal
+         */
+        get _dataOrNullIfDeleted() {
+          if (this._record.isDeleted || this._linkedRecordStore.isDeleted) {
+            return null;
+          }
+          return {};
+        }
+        /** @internal */
+        _onLinkedCellValuesChange(queryResult, key, changes) {
+          invariant(this.isValid, "watch key change event whilst invalid");
+          if (changes && changes.fieldIds && changes.recordIds) {
+            const recordIdsSet = this._getOrGenerateRecordIdsSet();
+            const recordIds = changes.recordIds.filter((id) => recordIdsSet[id] === true);
+            if (recordIds.length) {
+              this._onChange("cellValues", {
+                fieldIds: changes.fieldIds,
+                recordIds
+              });
+            }
+          } else {
+            this._onChange("cellValues");
+          }
+        }
+        /** @internal */
+        _getOnLinkedCellValuesInFieldChange(fieldId) {
+          if (!this._cellValueChangeHandlerByFieldId[fieldId]) {
+            this._cellValueChangeHandlerByFieldId[fieldId] = (queryResult, key, recordIds) => {
+              invariant(this.isValid, "watch key change event whilst invalid");
+              if (!this.isDataLoaded) {
+                return;
+              }
+              if (Array.isArray(recordIds)) {
+                const recordIdsSet = this._getOrGenerateRecordIdsSet();
+                const filteredRecordIds = recordIds.filter((id) => typeof id === "string" && recordIdsSet[id] === true);
+                if (filteredRecordIds.length) {
+                  this._onChange(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId, filteredRecordIds);
+                }
+              } else {
+                this._onChange(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId);
+              }
+            };
+          }
+          return this._cellValueChangeHandlerByFieldId[fieldId];
+        }
+        /** @internal */
+        _onOriginCellValueChange() {
+          if (!this.isDataLoaded || this._field.isDeleted) {
+            return;
+          }
+          invariant(this.isValid, "watch key change event whilst invalid");
+          this._invalidateComputedData();
+          this._onChange("records");
+          this._onChange("recordIds");
+        }
+        /** @internal */
+        _onOriginRecordsChange() {
+          if (this._record.isDeleted) {
+            this._isValid = false;
+          }
+        }
+        /** @internal */
+        _onOriginFieldsChange() {
+          if (this._field.isDeleted) {
+            this._isValid = false;
+          }
+        }
+        /** @internal */
+        _onOriginFieldConfigChange() {
+          invariant(this.isValid, "watch key change event whilst invalid");
+          const type = this._field.type;
+          if (type !== FieldType.MULTIPLE_RECORD_LINKS) {
+            this._invalidateQueryResult();
+            return;
+          }
+          const linkedTableId = getLinkedTableId(this._field);
+          if (linkedTableId !== this._linkedTable.id) {
+            this._invalidateQueryResult();
+            return;
+          }
+        }
+        /** @internal */
+        _invalidateQueryResult() {
+          if (this.isDataLoaded) {
+            this._unloadData();
+          }
+          if (this._cellValuesWatchCount > 0) {
+            this._unwatchLinkedQueryCellValues();
+          }
+          for (const fieldId of Object.keys(this._cellValueWatchCountByFieldId)) {
+            this._unwatchLinkedQueryCellValuesInField(fieldId);
+          }
+          this._isValid = false;
+          this._onChange("records");
+          this._onChange("recordIds");
+        }
+        /** @internal */
+        _invalidateComputedData() {
+          this._computedRecordIdsSet = null;
+          this._computedFilteredSortedRecordIds = null;
+        }
+        /** @internal */
+        _generateComputedDataIfNeeded() {
+          if (!this._computedRecordIdsSet) {
+            this._generateComputedData();
+          }
+        }
+        /** @internal */
+        _generateComputedData() {
+          const recordIdsSet = {};
+          const rawCellValue = this._record.getCellValue(this._field);
+          const cellValue = rawCellValue === null ? [] : rawCellValue;
+          invariant(Array.isArray(cellValue), "cellValue should be array");
+          for (const linkedRecord of cellValue) {
+            invariant(linkedRecord && typeof linkedRecord === "object", "linked record should be object");
+            const recordId = linkedRecord.id;
+            invariant(typeof recordId === "string", "id should be present");
+            if (this._linkedQueryResult.hasRecord(recordId)) {
+              recordIdsSet[recordId] = true;
+            }
+          }
+          this._computedRecordIdsSet = recordIdsSet;
+          if (this._normalizedOpts.sorts && this._normalizedOpts.sorts.length) {
+            this._computedFilteredSortedRecordIds = this._linkedQueryResult.recordIds.filter((recordId) => recordIdsSet[recordId] === true);
+          } else {
+            this._computedFilteredSortedRecordIds = Object.keys(recordIdsSet);
+          }
+        }
+        /** @internal */
+        _getOrGenerateRecordIdsSet() {
+          this._generateComputedDataIfNeeded();
+          const recordIdsSet = this._computedRecordIdsSet;
+          invariant(recordIdsSet, "recordIdsSet must exist");
+          return recordIdsSet;
+        }
+      };
+      linked_records_query_result_default = LinkedRecordsQueryResult;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/record.js
+  var WatchableRecordKeys, WatchableColorInViewKeyPrefix, Record, record_default;
+  var init_record = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/record.js"() {
+      init_record_core();
+      init_private_utils();
+      init_error_utils();
+      init_color_utils();
+      init_object_pool();
+      init_linked_records_query_result();
+      init_record_query_result();
+      WatchableRecordKeys = Object.freeze(__spreadProps(__spreadValues({}, WatchableRecordKeysCore), {
+        commentCount: "commentCount"
+      }));
+      WatchableColorInViewKeyPrefix = "colorInView:";
+      Record = class extends RecordCore {
+        /** @internal */
+        static _className = "Record";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableRecordKeys, key) || key.startsWith(WatchableCellValueInFieldKeyPrefix) || key.startsWith(WatchableColorInViewKeyPrefix);
+        }
+        /** @internal */
+        /**
+         * @internal
+         */
+        constructor(sdk4, parentRecordStore, parentTable, recordId) {
+          super(sdk4, parentRecordStore, parentTable, recordId);
+          this.__linkedRecordsQueryResultPool = new ObjectPool(linked_records_query_result_default);
+        }
+        /**
+         * @internal
+         */
+        _getViewMatching(viewOrViewIdOrViewName) {
+          return this.parentTable.__getViewMatching(viewOrViewIdOrViewName);
+        }
+        /**
+         * Gets the cell value of the given field for this record, formatted as a `string`.
+         *
+         * @param fieldOrFieldIdOrFieldName The field (or field ID or field name) whose cell value you'd like to get.
+         * @example
+         * ```js
+         * const stringValue = myRecord.getCellValueAsString(myNumberField);
+         * console.log(stringValue);
+         * // => '42'
+         * ```
+         */
+        getCellValueAsString(fieldOrFieldIdOrFieldName) {
+          const field = this._getFieldMatching(fieldOrFieldIdOrFieldName);
+          invariant(this._parentRecordStore.areCellValuesLoadedForFieldId(field.id), "Cell values for field %s are not loaded", field.id);
+          return super.getCellValueAsString(field.id);
+        }
+        _getRawCellValue(field) {
+          invariant(this._parentRecordStore.areCellValuesLoadedForFieldId(field.id), "Cell values for field %s are not loaded", field.id);
+          return super._getRawCellValue(field);
+        }
+        /**
+         * Gets the color of this record in a given view, or null if the record has no color in that
+         * view.
+         *
+         * Can be watched with the 'colorInView:${ViewId}' key.
+         *
+         * @param viewOrViewIdOrViewName The view (or view ID or view name) to use for record coloring.
+         */
+        getColorInView(viewOrViewIdOrViewName) {
+          const view = this._getViewMatching(viewOrViewIdOrViewName);
+          return this._parentRecordStore.getViewDataStore(view.id).getRecordColor(this);
+        }
+        /**
+         * Gets the CSS hex string for this record in a given view, or null if the record has no color
+         * in that view.
+         *
+         * Can be watched with the 'colorInView:${ViewId}' key.
+         *
+         * @param viewOrViewIdOrViewName The view (or view ID or view name) to use for record coloring.
+         */
+        getColorHexInView(viewOrViewIdOrViewName) {
+          const color = this.getColorInView(viewOrViewIdOrViewName);
+          if (!color) {
+            return null;
+          }
+          return color_utils_default.getHexForColor(color);
+        }
+        /**
+         * Select records referenced in a `multipleRecordLinks` cell value. Returns a query result
+         * containing the records in the given `multipleRecordLinks` field.
+         * See {@link RecordQueryResult} for more.
+         *
+         * @param fieldOrFieldIdOrFieldName The `multipleRecordLinks` field (or field ID or field name) to use.
+         * @param opts Options for the query, such as sorts and fields.
+         */
+        selectLinkedRecordsFromCell(fieldOrFieldIdOrFieldName) {
+          let opts = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+          const field = this._getFieldMatching(fieldOrFieldIdOrFieldName);
+          const linkedTableId = field.options && field.options.linkedTableId;
+          invariant(typeof linkedTableId === "string", "linkedTableId must be set");
+          const linkedTable = this._sdk.base.getTableById(linkedTableId);
+          const linkedRecordStore = this._sdk.base.__getRecordStore(linkedTableId);
+          const normalizedOpts = record_query_result_default._normalizeOpts(linkedTable, linkedRecordStore, opts);
+          return this.__linkedRecordsQueryResultPool.getObjectForReuse(this, field, normalizedOpts, this._sdk);
+        }
+        /**
+         * Select and load records referenced in a `multipleRecordLinks` cell value. Returns a query result
+         * promise containing the records in the given `multipleRecordLinks` field.
+         * See {@link RecordQueryResult} for more.
+         *
+         * Remember to call `queryResult.unloadData` once you're finished with the query.
+         *
+         * @param fieldOrFieldIdOrFieldName The `multipleRecordLinks` field (or field ID or field name) to use.
+         * @param opts Options for the query, such as sorts and fields.
+         */
+        async selectLinkedRecordsFromCellAsync(fieldOrFieldIdOrFieldName) {
+          let opts = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+          const queryResult = this.selectLinkedRecordsFromCell(fieldOrFieldIdOrFieldName, opts);
+          await queryResult.loadDataAsync();
+          return queryResult;
+        }
+        /**
+         * The URL for the record. You can visit this URL in the browser to be taken to the record in the Airtable UI.
+         *
+         * @example
+         * ```js
+         * console.log(myRecord.url);
+         * // => 'https://airtable.com/appxxxxxxxxxxxxxx/tblxxxxxxxxxxxxxx/recxxxxxxxxxxxxxx'
+         * ```
+         */
+        get url() {
+          return this._sdk.__airtableInterface.urlConstructor.getRecordUrl(this.id, this.parentTable.id);
+        }
+        /**
+         * The number of comments on this record.
+         *
+         * @example
+         * ```js
+         * const commentCount = myRecord.commentCount;
+         * const isSingular = commentCount === 1;
+         * console.log(
+         *     `This record has ${commentCount} comment${isSingular ? '' : 's'}`
+         * );
+         * ```
+         */
+        get commentCount() {
+          return this._data.commentCount;
+        }
+        /**
+         * @internal
+         */
+        __triggerOnChangeForDirtyPaths(dirtyPaths) {
+          super.__triggerOnChangeForDirtyPaths(dirtyPaths);
+          const {
+            commentCount
+          } = dirtyPaths;
+          if (commentCount) {
+            this._onChange(WatchableRecordKeys.commentCount);
+          }
+        }
+        /**
+         * @internal
+         */
+        __triggerOnChangeForRecordColorInViewId(viewId) {
+          this._onChange(WatchableColorInViewKeyPrefix + viewId);
+        }
+      };
+      record_default = Record;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/view_data_store.js
+  var WatchableViewDataStoreKeys, ViewDataStore, view_data_store_default;
+  var init_view_data_store = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/view_data_store.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_abstract_model_with_async_data();
+      WatchableViewDataStoreKeys = Object.freeze({
+        visibleRecords: "visibleRecords",
+        visibleRecordIds: "visibleRecordIds",
+        groups: "groups",
+        groupLevels: "groupLevels",
+        recordColors: "recordColors",
+        allFieldIds: "allFieldIds",
+        visibleFieldIds: "visibleFieldIds"
+      });
+      ViewDataStore = class extends AbstractModelWithAsyncData {
+        static _className = "ViewDataStore";
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableViewDataStoreKeys, key);
+        }
+        static _shouldLoadDataForKey(key) {
+          return true;
+        }
+        constructor(sdk4, parentRecordStore, viewId) {
+          super(sdk4, `${viewId}-ViewDataStore`);
+          this.parentRecordStore = parentRecordStore;
+          this._airtableInterface = sdk4.__airtableInterface;
+          this._mostRecentTableLoadPromise = null;
+          this.viewId = viewId;
+        }
+        get _dataOrNullIfDeleted() {
+          const tableData = this._baseData.tablesById[this.parentRecordStore.tableId];
+          return tableData?.viewsById[this.viewId] ?? null;
+        }
+        _onChangeIsDataLoaded() {
+        }
+        get isDataLoaded() {
+          return this._isDataLoaded && this.parentRecordStore.isRecordMetadataLoaded;
+        }
+        __onDataDeletion() {
+          this._forceUnload();
+        }
+        async loadDataAsync() {
+          const tableLoadPromise = this.parentRecordStore.loadRecordMetadataAsync();
+          this._mostRecentTableLoadPromise = tableLoadPromise;
+          await super.loadDataAsync();
+        }
+        async _loadDataAsync() {
+          invariant(this._mostRecentTableLoadPromise, "No table load promise");
+          const tableLoadPromise = this._mostRecentTableLoadPromise;
+          const [viewData] = await Promise.all([this._airtableInterface.fetchAndSubscribeToViewDataAsync(this.parentRecordStore.tableId, this.viewId), tableLoadPromise]);
+          this._data.visibleRecordIds = viewData.visibleRecordIds;
+          this._data.fieldOrder = viewData.fieldOrder;
+          this._data.groups = viewData.groups;
+          this._data.groupLevels = viewData.groupLevels;
+          this._data.colorsByRecordId = viewData.colorsByRecordId;
+          if (this._data.colorsByRecordId) {
+            for (const record of this.visibleRecords) {
+              if (has(this._data.colorsByRecordId, record.id)) {
+                record.__triggerOnChangeForRecordColorInViewId(this.viewId);
+              }
+            }
+          }
+          return [WatchableViewDataStoreKeys.visibleRecords, WatchableViewDataStoreKeys.visibleRecordIds, WatchableViewDataStoreKeys.allFieldIds, WatchableViewDataStoreKeys.groups, WatchableViewDataStoreKeys.groupLevels, WatchableViewDataStoreKeys.visibleFieldIds, WatchableViewDataStoreKeys.recordColors];
+        }
+        unloadData() {
+          super.unloadData();
+          this.parentRecordStore.unloadRecordMetadata();
+        }
+        _unloadData() {
+          this._mostRecentTableLoadPromise = null;
+          this._airtableInterface.unsubscribeFromViewData(this.parentRecordStore.tableId, this.viewId);
+          if (!this.isDeleted) {
+            this._data.visibleRecordIds = void 0;
+            this._data.groups = void 0;
+            this._data.colorsByRecordId = void 0;
+          }
+        }
+        __generateChangesForParentTableAddMultipleRecords(recordIds) {
+          const newVisibleRecordIds = [...this.visibleRecordIds, ...recordIds];
+          return [{
+            path: ["tablesById", this.parentRecordStore.tableId, "viewsById", this.viewId, "visibleRecordIds"],
+            value: newVisibleRecordIds
+          }];
+        }
+        __generateChangesForParentTableDeleteMultipleRecords(recordIds) {
+          const recordIdsToDeleteSet = {};
+          for (const recordId of recordIds) {
+            recordIdsToDeleteSet[recordId] = true;
+          }
+          const newVisibleRecordIds = this.visibleRecordIds.filter((recordId) => !recordIdsToDeleteSet[recordId]);
+          const changePayload = [{
+            path: ["tablesById", this.parentRecordStore.tableId, "viewsById", this.viewId, "visibleRecordIds"],
+            value: newVisibleRecordIds
+          }];
+          if (this._data.groups) {
+            const newGroups = this.__recursivelyRemoveRecordsFromGroupsInPlace(cloneDeep(this._data.groups), recordIdsToDeleteSet);
+            changePayload.push({
+              path: ["tablesById", this.parentRecordStore.tableId, "viewsById", this.viewId, "groups"],
+              value: newGroups
+            });
+          }
+          return changePayload;
+        }
+        __recursivelyRemoveRecordsFromGroupsInPlace(groups, recordIdsToDeleteSet) {
+          if (!groups || groups.length === 0) {
+            return groups;
+          }
+          return groups.map((group) => {
+            if (group.visibleRecordIds) {
+              group.visibleRecordIds = group.visibleRecordIds.filter((id) => !recordIdsToDeleteSet[id]);
+            }
+            this.__recursivelyRemoveRecordsFromGroupsInPlace(group.groups, recordIdsToDeleteSet);
+            return group;
+          });
+        }
+        /**
+         * The record IDs that are not filtered out of this view.
+         * Can be watched to know when records are created, deleted, reordered, or
+         * filtered in and out of this view.
+         */
+        get visibleRecordIds() {
+          const visibleRecordIds = this._data.visibleRecordIds;
+          invariant(visibleRecordIds, "View data is not loaded");
+          if (!Object.isFrozen(visibleRecordIds)) {
+            Object.freeze(visibleRecordIds);
+          }
+          return visibleRecordIds;
+        }
+        /**
+         * The records that are not filtered out of this view.
+         * Can be watched to know when records are created, deleted, reordered, or
+         * filtered in and out of this view.
+         */
+        get visibleRecords() {
+          invariant(this.parentRecordStore.isRecordMetadataLoaded, "Table data is not loaded");
+          const visibleRecordIds = this._data.visibleRecordIds;
+          invariant(visibleRecordIds, "View data is not loaded");
+          return visibleRecordIds.map((recordId) => {
+            const record = this.parentRecordStore.getRecordByIdIfExists(recordId);
+            invariant(record, "Record in view does not exist");
+            return record;
+          });
+        }
+        /**
+         * Gets the groups in a view, can be watched to be notified if a record changes groups,
+         * if a record is changed/deleted/created, if sort order of groups changes, grouping
+         * heirarchy changes, or grouping field changes.
+         *
+         * @hidden
+         */
+        get groups() {
+          invariant(this.parentRecordStore.isRecordMetadataLoaded, "Table data is not loaded");
+          const groups = this._data.groups;
+          return groups ?? null;
+        }
+        /**
+         * Gets the group config for this view, can be watched to know when groupLevels
+         * changes (reorder, groups deleted, groups changed, grouped field changes)
+         */
+        get groupLevels() {
+          invariant(this.parentRecordStore.isRecordMetadataLoaded, "Table data is not loaded");
+          const groupLevels = this._data.groupLevels;
+          return groupLevels ?? null;
+        }
+        /**
+         * Get the color name for the specified record in this view, or null if no
+         * color is available. Watch with 'recordColors'
+         *
+         * @param recordOrRecordId the record/record id to get the color for
+         */
+        getRecordColor(record) {
+          invariant(this.isDataLoaded, "View data is not loaded");
+          return this._data.colorsByRecordId?.[record.id] ?? null;
+        }
+        get allFieldIds() {
+          const fieldOrder = this._data.fieldOrder;
+          invariant(fieldOrder, "View data is not loaded");
+          return fieldOrder.fieldIds;
+        }
+        get visibleFieldIds() {
+          const fieldOrder = this._data.fieldOrder;
+          invariant(fieldOrder, "View data is not loaded");
+          const {
+            fieldIds
+          } = fieldOrder;
+          return fieldIds.slice(0, fieldOrder.visibleFieldCount);
+        }
+        triggerOnChangeForDirtyPaths(dirtyPaths) {
+          if (dirtyPaths.visibleRecordIds) {
+            this._onChange(WatchableViewDataStoreKeys.visibleRecords);
+            this._onChange(WatchableViewDataStoreKeys.visibleRecordIds);
+          }
+          if (dirtyPaths.fieldOrder) {
+            this._onChange(WatchableViewDataStoreKeys.allFieldIds);
+            this._onChange(WatchableViewDataStoreKeys.visibleFieldIds);
+          }
+          if (dirtyPaths.groups || dirtyPaths.groupLevels) {
+            this._onChange(WatchableViewDataStoreKeys.groups);
+          }
+          if (dirtyPaths.groupLevels) {
+            this._onChange(WatchableViewDataStoreKeys.groupLevels);
+          }
+          if (dirtyPaths.colorsByRecordId) {
+            const changedRecordIds = dirtyPaths.colorsByRecordId._isDirty ? null : Object.keys(dirtyPaths.colorsByRecordId);
+            if (changedRecordIds) {
+              if (this.parentRecordStore.isRecordMetadataLoaded) {
+                for (const recordId of changedRecordIds) {
+                  const record = this.parentRecordStore.getRecordByIdIfExists(recordId);
+                  if (record) {
+                    record.__triggerOnChangeForRecordColorInViewId(this.viewId);
+                  }
+                }
+              }
+            }
+            this._onChange(WatchableViewDataStoreKeys.recordColors, changedRecordIds);
+          }
+        }
+      };
+      view_data_store_default = ViewDataStore;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/record_store.js
+  var WatchableRecordStoreKeys, RecordStore, RecordStoreAsyncLoader, record_store_default;
+  var init_record_store = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/record_store.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_record_store_core();
+      init_abstract_model_with_async_data();
+      init_record();
+      init_view_data_store();
+      WatchableRecordStoreKeys = Object.freeze(__spreadValues({}, WatchableRecordStoreKeysCore));
+      RecordStore = class extends record_store_core_default {
+        static _className = "RecordStore";
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableRecordStoreKeys, key) || key.startsWith(WatchableCellValuesInFieldKeyPrefix);
+        }
+        _viewDataStoresByViewId = {};
+        constructor(sdk4, tableId) {
+          super(sdk4, tableId);
+          const onChange = this._onChange.bind(this);
+          const clearRecordModels = () => {
+            this._recordModelsById = {};
+          };
+          this._loader = new RecordStoreAsyncLoader(sdk4, tableId, onChange, clearRecordModels);
+        }
+        _constructRecord(recordId, parentTable) {
+          return new record_default(this._sdk, this, parentTable, recordId);
+        }
+        get _dataOrNullIfDeleted() {
+          return this._loader._dataOrNullIfDeleted;
+        }
+        getViewDataStore(viewId) {
+          if (this._viewDataStoresByViewId[viewId]) {
+            return this._viewDataStoresByViewId[viewId];
+          }
+          invariant(this._data.viewsById[viewId], "view must exist");
+          const viewDataStore = new view_data_store_default(this._sdk, this, viewId);
+          this._viewDataStoresByViewId[viewId] = viewDataStore;
+          return viewDataStore;
+        }
+        watch(keys2, callback, context) {
+          const validKeys = super.watch(keys2, callback, context);
+          const fieldIdsToLoad = this._loader._getFieldIdsToLoadFromWatchableKeys(validKeys);
+          if (fieldIdsToLoad.length > 0) {
+            fireAndForgetPromise(async () => {
+              await this._loader.loadCellValuesInFieldIdsAsync(fieldIdsToLoad, this._onChange.bind(this));
+            });
+          }
+          return validKeys;
+        }
+        unwatch(keys2, callback, context) {
+          const validKeys = super.unwatch(keys2, callback, context);
+          const fieldIdsToUnload = this._loader._getFieldIdsToLoadFromWatchableKeys(validKeys);
+          if (fieldIdsToUnload.length > 0) {
+            this._loader.unloadCellValuesInFieldIds(fieldIdsToUnload);
+          }
+          return validKeys;
+        }
+        /**
+         * The record IDs in this table. The order is arbitrary since records are
+         * only ordered in the context of a specific view.
+         */
+        get recordIds() {
+          const recordsById = this._data.recordsById;
+          invariant(recordsById, "Record metadata is not loaded");
+          return Object.keys(recordsById);
+        }
+        __onDataDeletion() {
+          for (const fieldId of Object.keys(this._loader._cellValuesRetainCountByFieldId)) {
+            while (this._loader._cellValuesRetainCountByFieldId[fieldId] && this._loader._cellValuesRetainCountByFieldId[fieldId] > 0) {
+              this._loader.unloadCellValuesInFieldIds([fieldId]);
+            }
+          }
+          this._loader._forceUnload();
+          for (const viewDataStore of values(this._viewDataStoresByViewId)) {
+            viewDataStore.__onDataDeletion();
+          }
+        }
+        // #region async data loading
+        // wrapper methods over RecordStoreAsyncLoader
+        get isDeleted() {
+          return this._loader.isDeleted || super.isDeleted;
+        }
+        get isDataLoaded() {
+          return !this.isDeleted && this._loader.isDataLoaded;
+        }
+        async loadDataAsync() {
+          return await this._loader.loadDataAsync();
+        }
+        unloadData() {
+          return this._loader.unloadData();
+        }
+        get isRecordMetadataLoaded() {
+          return this._loader.isRecordMetadataLoaded;
+        }
+        async loadRecordMetadataAsync() {
+          return await this._loader.loadRecordMetadataAsync(this._onChange.bind(this));
+        }
+        unloadRecordMetadata() {
+          return this._loader.unloadRecordMetadata();
+        }
+        areCellValuesLoadedForFieldId(fieldId) {
+          return this._loader.areCellValuesLoadedForFieldId(fieldId);
+        }
+        async loadCellValuesInFieldIdsAsync(fieldIds) {
+          return await this._loader.loadCellValuesInFieldIdsAsync(fieldIds, this._onChange.bind(this));
+        }
+        unloadCellValuesInFieldIds(fieldIds) {
+          return this._loader.unloadCellValuesInFieldIds(fieldIds);
+        }
+        // #endregion
+        triggerOnChangeForDirtyPaths(dirtyPaths) {
+          if (this.isRecordMetadataLoaded && dirtyPaths.recordsById) {
+            super.triggerOnChangeForDirtyPaths(dirtyPaths);
+          }
+          if (dirtyPaths.viewOrder) {
+            for (const [viewId, viewDataStore] of entries(this._viewDataStoresByViewId)) {
+              if (viewDataStore.isDeleted) {
+                viewDataStore.__onDataDeletion();
+                delete this._viewDataStoresByViewId[viewId];
+              }
+            }
+          }
+        }
+      };
+      RecordStoreAsyncLoader = class extends AbstractModelWithAsyncData {
+        static _shouldLoadDataForKey(key) {
+          return key === WatchableRecordStoreKeys.cellValues;
+        }
+        // There is a lot of duplication here and in AbstractModelWithAsyncData.
+        // Alternatively, phase out AbstractModelWithAsyncData as a superclass
+        // and instead create a helper class for managing each part of the data
+        // tree that is loaded.
+        _areCellValuesLoadedByFieldId = {};
+        _pendingCellValuesLoadPromiseByFieldId = {};
+        _cellValuesRetainCountByFieldId = {};
+        _timeoutForRemovingFieldIds = null;
+        constructor(sdk4, tableId, onChange, clearRecordModels) {
+          super(sdk4, `${tableId}-RecordStore`);
+          this._airtableInterface = sdk4.__airtableInterface;
+          this.tableId = tableId;
+          this._onChange = onChange;
+          this._clearRecordModels = clearRecordModels;
+          this._primaryFieldId = this._data.primaryFieldId;
+        }
+        _onChangeIsDataLoaded() {
+        }
+        /**
+         * Record metadata means record IDs, createdTime, and commentCount are loaded.
+         * Record metadata must be loaded before creating, deleting, or updating records.
+         */
+        get isRecordMetadataLoaded() {
+          return !!this._data.recordsById;
+        }
+        async loadRecordMetadataAsync(onChange) {
+          return await this.loadCellValuesInFieldIdsAsync([this._getFieldIdForCausingRecordMetadataToLoad()], onChange);
+        }
+        unloadRecordMetadata() {
+          this.unloadCellValuesInFieldIds([this._getFieldIdForCausingRecordMetadataToLoad()]);
+        }
+        _getFieldIdsToLoadFromWatchableKeys(keys2) {
+          const fieldIdsToLoad = [];
+          for (const key of keys2) {
+            if (key.startsWith(WatchableCellValuesInFieldKeyPrefix)) {
+              const fieldId = key.substring(WatchableCellValuesInFieldKeyPrefix.length);
+              fieldIdsToLoad.push(fieldId);
+            } else if (key === WatchableRecordStoreKeys.records || key === WatchableRecordStoreKeys.recordIds) {
+              fieldIdsToLoad.push(this._getFieldIdForCausingRecordMetadataToLoad());
+            }
+          }
+          return fieldIdsToLoad;
+        }
+        _getFieldIdForCausingRecordMetadataToLoad() {
+          return this._primaryFieldId;
+        }
+        areCellValuesLoadedForFieldId(fieldId) {
+          return this.isDataLoaded || this._areCellValuesLoadedByFieldId[fieldId] || false;
+        }
+        async loadCellValuesInFieldIdsAsync(fieldIds, onChange) {
+          this._assertNotForceUnloaded();
+          const fieldIdsWhichAreNotAlreadyLoadedOrLoading = [];
+          const pendingLoadPromises = [];
+          for (const fieldId of fieldIds) {
+            if (this._cellValuesRetainCountByFieldId[fieldId] !== void 0) {
+              this._cellValuesRetainCountByFieldId[fieldId]++;
+            } else {
+              this._cellValuesRetainCountByFieldId[fieldId] = 1;
+            }
+            if (!this._areCellValuesLoadedByFieldId[fieldId]) {
+              const pendingLoadPromise = this._pendingCellValuesLoadPromiseByFieldId[fieldId];
+              if (pendingLoadPromise) {
+                pendingLoadPromises.push(pendingLoadPromise);
+              } else {
+                fieldIdsWhichAreNotAlreadyLoadedOrLoading.push(fieldId);
+              }
+            }
+          }
+          if (fieldIdsWhichAreNotAlreadyLoadedOrLoading.length > 0) {
+            const loadFieldsWhichAreNotAlreadyLoadedOrLoadingPromise = this._loadCellValuesInFieldIdsAsync(fieldIdsWhichAreNotAlreadyLoadedOrLoading);
+            pendingLoadPromises.push(loadFieldsWhichAreNotAlreadyLoadedOrLoadingPromise);
+            for (const fieldId of fieldIdsWhichAreNotAlreadyLoadedOrLoading) {
+              this._pendingCellValuesLoadPromiseByFieldId[fieldId] = loadFieldsWhichAreNotAlreadyLoadedOrLoadingPromise;
+            }
+            loadFieldsWhichAreNotAlreadyLoadedOrLoadingPromise.then((changedKeys) => {
+              for (const fieldId of fieldIdsWhichAreNotAlreadyLoadedOrLoading) {
+                this._areCellValuesLoadedByFieldId[fieldId] = true;
+                this._pendingCellValuesLoadPromiseByFieldId[fieldId] = void 0;
+              }
+              for (const key of changedKeys) {
+                onChange(key);
+              }
+            });
+          }
+          this._restartTimeoutToUnloadFieldIdsIfTimeoutIsActive();
+          await Promise.all(pendingLoadPromises);
+        }
+        async _loadCellValuesInFieldIdsAsync(fieldIds) {
+          const {
+            recordsById: newRecordsById
+          } = await this._airtableInterface.fetchAndSubscribeToCellValuesInFieldsAsync(this.tableId, fieldIds);
+          if (!this._data.recordsById) {
+            this._data.recordsById = {};
+          }
+          const {
+            recordsById: existingRecordsById
+          } = this._data;
+          for (const [recordId, newRecordObj] of entries(cast(newRecordsById))) {
+            if (!has(existingRecordsById, recordId)) {
+              existingRecordsById[recordId] = newRecordObj;
+            } else {
+              const existingRecordObj = existingRecordsById[recordId];
+              if (existingRecordObj.commentCount !== newRecordObj.commentCount) {
+                const isCommentCountTypesSame = typeof existingRecordObj.commentCount !== typeof newRecordObj.commentCount;
+                logErrorToSentry("comment count out of sync - types are same: %s", {
+                  isCommentCountTypesSame
+                });
+              }
+              if (existingRecordObj.createdTime !== newRecordObj.createdTime) {
+                const isCreatedTimeTypesSame = typeof existingRecordObj.createdTime !== typeof newRecordObj.createdTime;
+                logErrorToSentry("created time out of sync - types are same: %s", {
+                  isCreatedTimeTypesSame
+                });
+              }
+              if (!existingRecordObj.cellValuesByFieldId) {
+                existingRecordObj.cellValuesByFieldId = {};
+              }
+              const existingCellValuesByFieldId = existingRecordObj.cellValuesByFieldId;
+              for (let i = 0; i < fieldIds.length; i++) {
+                const fieldId = fieldIds[i];
+                existingCellValuesByFieldId[fieldId] = newRecordObj.cellValuesByFieldId ? newRecordObj.cellValuesByFieldId[fieldId] : void 0;
+              }
+            }
+          }
+          const changedKeys = fieldIds.map((fieldId) => WatchableCellValuesInFieldKeyPrefix + fieldId);
+          changedKeys.push(WatchableRecordStoreKeys.records);
+          changedKeys.push(WatchableRecordStoreKeys.recordIds);
+          changedKeys.push(WatchableRecordStoreKeys.cellValues);
+          return changedKeys;
+        }
+        unloadCellValuesInFieldIds(fieldIds) {
+          if (this._isForceUnloaded) {
+            return;
+          }
+          for (const fieldId of fieldIds) {
+            let fieldRetainCount = this._cellValuesRetainCountByFieldId[fieldId] || 0;
+            fieldRetainCount--;
+            if (fieldRetainCount < 0) {
+              console.log("Field data over-released");
+              fieldRetainCount = 0;
+            }
+            this._cellValuesRetainCountByFieldId[fieldId] = fieldRetainCount;
+          }
+          this._startTimeoutToUnloadForFieldIdsIfNeeded();
+        }
+        // This unloads all fields where the retain count is at zero, and if any other
+        // request to unload fields is pending - cancels it and restarts it.
+        // This is important because fields must always be unloaded at least __DATA_UNLOAD_DELAY_MS
+        // after the unload is requested so that any QueryResults relying on them properly
+        // unload either first, or at the same time
+        _startTimeoutToUnloadForFieldIdsIfNeeded() {
+          const fieldIdsWithZeroRetainCount = [];
+          for (const [fieldId, retainCount] of Object.entries(this._cellValuesRetainCountByFieldId)) {
+            if (retainCount === 0) {
+              fieldIdsWithZeroRetainCount.push(fieldId);
+            }
+          }
+          if (this._timeoutForRemovingFieldIds) {
+            clearTimeout(this._timeoutForRemovingFieldIds);
+            this._timeoutForRemovingFieldIds = null;
+          }
+          if (fieldIdsWithZeroRetainCount.length > 0) {
+            this._timeoutForRemovingFieldIds = setTimeout(() => {
+              const fieldIdsToUnload = fieldIdsWithZeroRetainCount.filter((fieldId) => {
+                return this._cellValuesRetainCountByFieldId[fieldId] === 0 && this._areCellValuesLoadedByFieldId[fieldId];
+              });
+              if (fieldIdsToUnload.length > 0) {
+                for (const fieldId of fieldIdsToUnload) {
+                  this._areCellValuesLoadedByFieldId[fieldId] = false;
+                }
+                this._unloadCellValuesInFieldIds(fieldIdsToUnload);
+              } else {
+                logErrorToSentry("fieldIdsToUnload is empty, this likely means the unload timer is not properly reset.");
+              }
+              this._timeoutForRemovingFieldIds = null;
+            }, AbstractModelWithAsyncData.__DATA_UNLOAD_DELAY_MS);
+          }
+        }
+        _restartTimeoutToUnloadFieldIdsIfTimeoutIsActive() {
+          if (this._timeoutForRemovingFieldIds) {
+            this._startTimeoutToUnloadForFieldIdsIfNeeded();
+          }
+        }
+        _unloadCellValuesInFieldIds(fieldIds) {
+          this._airtableInterface.unsubscribeFromCellValuesInFields(this.tableId, fieldIds);
+          this._afterUnloadDataOrUnloadCellValuesInFieldIds(fieldIds);
+        }
+        async _loadDataAsync() {
+          const tableData = await this._airtableInterface.fetchAndSubscribeToTableDataAsync(this.tableId);
+          this._data.recordsById = tableData.recordsById;
+          const changedKeys = [WatchableRecordStoreKeys.records, WatchableRecordStoreKeys.recordIds, WatchableRecordStoreKeys.cellValues];
+          for (const fieldId of keys(this._data.fieldsById)) {
+            changedKeys.push(WatchableCellValuesInFieldKeyPrefix + fieldId);
+          }
+          return changedKeys;
+        }
+        _unloadData() {
+          this._airtableInterface.unsubscribeFromTableData(this.tableId);
+          this._afterUnloadDataOrUnloadCellValuesInFieldIds();
+        }
+        _afterUnloadDataOrUnloadCellValuesInFieldIds(unloadedFieldIds) {
+          const areAnyFieldsLoaded = this.isDataLoaded || values(this._areCellValuesLoadedByFieldId).some((isLoaded) => isLoaded);
+          if (!this.isDeleted) {
+            if (!areAnyFieldsLoaded) {
+              this._data.recordsById = void 0;
+            } else if (!this.isDataLoaded) {
+              let fieldIdsToClear;
+              if (unloadedFieldIds) {
+                fieldIdsToClear = unloadedFieldIds;
+                logErrorToSentry("Field Ids are being unloaded when record_store is unloaded");
+              } else {
+                const fieldIds = Object.keys(this._data.fieldsById);
+                fieldIdsToClear = fieldIds.filter((fieldId) => !this._areCellValuesLoadedByFieldId[fieldId]);
+              }
+              const {
+                recordsById
+              } = this._data;
+              for (const recordObj of values(recordsById || {})) {
+                for (let i = 0; i < fieldIdsToClear.length; i++) {
+                  const fieldId = fieldIdsToClear[i];
+                  if (recordObj.cellValuesByFieldId) {
+                    recordObj.cellValuesByFieldId[fieldId] = void 0;
+                  }
+                }
+              }
+            }
+          }
+          if (!areAnyFieldsLoaded) {
+            this._clearRecordModels();
+          }
+        }
+        get _dataOrNullIfDeleted() {
+          return this._baseData.tablesById[this.tableId] ?? null;
+        }
+      };
+      record_store_default = RecordStore;
+    }
+  });
+
   // node_modules/@airtable/blocks/dist/esm/shared/models/table_core.js
   var WatchableTableKeysCore, TableCore;
   var init_table_core = __esm({
@@ -19074,8 +21967,8 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         /**
          * @internal
          */
-        constructor(parentBase, recordStore, tableId, sdk3) {
-          super(sdk3, tableId);
+        constructor(parentBase, recordStore, tableId, sdk4) {
+          super(sdk4, tableId);
           this._parentBase = parentBase;
           this._recordStore = recordStore;
           this._fieldModelsById = {};
@@ -20328,292 +23221,1004 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/models/field.js
-  var Field;
-  var init_field = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/field.js"() {
-      init_field_core2();
-      Field = class extends FieldCore {
+  // node_modules/@airtable/blocks/dist/esm/base/models/grouped_record_query_result.js
+  var GroupedRecordQueryResult, grouped_record_query_result_default;
+  var init_grouped_record_query_result = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/grouped_record_query_result.js"() {
+      init_error_utils();
+      init_object_pool();
+      init_record_query_result();
+      GroupedRecordQueryResult = class _GroupedRecordQueryResult extends record_query_result_default {
         /** @internal */
-        static _className = "Field";
-      };
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/models/table.js
-  var Table;
-  var init_table = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/table.js"() {
-      init_table_core();
-      init_field_core();
-      init_field();
-      Table = class extends TableCore {
+        static _className = "GroupedRecordQueryResult";
         /** @internal */
-        _constructField(fieldId) {
-          return new Field(this.parentBase.__sdk, this, fieldId);
+        /** @internal */
+        /**
+         * This includes groupLevel for all children & parent grouped layers, the getter
+         * returns only the groupLevels for this layer.
+         *
+         * @internal
+         */
+        // This is the ordered list of groups.
+        /** @internal */
+        // lazily generated set of record ids
+        /** @internal */
+        _recordIdsSet = null;
+        // lazily generated ordered array of recordIds
+        _orderedRecordIds = null;
+        /** @internal */
+        /** @internal */
+        constructor(parentQueryResult, groupData, groupLevel, normalizedOpts, sdk4) {
+          super(sdk4, normalizedOpts);
+          this.__groupedRecordQueryResultPool = new ObjectPool(_GroupedRecordQueryResult);
+          this._parentQueryResult = parentQueryResult;
+          this._groupData = groupData;
+          this._groupLevels = groupLevel;
+          const groupLevelDataSlicedForChildren = this._groupLevels.slice(1);
+          this._orderedChildrenGroups = groupData.groups ? groupData.groups.map((singleGroupData) => {
+            const group = this.__groupedRecordQueryResultPool.getObjectForReuse(this, singleGroupData, groupLevelDataSlicedForChildren, normalizedOpts, sdk4);
+            group.loadDataAsync();
+            return group;
+          }) : null;
         }
         /**
-         * Checks whether records in this table can be expanded.
-         *
-         * Returns `{hasPermission: true}` if records can be expanded,
-         * `{hasPermission: false, reasonDisplayString: string}` otherwise.
-         *
-         * @example
-         * ```js
-         * const expandRecordsCheckResult = table.checkPermissionToExpandRecords();
-         * if (!expandRecordsCheckResult.hasPermission) {
-         *     alert(expandRecordsCheckResult.reasonDisplayString);
-         * }
-         * ```
+         * Gets children groups of this group (if any exist)
          */
-        checkPermissionToExpandRecords() {
-          const canExpand = this._baseData.tablesById[this.id].isRecordExpansionEnabled;
-          return canExpand ? {
-            hasPermission: true
-          } : {
-            hasPermission: false,
-            reasonDisplayString: "Record expansion is not enabled for this table"
+        get groups() {
+          return this._orderedChildrenGroups;
+        }
+        /** @internal */
+        get groupLevel() {
+          return this._data.groupLevels[0];
+        }
+        /**
+         * Gets the fieldId that this group is grouped by
+         */
+        get fieldId() {
+          return this.groupLevel.fieldId;
+        }
+        /**
+         * Gets the field that this group is grouped by
+         */
+        get field() {
+          return this.parentTable.getFieldById(this.fieldId);
+        }
+        // TODO (SeanKeenan) This is needed because we can't always iterate down and find
+        // a record, it's possible to have "empty groups".
+        // getValue() {
+        // }
+        // TODO (SeanKeenan)
+        // getValueAsString() {
+        // }
+        /**
+         * @internal (since we may not be able to return parent model instances in the immutable models world)
+         * The table that records in this RecordQueryResult are part of
+         */
+        get parentTable() {
+          return this._parentQueryResult.parentTable;
+        }
+        /**
+         * Recursively gets all recordIds in the children groups, keeping recordIds in group order
+         *
+         * @internal
+         */
+        _computeRecordIds() {
+          if (!this.groups) {
+            return this._data.groupData.visibleRecordIds ?? [];
+          }
+          const recordIds = [];
+          for (const group of this.groups) {
+            recordIds.push(...group.recordIds);
+          }
+          return recordIds;
+        }
+        /**
+         * Anytime the recordIds to return could have changed, we clear this so that
+         * the next time the user requests recordIds it recomputes
+         *
+         * @internal
+         */
+        _invalidateComputedRecordIds() {
+          this._orderedRecordIds = null;
+        }
+        /**
+         * Ordered array of all the record ids inside this group, in group order.
+         * This returns all recordIds of all children groups (in grouped order).
+         * Watchable.
+         */
+        get recordIds() {
+          invariant(this.isDataLoaded, "GroupedRecordQueryResult data is not loaded");
+          if (this._orderedRecordIds === null) {
+            this._orderedRecordIds = this._computeRecordIds();
+          }
+          return this._orderedRecordIds;
+        }
+        /**
+         * The fields that were used to create the parent RecordQueryResult that created this GroupedRecordQueryResult.
+         * This is separate from the field/fieldId property - which is the field this grouping is based upon.
+         * Null if fields were not specified, which means the RecordQueryResult
+         * will load all fields in the table.
+         */
+        get fields() {
+          invariant(this.isDataLoaded, "GroupedRecordQueryResult data is not loaded");
+          return this._parentQueryResult.fields;
+        }
+        /** @inheritdoc */
+        watch(keys2, callback, context) {
+          const validKeys = this._parentQueryResult.watch(keys2, callback, context);
+          return validKeys;
+        }
+        /** @inheritdoc */
+        unwatch(keys2, callback, context) {
+          return this._parentQueryResult.unwatch(keys2, callback, context);
+        }
+        /** @inheritdoc */
+        async loadDataAsync() {
+          await super.loadDataAsync();
+        }
+        /** @internal */
+        _getChangedKeysOnLoad() {
+          return this._parentQueryResult._getChangedKeysOnLoad();
+        }
+        /** @internal */
+        async _loadDataAsync() {
+          this._parentQueryResult.__groupedRecordQueryResultPool.registerObjectForReuseStrong(this);
+          this.watch(["recordIds", "groups", "groupLevels"], this._invalidateComputedRecordIds, this);
+          this.watch(["recordIds"], this._invalidateRecordIdsSet, this);
+          return this._getChangedKeysOnLoad();
+        }
+        /** @internal */
+        _unloadData() {
+          this.unwatch(["recordIds", "groups", "groupLevels"], this._invalidateComputedRecordIds, this);
+          this.unwatch(["recordIds"], this._invalidateRecordIdsSet, this);
+          this._invalidateComputedRecordIds();
+          this._invalidateRecordIdsSet();
+          this._unloadChildrenGroupsIfNeeded();
+          this._parentQueryResult.__groupedRecordQueryResultPool.unregisterObjectForReuseStrong(this);
+        }
+        /** @internal */
+        get __poolKey() {
+          return `${this._serializedOpts}::${this.id}`;
+        }
+        /**
+         * This model doesn't actually load data, but it does use the `_data`
+         * property so that checks for model deletion behave appropriately.
+         *
+         * This is considered deleted if the parent query result has been deleted.
+         *
+         * We return groupData, instead of precomputing all children groups because
+         * we perform the computation+caching lazily on request
+         *
+         * @internal
+         */
+        get _dataOrNullIfDeleted() {
+          if (this._parentQueryResult._dataOrNullIfDeleted === null) {
+            return null;
+          }
+          return {
+            groupData: this._groupData,
+            groupLevels: this._groupLevels
           };
         }
-        /**
-         * An alias for `checkPermissionsForExpandRecords().hasPermission`.
-         *
-         * Whether records in this table can be expanded.
-         *
-         * @example
-         * ```js
-         * const isRecordExpansionEnabled = table.hasPermissionToExpandRecords();
-         * if (isRecordExpansionEnabled) {
-         *     expandRecord(record);
-         * }
-         * ```
-         */
-        hasPermissionToExpandRecords() {
-          return this.checkPermissionToExpandRecords().hasPermission;
+        /** @inheritdoc */
+        get isDataLoaded() {
+          return this._parentQueryResult.isDataLoaded;
         }
         /** @internal */
-        _adjustCellValueForFieldIfNecessary(field, cellValue, onGenerateIdForNewForeignRecord) {
-          if (field.type !== FieldType.MULTIPLE_RECORD_LINKS || !Array.isArray(cellValue)) {
-            return cellValue;
+        _unloadChildrenGroupsIfNeeded() {
+          if (this._orderedChildrenGroups) {
+            for (const group of this._orderedChildrenGroups) {
+              group.unloadData();
+            }
           }
-          return cellValue.map((item) => {
-            if (typeof item !== "object" || item === null) {
-              return item;
+        }
+        /** @internal */
+        _invalidateRecordIdsSet() {
+          this._recordIdsSet = null;
+        }
+        /** @internal */
+        _getOrGenerateRecordIdsSet() {
+          if (!this._recordIdsSet) {
+            const recordIdsSet = {};
+            for (const recordId of this.recordIds) {
+              recordIdsSet[recordId] = true;
             }
-            if (!item.id) {
-              const newForeignRecordId = this.parentBase.__sdk.__airtableInterface.idGenerator.generateRecordId();
-              onGenerateIdForNewForeignRecord(newForeignRecordId);
-              return __spreadProps(__spreadValues({}, item), {
-                id: newForeignRecordId
-              });
-            }
-            return item;
-          });
+            this._recordIdsSet = recordIdsSet;
+          }
+          return this._recordIdsSet;
         }
       };
+      grouped_record_query_result_default = GroupedRecordQueryResult;
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/models/record_store_core.js
-  var WatchableRecordStoreKeysCore, WatchableCellValuesInFieldKeyPrefix, RecordStoreCore, record_store_core_default;
-  var init_record_store_core = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/models/record_store_core.js"() {
+  // node_modules/@airtable/blocks/dist/esm/base/models/table_or_view_query_result.js
+  var TableOrViewQueryResult, table_or_view_query_result_default;
+  var init_table_or_view_query_result = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/table_or_view_query_result.js"() {
       init_private_utils();
       init_error_utils();
-      init_abstract_model();
-      WatchableRecordStoreKeysCore = Object.freeze({
-        records: "records",
-        recordIds: "recordIds",
-        cellValues: "cellValues"
-      });
-      WatchableCellValuesInFieldKeyPrefix = "cellValuesInField:";
-      RecordStoreCore = class extends abstract_model_default {
-        static _className = "RecordStoreCore";
-        static _isWatchableKey(key) {
-          return isEnumValue(WatchableRecordStoreKeysCore, key) || key.startsWith(WatchableCellValuesInFieldKeyPrefix);
+      init_object_pool();
+      init_table();
+      init_record_query_result();
+      init_record_coloring();
+      init_record_store();
+      init_view_data_store();
+      init_grouped_record_query_result();
+      TableOrViewQueryResult = class extends record_query_result_default {
+        /** @internal */
+        static _className = "TableOrViewQueryResult";
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        // If custom sorts or groups are specified, we'll use a VisList to handle sorting.
+        // If no sorts are specified, we'll use the underlying row order of the source model.
+        // Note: we're currently handling visibility tracking for view query results within this class,
+        // not in the VisList. In other words, only visible records are added to the visList.
+        /** @internal */
+        /** @internal */
+        // These is the groupLevels provided to us by the user when executing a query
+        /** @internal */
+        // This is the ordered list of record ids.
+        /** @internal */
+        // This is the ordered list of groups.
+        /** @internal */
+        // An ordered list of group levels returned to us from hyperbase, this should not be
+        // read from directly, but instead via this.data.groupLevels (Writing to this on hyperbase updates).
+        // (which check's that this model has not been not deleted)
+        /** @internal */
+        // lazily generated set of record ids
+        /** @internal */
+        _recordIdsSet = null;
+        // NOTE: when a cellValue key (cellValues or cellValuesInField:) is watched, we want
+        // to make sure we watch the associated key on the table. However, we need to make
+        // sure that we only watch the table once for each key. Otherwise, the callbacks
+        // for each key will get called more than once for each change event. This is because
+        // Watchable stores references to callbacks for each key, and on each _onChange event
+        // calls each callback for that key. If we watch the table more than once, then we'll
+        // call _onChange more than once, and each callback will be called more than once, which
+        // is undesirable. Instead, we'll store watch counts for each key to make sure we only
+        // watch the table once.
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        constructor(sdk4, sourceModel, normalizedOpts) {
+          super(sdk4, normalizedOpts);
+          this._sourceModel = sourceModel;
+          this._mostRecentSourceModelLoadPromise = null;
+          this._table = normalizedOpts.table;
+          const {
+            sorts
+          } = this._normalizedOpts;
+          this._sorts = sorts ?? null;
+          this._groupLevels = null;
+          this._visList = null;
+          this._orderedRecordIds = null;
+          this._orderedGroups = null;
+          this._loadedGroupLevels = null;
+          this._cellValueKeyWatchCounts = {};
+          let fieldIdsSetToLoadOrNullIfAllFields = null;
+          if (this._normalizedOpts.fieldIdsOrNullIfAllFields) {
+            fieldIdsSetToLoadOrNullIfAllFields = {};
+            for (const fieldId of this._normalizedOpts.fieldIdsOrNullIfAllFields) {
+              fieldIdsSetToLoadOrNullIfAllFields[fieldId] = true;
+            }
+            if (this._sorts !== null) {
+              for (const sort of this._sorts) {
+                fieldIdsSetToLoadOrNullIfAllFields[sort.fieldId] = true;
+              }
+            }
+            const recordColorMode = this._normalizedOpts.recordColorMode;
+            if (recordColorMode && recordColorMode.type === ModeTypes.BY_SELECT_FIELD) {
+              fieldIdsSetToLoadOrNullIfAllFields[recordColorMode.selectField.id] = true;
+            }
+          }
+          this._fieldIdsSetToLoadOrNullIfAllFields = fieldIdsSetToLoadOrNullIfAllFields;
+          this.__groupedRecordQueryResultPool = new ObjectPool(grouped_record_query_result_default);
+          Object.seal(this);
         }
-        _recordModelsById = {};
-        constructor(sdk3, tableId) {
-          super(sdk3, `${tableId}-RecordStore`);
-          this.tableId = tableId;
-        }
+        /** @internal */
         get _dataOrNullIfDeleted() {
-          return this._baseData.tablesById[this.tableId] ?? null;
+          if (this._sourceModel.isDeleted || this._recordStore.isDeleted) {
+            return null;
+          }
+          return {
+            recordIds: this._orderedRecordIds,
+            groups: this._orderedGroups,
+            groupLevels: this._loadedGroupLevels
+          };
         }
+        /** @internal */
+        // istanbul ignore next
+        get __sourceModelId() {
+          return this._sourceModel.id;
+        }
+        /** @internal */
+        get __poolKey() {
+          return `${this._serializedOpts}::${this._sourceModel.id}`;
+        }
+        /**
+         * @internal (since we may not be able to return parent model instances in the immutable models world)
+         * The table that records in this RecordQueryResult are part of
+         */
+        get parentTable() {
+          return this._table;
+        }
+        /**
+         * @internal (since we may not be able to return parent model instances in the immutable models world)
+         * The view that was used to obtain this RecordQueryResult by calling
+         * `view.selectRecords`. Null if the RecordQueryResult was obtained by calling
+         * `table.selectRecords`.
+         */
+        get parentView() {
+          return this._sourceModel instanceof table_default ? null : this._sourceModel;
+        }
+        /**
+         * The record IDs in this RecordQueryResult.
+         * Throws if data is not loaded yet.
+         * Can be watched.
+         */
+        get recordIds() {
+          const {
+            recordIds
+          } = this._data;
+          invariant(this.isDataLoaded, "RecordQueryResult data is not loaded");
+          invariant(recordIds, "No recordIds");
+          return recordIds;
+        }
+        /**
+         * The ordered GroupedRecordQueryResult's in this RecordQueryResult.
+         * Throws if data is not loaded yet.
+         * Can be watched.
+         *
+         * @hidden
+         */
+        get groups() {
+          const {
+            groups
+          } = this._data;
+          invariant(this.isDataLoaded, "RecordQueryResult data is not loaded");
+          return groups ?? null;
+        }
+        /**
+         * The GroupLevels in this RecordQueryResult.
+         * Throws if data is not loaded yet.
+         * Can be watched.
+         *
+         * @hidden
+         */
+        get groupLevels() {
+          const {
+            groupLevels
+          } = this._data;
+          invariant(this.isDataLoaded, "RecordQueryResult data is not loaded");
+          return groupLevels ? groupLevels.map((singleLevel) => __spreadProps(__spreadValues({}, singleLevel), {
+            field: this.parentTable.getFieldById(singleLevel.fieldId)
+          })) : null;
+        }
+        /**
+         * The set of record IDs in this RecordQueryResult.
+         * Throws if data is not loaded yet.
+         *
+         * @internal
+         */
+        _getOrGenerateRecordIdsSet() {
+          if (!this._recordIdsSet) {
+            const recordIdsSet = {};
+            for (const recordId of this.recordIds) {
+              recordIdsSet[recordId] = true;
+            }
+            this._recordIdsSet = recordIdsSet;
+          }
+          return this._recordIdsSet;
+        }
+        /**
+         * The fields that were used to create this RecordQueryResult.
+         * Null if fields were not specified, which means the RecordQueryResult
+         * will load all fields in the table.
+         */
+        get fields() {
+          const {
+            fieldIdsOrNullIfAllFields
+          } = this._normalizedOpts;
+          if (fieldIdsOrNullIfAllFields) {
+            const fields = [];
+            for (const fieldId of fieldIdsOrNullIfAllFields) {
+              const field = this._table.getFieldByIdIfExists(fieldId);
+              if (field !== null) {
+                fields.push(field);
+              }
+            }
+            return fields;
+          } else {
+            return null;
+          }
+        }
+        /** @internal */
+        get _cellValuesForSortWatchKeys() {
+          return this._sorts ? this._sorts.map((sort) => `cellValuesInField:${sort.fieldId}`) : [];
+        }
+        /** @internal */
+        get _cellValuesForGroupWatchKeys() {
+          return this._groupLevels ? this._groupLevels.map((group) => `cellValuesInField:${group.fieldId}`) : [];
+        }
+        /** @internal */
+        get _sourceModelRecordIds() {
+          return this._sourceModel instanceof table_default ? this._recordStore.recordIds : this._recordStore.getViewDataStore(this._sourceModel.id).visibleRecordIds;
+        }
+        /** @internal */
+        get _sourceModelGroups() {
+          return this._sourceModel instanceof table_default ? null : this._recordStore.getViewDataStore(this._sourceModel.id).groups;
+        }
+        /** @internal */
+        get _sourceModelGroupLevels() {
+          return this._sourceModel instanceof table_default ? null : this._recordStore.getViewDataStore(this._sourceModel.id).groupLevels;
+        }
+        /** @internal */
+        get _sourceModelRecords() {
+          return this._sourceModel instanceof table_default ? this._recordStore.records : this._recordStore.getViewDataStore(this._sourceModel.id).visibleRecords;
+        }
+        /** @internal */
+        _incrementCellValueKeyWatchCountAndWatchIfNecessary(key, watchCallback) {
+          if (!this._cellValueKeyWatchCounts[key]) {
+            this._cellValueKeyWatchCounts[key] = 0;
+            this._recordStore.watch(key, watchCallback, this);
+          }
+          this._cellValueKeyWatchCounts[key]++;
+        }
+        /** @internal */
+        _decrementCellValueKeyWatchCountAndUnwatchIfPossible(key, watchCallback) {
+          if (!this._cellValueKeyWatchCounts[key]) {
+            return;
+          }
+          this._cellValueKeyWatchCounts[key]--;
+          if (this._cellValueKeyWatchCounts[key] === 0) {
+            this._recordStore.unwatch(key, watchCallback, this);
+            delete this._cellValueKeyWatchCounts[key];
+          }
+        }
+        /** @inheritdoc */
         watch(keys2, callback, context) {
           const validKeys = super.watch(keys2, callback, context);
-          return validKeys;
-        }
-        unwatch(keys2, callback, context) {
-          const validKeys = super.unwatch(keys2, callback, context);
-          return validKeys;
-        }
-        /**
-         * The records in this table.
-         */
-        get records() {
-          const recordsById = this._data.recordsById;
-          invariant(recordsById, "Record metadata is not loaded");
-          const records = this.recordIds.map((recordId) => {
-            const record = this.getRecordByIdIfExists(recordId);
-            invariant(record, "record not found");
-            return record;
-          });
-          return records;
-        }
-        /**
-         * The record IDs in this table.
-         */
-        getRecordByIdIfExists(recordId) {
-          const recordsById = this._data.recordsById;
-          invariant(recordsById, "Record metadata is not loaded");
-          invariant(typeof recordId === "string", "getRecordById expects a string");
-          if (!recordsById[recordId]) {
-            return null;
-          } else {
-            if (this._recordModelsById[recordId]) {
-              return this._recordModelsById[recordId];
+          for (const key of validKeys) {
+            if (key.startsWith(record_query_result_default.WatchableCellValuesInFieldKeyPrefix)) {
+              const fieldId = key.substring(record_query_result_default.WatchableCellValuesInFieldKeyPrefix.length);
+              if (this._fieldIdsSetToLoadOrNullIfAllFields && !has(this._fieldIdsSetToLoadOrNullIfAllFields, fieldId)) {
+                throw spawnError("Can't watch field because it wasn't included in RecordQueryResult fields: %s", fieldId);
+              }
+              this._incrementCellValueKeyWatchCountAndWatchIfNecessary(key, this._onCellValuesInFieldChanged);
             }
-            const newRecord = this._constructRecord(recordId, this._sdk.base.getTableById(this.tableId));
-            this._recordModelsById[recordId] = newRecord;
-            return newRecord;
-          }
-        }
-        triggerOnChangeForDirtyPaths(dirtyPaths) {
-          if (dirtyPaths.recordsById) {
-            const dirtyFieldIdsSet = {};
-            const addedRecordIds = [];
-            const removedRecordIds = [];
-            for (const [recordId, dirtyRecordPaths] of entries(dirtyPaths.recordsById)) {
-              if (dirtyRecordPaths && dirtyRecordPaths._isDirty) {
-                invariant(this._data.recordsById, "No recordsById");
-                if (has(this._data.recordsById, recordId)) {
-                  addedRecordIds.push(recordId);
-                } else {
-                  removedRecordIds.push(recordId);
-                  const recordModel = this._recordModelsById[recordId];
-                  if (recordModel) {
-                    delete this._recordModelsById[recordId];
-                  }
+            if (key === record_query_result_default.WatchableKeys.cellValues) {
+              if (this._fieldIdsSetToLoadOrNullIfAllFields) {
+                for (const fieldId of Object.keys(this._fieldIdsSetToLoadOrNullIfAllFields)) {
+                  this._incrementCellValueKeyWatchCountAndWatchIfNecessary(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId, this._onCellValuesChanged);
                 }
               } else {
-                const recordModel = this._recordModelsById[recordId];
-                if (recordModel) {
-                  recordModel.__triggerOnChangeForDirtyPaths(dirtyRecordPaths);
-                }
-              }
-              const {
-                cellValuesByFieldId
-              } = dirtyRecordPaths;
-              if (cellValuesByFieldId) {
-                for (const fieldId of Object.keys(cellValuesByFieldId)) {
-                  dirtyFieldIdsSet[fieldId] = true;
-                }
+                this._incrementCellValueKeyWatchCountAndWatchIfNecessary(key, this._onCellValuesChanged);
               }
             }
-            if (addedRecordIds.length > 0 || removedRecordIds.length > 0) {
-              this._onChange(WatchableRecordStoreKeysCore.records, {
-                addedRecordIds,
-                removedRecordIds
-              });
-              this._onChange(WatchableRecordStoreKeysCore.recordIds, {
-                addedRecordIds,
-                removedRecordIds
-              });
+          }
+          return validKeys;
+        }
+        /** @inheritdoc */
+        unwatch(keys2, callback, context) {
+          const validKeys = super.unwatch(keys2, callback, context);
+          for (const key of validKeys) {
+            if (key.startsWith(record_query_result_default.WatchableCellValuesInFieldKeyPrefix)) {
+              this._decrementCellValueKeyWatchCountAndUnwatchIfPossible(key, this._onCellValuesInFieldChanged);
             }
-            const fieldIds = Object.freeze(Object.keys(dirtyFieldIdsSet));
-            const recordIds = Object.freeze(Object.keys(dirtyPaths.recordsById));
-            if (fieldIds.length > 0 && recordIds.length > 0) {
-              this._onChange(WatchableRecordStoreKeysCore.cellValues, {
-                recordIds,
-                fieldIds
-              });
+            if (key === record_query_result_default.WatchableKeys.cellValues) {
+              if (this._fieldIdsSetToLoadOrNullIfAllFields) {
+                for (const fieldId of Object.keys(this._fieldIdsSetToLoadOrNullIfAllFields)) {
+                  this._decrementCellValueKeyWatchCountAndUnwatchIfPossible(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId, this._onCellValuesChanged);
+                }
+              } else {
+                this._decrementCellValueKeyWatchCountAndUnwatchIfPossible(key, this._onCellValuesChanged);
+              }
             }
-            for (const fieldId of fieldIds) {
-              this._onChange(WatchableCellValuesInFieldKeyPrefix + fieldId, recordIds, fieldId);
+          }
+          return validKeys;
+        }
+        /** @inheritdoc */
+        async loadDataAsync() {
+          let sourceModelLoadPromise;
+          let cellValuesInFieldsLoadPromise;
+          if (this._sourceModel.isDeleted) {
+            throw this._spawnErrorForDeletion();
+          }
+          if (this._fieldIdsSetToLoadOrNullIfAllFields) {
+            cellValuesInFieldsLoadPromise = this._recordStore.loadCellValuesInFieldIdsAsync(Object.keys(this._fieldIdsSetToLoadOrNullIfAllFields));
+          } else {
+            cellValuesInFieldsLoadPromise = this._recordStore.loadDataAsync();
+          }
+          if (this._sourceModel instanceof table_default) {
+            if (this._fieldIdsSetToLoadOrNullIfAllFields) {
+              sourceModelLoadPromise = this._recordStore.loadRecordMetadataAsync();
+            } else {
+              sourceModelLoadPromise = null;
+            }
+          } else {
+            sourceModelLoadPromise = this._recordStore.getViewDataStore(this._sourceModel.id).loadDataAsync();
+          }
+          this._mostRecentSourceModelLoadPromise = Promise.all([sourceModelLoadPromise, cellValuesInFieldsLoadPromise, this._loadRecordColorsAsync()]);
+          await super.loadDataAsync();
+        }
+        /**
+         * @internal
+         */
+        _getChangedKeysOnLoad() {
+          const changedKeys = [record_query_result_default.WatchableKeys.records, record_query_result_default.WatchableKeys.recordIds, record_query_result_default.WatchableKeys.cellValues, record_query_result_default.WatchableKeys.groups, record_query_result_default.WatchableKeys.groupLevels];
+          const fieldIds = this._normalizedOpts.fieldIdsOrNullIfAllFields || this._table.fields.map((field) => field.id);
+          for (const fieldId of fieldIds) {
+            changedKeys.push(record_query_result_default.WatchableCellValuesInFieldKeyPrefix + fieldId);
+          }
+          return changedKeys;
+        }
+        /** @internal */
+        async _loadDataAsync() {
+          this._table.__tableOrViewQueryResultPool.registerObjectForReuseStrong(this);
+          invariant(this._mostRecentSourceModelLoadPromise, "No source model load promises");
+          await this._mostRecentSourceModelLoadPromise;
+          if (this._sorts) {
+            this._replaceVisList();
+          }
+          this._orderedRecordIds = this._generateOrderedRecordIds();
+          this._orderedGroups = this._generateAndLoadOrderedGroups();
+          this._loadedGroupLevels = this._sourceModelGroupLevels;
+          if (this._sourceModel instanceof table_default) {
+            this._recordStore.watch(WatchableRecordStoreKeys.records, this._onRecordsChanged, this);
+          } else {
+            const viewDataStore = this._recordStore.getViewDataStore(this._sourceModel.id);
+            viewDataStore.watch(WatchableViewDataStoreKeys.visibleRecords, this._onRecordsChanged, this);
+            viewDataStore.watch(WatchableViewDataStoreKeys.groups, this._onGroupsChanged, this);
+            viewDataStore.watch(WatchableViewDataStoreKeys.groupLevels, this._onGroupLevelsChanged, this);
+          }
+          this._recordStore.watch(this._cellValuesForSortWatchKeys, this._onCellValuesForSortChanged, this);
+          this._recordStore.watch(this._cellValuesForGroupWatchKeys, this._onCellValuesForGroupChanged, this);
+          this._table.watch(WatchableTableKeys.fields, this._onTableFieldsChanged, this);
+          if (this._sorts) {
+            for (const sort of this._sorts) {
+              const field = this._table.getFieldByIdIfExists(sort.fieldId);
+              if (field) {
+                field.watch("type", this._onFieldConfigChanged, this);
+                field.watch("options", this._onFieldConfigChanged, this);
+              }
+            }
+          }
+          return this._getChangedKeysOnLoad();
+        }
+        /** @inheritdoc */
+        unloadData() {
+          super.unloadData();
+          if (this._sourceModel instanceof table_default) {
+            if (this._fieldIdsSetToLoadOrNullIfAllFields) {
+              this._recordStore.unloadRecordMetadata();
+            } else {
+              this._recordStore.unloadData();
+            }
+          } else {
+            if (!this._sourceModel.isDeleted) {
+              this._recordStore.getViewDataStore(this._sourceModel.id).unloadData();
+            }
+          }
+          if (this._fieldIdsSetToLoadOrNullIfAllFields) {
+            this._recordStore.unloadCellValuesInFieldIds(Object.keys(this._fieldIdsSetToLoadOrNullIfAllFields));
+          }
+          this._unloadRecordColors();
+        }
+        /** @internal */
+        _unloadData() {
+          this._mostRecentSourceModelLoadPromise = null;
+          if (this._sourceModel instanceof table_default) {
+            this._recordStore.unwatch(WatchableRecordStoreKeys.records, this._onRecordsChanged, this);
+          } else {
+            if (!this._sourceModel.isDeleted) {
+              const viewDataStore = this._recordStore.getViewDataStore(this._sourceModel.id);
+              viewDataStore.unwatch(WatchableViewDataStoreKeys.visibleRecords, this._onRecordsChanged, this);
+              viewDataStore.unwatch(WatchableViewDataStoreKeys.groups, this._onGroupsChanged, this);
+              viewDataStore.unwatch(WatchableViewDataStoreKeys.groupLevels, this._onGroupLevelsChanged, this);
+            }
+          }
+          this._recordStore.unwatch(this._cellValuesForSortWatchKeys, this._onCellValuesForSortChanged, this);
+          this._recordStore.unwatch(this._cellValuesForGroupWatchKeys, this._onCellValuesForGroupChanged, this);
+          this._table.unwatch(WatchableTableKeys.fields, this._onTableFieldsChanged, this);
+          if (!this._table.isDeleted && this._sorts) {
+            for (const sort of this._sorts) {
+              const field = this._table.getFieldByIdIfExists(sort.fieldId);
+              if (field) {
+                field.unwatch("type", this._onFieldConfigChanged, this);
+                field.unwatch("options", this._onFieldConfigChanged, this);
+              }
+            }
+          }
+          this._unloadOrderedGroupsIfNeeded();
+          this._visList = null;
+          this._orderedRecordIds = null;
+          this._recordIdsSet = null;
+          this._table.__tableOrViewQueryResultPool.unregisterObjectForReuseStrong(this);
+        }
+        /** @internal */
+        _addRecordIdsToVisList(recordIds) {
+          const visList = this._visList;
+          invariant(visList, "No vis list");
+          for (const recordId of recordIds) {
+            const record = this._recordStore.getRecordByIdIfExists(recordId);
+            invariant(record, "Record missing in table");
+            visList.addRecordData(record._data);
+          }
+        }
+        /** @internal */
+        _onGroupLevelsChanged(model, key, updates) {
+          this._loadedGroupLevels = this._sourceModelGroupLevels;
+          this._unloadRemovedGroupsAndLoadNewGroupsAndTriggerWatches();
+          this._onChange(record_query_result_default.WatchableKeys.groupLevels);
+        }
+        /** @internal */
+        _onGroupsChanged(model, key, updates) {
+          this._unloadRemovedGroupsAndLoadNewGroupsAndTriggerWatches();
+        }
+        /** @internal */
+        _onRecordsChanged(model, key, updates) {
+          if (model instanceof view_data_store_default) {
+            invariant(this._orderedRecordIds, "_orderedRecordIds unset");
+            const visibleRecordIds = this._recordStore.getViewDataStore(model.viewId).visibleRecordIds;
+            const addedRecordIds2 = arrayDifference(visibleRecordIds, this._orderedRecordIds);
+            const removedRecordIds2 = arrayDifference(this._orderedRecordIds, visibleRecordIds);
+            updates = {
+              addedRecordIds: addedRecordIds2,
+              removedRecordIds: removedRecordIds2
+            };
+          }
+          if (!updates) {
+            return;
+          }
+          const {
+            addedRecordIds,
+            removedRecordIds
+          } = updates;
+          if (this._sorts) {
+            const visList = this._visList;
+            invariant(visList, "No vis list");
+            if (removedRecordIds.length > 0) {
+              visList.removeRecordIds(removedRecordIds);
+            }
+            if (addedRecordIds.length > 0) {
+              this._addRecordIdsToVisList(addedRecordIds);
+            }
+          }
+          if (this._recordIdsSet) {
+            for (const recordId of addedRecordIds) {
+              this._recordIdsSet[recordId] = true;
+            }
+            for (const recordId of removedRecordIds) {
+              this._recordIdsSet[recordId] = void 0;
+            }
+          }
+          this._orderedRecordIds = this._generateOrderedRecordIds();
+          this._onChange(record_query_result_default.WatchableKeys.records, updates);
+          this._onChange(record_query_result_default.WatchableKeys.recordIds, updates);
+        }
+        /** @internal */
+        // istanbul ignore next
+        _onCellValuesForGroupChanged(recordStore, key, recordIds, fieldId) {
+        }
+        /** @internal */
+        _onCellValuesForSortChanged(recordStore, key, recordIds, fieldId) {
+          if (!recordIds || !fieldId) {
+            return;
+          }
+          const visList = this._visList;
+          invariant(visList, "No vis list");
+          invariant(recordIds.length > 0, "field ID set without a corresponding record ID");
+          const visListRecordIdsSet = new Set(visList.getOrderedRecordIds());
+          const recordIdsToMove = recordIds.filter((recordId) => visListRecordIdsSet.has(recordId));
+          visList.removeRecordIds(recordIdsToMove);
+          this._addRecordIdsToVisList(recordIdsToMove);
+          this._orderedRecordIds = this._generateOrderedRecordIds();
+          const changeData = {
+            addedRecordIds: [],
+            removedRecordIds: []
+          };
+          this._onChange(record_query_result_default.WatchableKeys.records, changeData);
+          this._onChange(record_query_result_default.WatchableKeys.recordIds, changeData);
+        }
+        /** @internal */
+        _onFieldConfigChanged(_field, _key) {
+          this._replaceVisList();
+          this._orderedRecordIds = this._generateOrderedRecordIds();
+        }
+        /** @internal */
+        _onTableFieldsChanged(table, key, updates) {
+          if (!this._sorts) {
+            return;
+          }
+          const {
+            addedFieldIds,
+            removedFieldIds
+          } = updates;
+          const fieldIdsSet = new Set(this._sorts.map((sort) => sort.fieldId));
+          let wereAnyFieldsCreatedOrDeleted = false;
+          for (const fieldId of addedFieldIds) {
+            if (fieldIdsSet.has(fieldId)) {
+              wereAnyFieldsCreatedOrDeleted = true;
+              const field = this._table.getFieldByIdIfExists(fieldId);
+              invariant(field, "Created field does not exist");
+              field.watch("type", this._onFieldConfigChanged, this);
+              field.watch("options", this._onFieldConfigChanged, this);
+            }
+          }
+          if (!wereAnyFieldsCreatedOrDeleted) {
+            wereAnyFieldsCreatedOrDeleted = removedFieldIds.some((fieldId) => fieldIdsSet.has(fieldId));
+          }
+          if (wereAnyFieldsCreatedOrDeleted) {
+            this._replaceVisList();
+            this._orderedRecordIds = this._generateOrderedRecordIds();
+            const changeData = {
+              addedRecordIds: [],
+              removedRecordIds: []
+            };
+            this._onChange(record_query_result_default.WatchableKeys.records, changeData);
+            this._onChange(record_query_result_default.WatchableKeys.recordIds, changeData);
+          }
+        }
+        /** @internal */
+        _onCellValuesChanged(table, key, updates) {
+          if (!updates) {
+            return;
+          }
+          this._onChange(record_query_result_default.WatchableKeys.cellValues, updates);
+        }
+        /** @internal */
+        _onCellValuesInFieldChanged(table, key, recordIds, fieldId) {
+          if (!recordIds && !fieldId) {
+            return;
+          }
+          this._onChange(key, recordIds, fieldId);
+        }
+        /** @internal */
+        _generateOrderedRecordIds() {
+          if (this._sorts) {
+            invariant(this._visList, "Cannot generate record ids without a vis list");
+            return this._visList.getOrderedRecordIds();
+          } else {
+            return this._sourceModelRecordIds;
+          }
+        }
+        /** @internal */
+        _generateAndLoadOrderedGroups() {
+          if (this._groupLevels) {
+            invariant(this._visList, "Cannot generate record ids without a vis list");
+            throw spawnError("custom group configs not supported");
+          } else {
+            const groupLevels = this._sourceModelGroupLevels;
+            if (!this._sourceModelGroups || !groupLevels) {
+              return null;
+            }
+            return this._sourceModelGroups.map((groupData) => {
+              const group = this.__groupedRecordQueryResultPool.getObjectForReuse(this, groupData, groupLevels, this._normalizedOpts, this._sdk);
+              group.loadDataAsync();
+              return group;
+            });
+          }
+        }
+        /** @internal */
+        _unloadOrderedGroupsIfNeeded() {
+          if (this._orderedGroups) {
+            for (const group of this._orderedGroups) {
+              group.unloadData();
             }
           }
         }
+        /**
+         * If groupings change then some groups will need to be created, and some removed
+         * This (TODO: will) handle the diffing necessary to unload, and reload only the changed groups.
+         * Also triggers the WatchableKeys.group, as by necessity this will have changed.
+         *
+         * @internal
+         */
+        // TODO: (SeanKeenan) Properly diff and only unload groups that need to be unloaded
+        // In the meantime it's not too expensive to just unload everything, and GroupedRecordQueryResults
+        // don't yet properly watch changes relevant to updating, so this isn't too bad.
+        // (They do invalidate their recordId caches, which is some very cheap work that we could remove)
+        _unloadRemovedGroupsAndLoadNewGroupsAndTriggerWatches() {
+          this._unloadOrderedGroupsIfNeeded();
+          this._orderedGroups = this._generateAndLoadOrderedGroups();
+          this._onChange(record_query_result_default.WatchableKeys.groups);
+        }
+        /** @internal */
+        _replaceVisList() {
+          const airtableInterface2 = this._sdk.__airtableInterface;
+          const appInterface = this._sdk.__appInterface;
+          const recordDatas = this._sourceModelRecords.map((record) => record._data);
+          const fieldDatas = this._table.fields.map((field) => field._data);
+          const filteredSorts = this._getSortsWithDeletedFieldsFiltered();
+          this._visList = airtableInterface2.createVisList(appInterface, recordDatas, fieldDatas, filteredSorts);
+        }
+        /** @internal */
+        _getSortsWithDeletedFieldsFiltered() {
+          invariant(this._sorts, "No sorts");
+          return this._sorts.filter((sort) => {
+            const field = this._table.getFieldByIdIfExists(sort.fieldId);
+            return !!field;
+          });
+        }
+        /** @internal */
+        _spawnErrorForDeletion() {
+          const sourceModelName = this._sourceModel instanceof table_default ? "table" : "view";
+          return spawnError("RecordQueryResult's underlying %s has been deleted", sourceModelName);
+        }
       };
-      record_store_core_default = RecordStoreCore;
+      table_or_view_query_result_default = TableOrViewQueryResult;
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/models/record_core.js
-  var WatchableRecordKeysCore, WatchableCellValueInFieldKeyPrefix, RecordCore;
-  var init_record_core = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/models/record_core.js"() {
-      init_private_utils();
+  // node_modules/@airtable/blocks/dist/esm/base/models/view_metadata_query_result.js
+  var WatchableViewMetadataKeys, ViewMetadataQueryResult, view_metadata_query_result_default;
+  var init_view_metadata_query_result = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/view_metadata_query_result.js"() {
       init_error_utils();
-      init_field_core();
-      init_abstract_model();
-      init_field_core2();
-      WatchableRecordKeysCore = Object.freeze({
-        name: "name",
-        // TODO(kasra): these keys don't have matching getters (not that they should
-        // it's just inconsistent...)
-        cellValues: "cellValues"
-      });
-      WatchableCellValueInFieldKeyPrefix = "cellValueInField:";
-      RecordCore = class extends abstract_model_default {
+      init_private_utils();
+      init_abstract_model_with_async_data();
+      WatchableViewMetadataKeys = {
+        allFields: "allFields",
+        visibleFields: "visibleFields",
+        isDataLoaded: "isDataLoaded",
+        groupLevels: "groupLevels"
+      };
+      ViewMetadataQueryResult = class extends AbstractModelWithAsyncData {
         /** @internal */
-        static _className = "RecordCore";
+        static _className = "ViewMetadataQueryResult";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableViewMetadataKeys, key);
+        }
+        /** @internal */
+        static _shouldLoadDataForKey(key) {
+          return key === WatchableViewMetadataKeys.allFields || key === WatchableViewMetadataKeys.visibleFields || key === WatchableViewMetadataKeys.groupLevels;
+        }
+        /** */
+        /** @internal */
+        /** @internal */
+        constructor(sdk4, parentView, viewDataStore) {
+          super(sdk4, getLocallyUniqueId("ViewMetadataQueryResult"));
+          this.parentView = parentView;
+          this._viewDataStore = viewDataStore;
+        }
+        /** @internal */
+        get __poolKey() {
+          return this.parentView.id;
+        }
+        /** @internal */
+        get _dataOrNullIfDeleted() {
+          if (this._viewDataStore.isDeleted) {
+            return null;
+          }
+          if (!this._viewDataStore.isDataLoaded) {
+            return {
+              visibleFieldIds: null,
+              allFieldIds: null,
+              groupLevels: null
+            };
+          }
+          return {
+            visibleFieldIds: this._viewDataStore.visibleFieldIds,
+            allFieldIds: this._viewDataStore.allFieldIds,
+            groupLevels: this._viewDataStore.groupLevels
+          };
+        }
+        /** @internal */
+        _onChangeIsDataLoaded() {
+          this._onChange(WatchableViewMetadataKeys.isDataLoaded);
+        }
+        /** @internal */
+        async _loadDataAsync() {
+          await this._viewDataStore.loadDataAsync();
+          this._viewDataStore.watch("visibleFieldIds", this._onVisibleFieldIdsChange);
+          this._viewDataStore.watch("allFieldIds", this._onAllFieldIdsChange);
+          this._viewDataStore.watch("groupLevels", this._onGroupLevelsChange);
+          return [WatchableViewMetadataKeys.visibleFields, WatchableViewMetadataKeys.allFields, WatchableViewMetadataKeys.groupLevels];
+        }
+        /** @internal */
+        _unloadData() {
+          this._viewDataStore.unwatch("visibleFieldIds", this._onVisibleFieldIdsChange);
+          this._viewDataStore.unwatch("allFieldIds", this._onAllFieldIdsChange);
+          this._viewDataStore.unwatch("groupLevels", this._onGroupLevelsChange);
+          this._viewDataStore.unloadData();
+        }
+        /** @internal */
+        _onVisibleFieldIdsChange = () => {
+          this._onChange(WatchableViewMetadataKeys.visibleFields);
+        };
+        /** @internal */
+        _onAllFieldIdsChange = () => {
+          this._onChange(WatchableViewMetadataKeys.allFields);
+        };
+        /** @internal */
+        _onGroupLevelsChange = () => {
+          this._onChange(WatchableViewMetadataKeys.groupLevels);
+        };
+        /**
+         * Returns every field in the table in the order they appear in this view. Watchable.
+         */
+        get allFields() {
+          const allFieldIds = this._data.allFieldIds;
+          invariant(allFieldIds, "view meta data is not loaded");
+          return allFieldIds.map((fieldId) => this.parentView.parentTable.getFieldById(fieldId));
+        }
+        /**
+         * Returns every field visible in this view. Watchable.
+         */
+        get visibleFields() {
+          const visibleFieldIds = this._data.visibleFieldIds;
+          invariant(visibleFieldIds, "view meta data is not loaded");
+          return visibleFieldIds.map((fieldId) => this.parentView.parentTable.getFieldById(fieldId));
+        }
+        /**
+         * Returns group levels for this view. Watchable.
+         *
+         * @hidden
+         */
+        get groupLevels() {
+          const groupLevels = this._data.groupLevels;
+          return groupLevels ? groupLevels.map((singleConfig) => __spreadProps(__spreadValues({}, singleConfig), {
+            field: this.parentView.parentTable.getFieldById(singleConfig.fieldId)
+          })) : null;
+        }
+      };
+      view_metadata_query_result_default = ViewMetadataQueryResult;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/view.js
+  var WatchableViewKeys, View, view_default;
+  var init_view = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/view.js"() {
+      init_private_utils();
+      init_mutations();
+      init_abstract_model();
+      init_object_pool();
+      init_record_query_result();
+      init_view_metadata_query_result();
+      init_record_coloring();
+      WatchableViewKeys = Object.freeze({
+        name: "name",
+        isLockedView: "isLockedView"
+      });
+      View = class extends abstract_model_default {
+        /** @internal */
+        static _className = "View";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableViewKeys, key);
+        }
+        /** @internal */
         /** @internal */
         /** @internal */
         /**
          * @internal
          */
-        constructor(sdk3, parentRecordStore, parentTable, recordId) {
-          super(sdk3, recordId);
-          this._parentRecordStore = parentRecordStore;
+        constructor(sdk4, parentTable, viewDataStore, viewId) {
+          super(sdk4, viewId);
           this._parentTable = parentTable;
+          this._viewDataStore = viewDataStore;
+          this.__viewMetadataQueryResultPool = new ObjectPool(view_metadata_query_result_default);
         }
         /**
          * @internal
          */
         get _dataOrNullIfDeleted() {
           const tableData = this._baseData.tablesById[this.parentTable.id];
-          if (!tableData) {
-            return null;
-          }
-          const recordsById = tableData.recordsById;
-          invariant(recordsById, "Record data is not loaded");
-          return recordsById[this._id] ?? null;
+          return tableData?.viewsById[this._id] ?? null;
         }
         /**
-         * The primary cell value in this record, formatted as a `string`.
-         *
-         * @example
-         * ```js
-         * console.log(myRecord.name);
-         * // => '42'
-         * ```
-         */
-        get name() {
-          return this.getCellValueAsString(this.parentTable.primaryField);
-        }
-        /**
-         * The created time of this record.
-         *
-         * @example
-         * ```js
-         * console.log(`
-         *     This record was created at ${myRecord.createdTime.toISOString()}
-         * `);
-         * ```
-         */
-        get createdTime() {
-          return new Date(this._data.createdTime);
-        }
-        /**
-         * The table that this record belongs to. Should never change because records aren't moved between tables.
+         * The table that this view belongs to. Should never change because views aren't moved between tables.
          *
          * @internal (since we may not be able to return parent model instances in the immutable models world)
          * @example
          * ```js
-         * import {useRecords} from '@airtable/blocks/base/ui';
-         * const records = useRecords(myTable);
-         * console.log(records[0].parentTable.id === myTable.id);
+         * const view = myTable.getViewByName('Grid View');
+         * console.log(view.parentTable.id === myTable.id);
          * // => true
          * ```
          */
@@ -20621,336 +24226,2217 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           return this._parentTable;
         }
         /**
-         * @internal
-         */
-        _getFieldMatching(fieldOrFieldIdOrFieldName) {
-          if (fieldOrFieldIdOrFieldName instanceof FieldCore) {
-            return this._parentTable.__getFieldMatching(fieldOrFieldIdOrFieldName.id);
-          }
-          return this.parentTable.__getFieldMatching(fieldOrFieldIdOrFieldName);
-        }
-        /**
-         * @internal
+         * The name of the view. Can be watched.
          *
-         * For use when we need the raw public API cell value. Specifically makes a difference
-         * for lookup fields, where we translate the format to a blocks-specific format in getCellValue.
-         * That format is incompatible with fieldTypeProvider methods, which expect the public API
-         * format - use _getRawCellValue instead.
-         */
-        _getRawCellValue(field) {
-          const {
-            cellValuesByFieldId
-          } = this._data;
-          if (!cellValuesByFieldId) {
-            return null;
-          }
-          const cellValue = cellValuesByFieldId[field.id] !== void 0 ? cellValuesByFieldId[field.id] : null;
-          if (typeof cellValue === "object" && cellValue !== null) {
-            return cloneDeep(cellValue);
-          } else {
-            return cellValue;
-          }
-        }
-        /**
-         * Gets the cell value of the given field for this record.
-         *
-         * @param fieldOrFieldIdOrFieldName The field (or field ID or field name) whose cell value you'd like to get.
          * @example
          * ```js
-         * const cellValue = myRecord.getCellValue(mySingleLineTextField);
-         * console.log(cellValue);
-         * // => 'cell value'
+         * console.log(myView.name);
+         * // => 'Grid view'
          * ```
          */
-        getCellValue(fieldOrFieldIdOrFieldName) {
-          const field = this._getFieldMatching(fieldOrFieldIdOrFieldName);
-          const cellValue = this._getRawCellValue(field);
-          if (typeof cellValue === "object" && cellValue !== null && field.type === FieldType.MULTIPLE_LOOKUP_VALUES && !this._sdk.__airtableInterface.sdkInitData.isUsingNewLookupCellValueFormat) {
-            const cellValueForMigration = [];
-            invariant(Array.isArray(cellValue.linkedRecordIds), "linkedRecordIds");
-            for (const linkedRecordId of cellValue.linkedRecordIds) {
-              invariant(typeof linkedRecordId === "string", "linkedRecordId");
-              const {
-                valuesByLinkedRecordId
-              } = cellValue;
-              invariant(valuesByLinkedRecordId && typeof valuesByLinkedRecordId === "object", "valuesByLinkedRecordId");
-              const value = valuesByLinkedRecordId[linkedRecordId];
-              if (Array.isArray(value)) {
-                for (const v of value) {
-                  cellValueForMigration.push({
-                    linkedRecordId,
-                    value: v
-                  });
-                }
-              } else {
-                cellValueForMigration.push({
-                  linkedRecordId,
-                  value
-                });
-              }
-            }
-            return cellValueForMigration;
-          }
-          return cellValue;
+        get name() {
+          return this._data.name;
         }
         /**
-         * Gets the cell value of the given field for this record, formatted as a `string`.
+         * The type of the view, such as Grid, Calendar, or Kanban. Should never change because view types cannot be modified.
          *
-         * @param fieldOrFieldIdOrFieldName The field (or field ID or field name) whose cell value you'd like to get.
          * @example
          * ```js
-         * const stringValue = myRecord.getCellValueAsString(myNumberField);
-         * console.log(stringValue);
-         * // => '42'
+         * console.log(myView.type);
+         * // => 'kanban'
          * ```
          */
-        getCellValueAsString(fieldOrFieldIdOrFieldName) {
-          const field = this._getFieldMatching(fieldOrFieldIdOrFieldName);
-          const cellValue = this._getRawCellValue(field);
-          if (cellValue === null || cellValue === void 0) {
-            return "";
-          } else {
-            const airtableInterface2 = this._sdk.__airtableInterface;
-            const appInterface = this._sdk.__appInterface;
-            return airtableInterface2.fieldTypeProvider.convertCellValueToString(appInterface, cellValue, field._data);
-          }
+        get type() {
+          return this._data.type;
         }
         /**
-         * Returns a URL that is suitable for rendering an attachment on the current client.
-         * The URL that is returned will only work for the current user.
+         * If the view is locked. Can be watched.
          *
-         * @param attachmentId The ID of the attachment.
-         * @param attachmentUrl The attachment's URL (which is not suitable for rendering on the client).
          * @example
          * ```js
+         * console.log(myView.isLockedView);
+         * // => false
+         * ```
+         */
+        get isLockedView() {
+          return this._data.isLockedView;
+        }
+        /**
+         * The URL for the view. You can visit this URL in the browser to be taken to the view in the Airtable UI.
+         *
+         * @example
+         * ```js
+         * console.log(myView.url);
+         * // => 'https://airtable.com/appxxxxxxxxxxxxxx/tblxxxxxxxxxxxxxx/viwxxxxxxxxxxxxxx'
+         * ```
+         */
+        get url() {
+          return this._sdk.__airtableInterface.urlConstructor.getViewUrl(this.id, this.parentTable.id);
+        }
+        /**
+         * Select records from the view. Returns a {@link RecordQueryResult}.
+         *
+         * Consider using {@link useRecords} or {@link useRecordIds} instead, unless you need the
+         * features of a QueryResult (e.g. `queryResult.getRecordById`). Record hooks handle
+         * loading/unloading and updating your UI automatically, but manually `select`ing records is
+         * useful for one-off data processing.
+         *
+         * @param opts Options for the query, such as sorts, fields, and record coloring. By
+         * default, records will be coloured according to the view.
+         * @example
+         * ```js
+         * import {useBase, useRecords} from '@airtable/blocks/base/ui';
          * import React from 'react';
          *
-         * function RecordAttachments(props) {
-         *     const {record, attachmentField} = props;
-         *     const attachmentCellValue = record.getCellValue(attachmentField);
-         *     if (attachmentCellValue === null) {
-         *         return null;
-         *     }
+         * function TodoList() {
+         *     const base = useBase();
+         *     const table = base.getTableByName('Tasks');
+         *     const view = table.getViewByName('Grid view');
+         *
+         *     const queryResult = view.selectRecords();
+         *     const records = useRecords(queryResult);
+         *
          *     return (
-         *         <div>
-         *             {attachmentCellValue.map(attachmentObj => {
-         *                 const clientUrl =
-         *                     record.getAttachmentClientUrlFromCellValueUrl(
-         *                         attachmentObj.id,
-         *                         attachmentObj.url
-         *                     );
-         *                 return (
-         *                     <img key={attachmentObj.id} src={clientUrl} width={200} />
-         *                 );
-         *             })}
-         *         </div>
+         *         <ul>
+         *             {records.map(record => (
+         *                 <li key={record.id}>
+         *                     {record.name || 'Unnamed record'}
+         *                 </li>
+         *             ))}
+         *         </ul>
          *     );
          * }
          * ```
          */
-        getAttachmentClientUrlFromCellValueUrl(attachmentId, attachmentUrl) {
-          const airtableInterface2 = this._sdk.__airtableInterface;
-          const appInterface = this._sdk.__appInterface;
-          return airtableInterface2.urlConstructor.getAttachmentClientUrl(appInterface, attachmentId, attachmentUrl);
+        selectRecords() {
+          let opts = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+          const normalizedOpts = record_query_result_default._normalizeOpts(this.parentTable, this._viewDataStore.parentRecordStore, __spreadProps(__spreadValues({}, opts), {
+            recordColorMode: opts.recordColorMode === void 0 ? modes.byView(this) : opts.recordColorMode
+          }));
+          return this.parentTable.__tableOrViewQueryResultPool.getObjectForReuse(this._sdk, this, normalizedOpts);
+        }
+        /**
+         * Select and load records from the view. Returns a {@link RecordQueryResult} promise where
+         * record data has been loaded.
+         *
+         * Consider using {@link useRecords} or {@link useRecordIds} instead, unless you need the
+         * features of a QueryResult (e.g. `queryResult.getRecordById`). Record hooks handle
+         * loading/unloading and updating your UI automatically, but manually `select`ing records is
+         * useful for one-off data processing.
+         *
+         * Once you've finished with your query, remember to call `queryResult.unloadData()`.
+         *
+         * @param opts Options for the query, such as sorts, fields, and record coloring. By
+         * default, records will be coloured according to the view.
+         * @example
+         * ```js
+         * async function getRecordCountAsync(view) {
+         *     const query = await view.selectRecordsAsync();
+         *     const recordCount = query.recordIds.length;
+         *     query.unloadData();
+         *     return recordCount;
+         * }
+         * ```
+         */
+        async selectRecordsAsync() {
+          let opts = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+          const queryResult = this.selectRecords(opts);
+          await queryResult.loadDataAsync();
+          return queryResult;
+        }
+        /**
+         * Select the field order and visible fields from the view. Returns a
+         * {@link ViewMetadataQueryResult}.
+         *
+         * Consider using {@link useViewMetadata} instead if you're creating a React UI. The
+         * {@link useViewMetadata} hook handles loading/unloading and updating your UI automatically,
+         * but manually `select`ing data is useful for one-off data processing.
+         *
+         * @example
+         * ```js
+         * async function loadMetadataForViewAsync(view) {
+         *     const viewMetadata = view.selectMetadata();
+         *     await viewMetadata.loadDataAsync();
+         *
+         *     console.log('Visible fields:');
+         *     console.log(viewMetadata.visibleFields.map(field => field.name));
+         *     // => ['Field 1', 'Field 2', 'Field 3']
+         *
+         *     console.log('All fields:');
+         *     console.log(viewMetadata.allFields.map(field => field.name));
+         *     // => ['Field 1', 'Field 2', 'Field 3', 'Hidden field 4']
+         *
+         *     viewMetadata.unloadData();
+         * }
+         * ```
+         */
+        selectMetadata() {
+          return this.__viewMetadataQueryResultPool.getObjectForReuse(this._sdk, this, this._viewDataStore);
+        }
+        /**
+         * Select and load the field order and visible fields from the view. Returns a
+         * {@link ViewMetadataQueryResult} promise where the metadata has already been loaded.
+         *
+         * Consider using {@link useViewMetadata} instead if you're creating a React UI. The
+         * {@link useViewMetadata} hook handles loading/unloading and updating your UI automatically,
+         * but manually `select`ing data is useful for one-off data processing.
+         *
+         * @example
+         * ```js
+         * async function loadMetadataForViewAsync(view) {
+         *     const viewMetadata = await view.selectMetadata();
+         *
+         *     console.log('Visible fields:');
+         *     console.log(viewMetadata.visibleFields.map(field => field.name));
+         *     // => ['Field 1', 'Field 2', 'Field 3']
+         *
+         *     console.log('All fields:');
+         *     console.log(viewMetadata.allFields.map(field => field.name));
+         *     // => ['Field 1', 'Field 2', 'Field 3', 'Hidden field 4']
+         *
+         *     viewMetadata.unloadData();
+         * }
+         * ```
+         */
+        async selectMetadataAsync() {
+          const queryResult = this.selectMetadata();
+          await queryResult.loadDataAsync();
+          return queryResult;
+        }
+        /**
+         * Checks whether the current user has permission to update view metadata.
+         *
+         * @param viewMetadata
+         * @hidden
+         */
+        checkPermissionsForUpdateMetadata(viewMetadata) {
+          const metadata = {
+            groupLevels: normalizeSortsOrGroups(this.parentTable, viewMetadata.groupLevels)
+          };
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.UPDATE_VIEW_METADATA,
+            tableId: this.parentTable.id,
+            viewId: this.id,
+            metadata
+          });
+        }
+        /**
+         * An alias for `checkPermissionsForUpdateMetadata(viewMetadata).hasPermission`.
+         *
+         * Checks whether the current user has permission to update view metadata.
+         *
+         * @param viewMetadata
+         * @hidden
+         */
+        hasPermissionToUpdateMetadata(viewMetadata) {
+          return this.checkPermissionsForUpdateMetadata(viewMetadata).hasPermission;
+        }
+        /**
+         * Updates view metadata, this is currently only supported from block views
+         * altering their own view's grouping config.
+         *
+         * @param ViewMetadataForUpdate
+         * @hidden
+         */
+        async updateMetadataAsync(viewMetadata) {
+          const metadata = {
+            groupLevels: normalizeSortsOrGroups(this.parentTable, viewMetadata.groupLevels)
+          };
+          await this._sdk.__mutations.applyMutationAsync({
+            type: MutationTypes.UPDATE_VIEW_METADATA,
+            tableId: this.parentTable.id,
+            viewId: this.id,
+            metadata
+          });
         }
         /**
          * @internal
          */
         __triggerOnChangeForDirtyPaths(dirtyPaths) {
-          const {
-            cellValuesByFieldId
-          } = dirtyPaths;
-          if (cellValuesByFieldId && !isObjectEmpty(cellValuesByFieldId)) {
-            this._onChange(WatchableRecordKeysCore.cellValues, Object.keys(cellValuesByFieldId));
-            for (const fieldId of Object.keys(cellValuesByFieldId)) {
-              this._onChange(WatchableCellValueInFieldKeyPrefix + fieldId, fieldId);
-            }
-            if (cellValuesByFieldId[this.parentTable.primaryField.id]) {
-              this._onChange(WatchableRecordKeysCore.name);
-            }
+          let didViewSchemaChange = false;
+          this._viewDataStore.triggerOnChangeForDirtyPaths(dirtyPaths);
+          if (dirtyPaths.name) {
+            this._onChange(WatchableViewKeys.name);
+            didViewSchemaChange = true;
           }
+          if (dirtyPaths.isLocked) {
+            this._onChange(WatchableViewKeys.isLockedView);
+            didViewSchemaChange = true;
+          }
+          return didViewSchemaChange;
         }
       };
+      view_default = View;
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/models/record.js
-  var WatchableRecordKeys, Record;
-  var init_record = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/record.js"() {
+  // node_modules/@airtable/blocks/dist/esm/base/models/table.js
+  var WatchableTableKeys, Table, table_default;
+  var init_table = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/table.js"() {
+      init_table_core();
       init_error_utils();
-      init_record_core();
       init_private_utils();
-      init_field_core();
-      WatchableRecordKeys = Object.freeze(__spreadValues({}, WatchableRecordKeysCore));
-      Record = class extends RecordCore {
-        /** @internal */
-        static _className = "Record";
-        /** @internal */
-        static _isWatchableKey(key) {
-          return isEnumValue(WatchableRecordKeys, key) || key.startsWith(WatchableCellValueInFieldKeyPrefix);
-        }
-        /**
-         * Fetch foreign records for a field. Subsequent calls to this method will
-         * override previous calls that are still pending. The previous call(s)
-         * will immediately resolve with an empty `records` array.
-         *
-         * @param fieldId - The ID of the field to fetch foreign records for.
-         * @param filterString - The filter string to use to filter the records.
-         * @returns A promise that resolves to the foreign records.
-         */
-        fetchForeignRecordsAsync(field, filterString) {
-          const parentTable = this.parentTable;
-          if (field.parentTable !== parentTable) {
-            throw spawnError("Field %s is not in the same table as the record", field.name);
-          }
-          if (field.type !== FieldType.MULTIPLE_RECORD_LINKS) {
-            throw spawnError("Field %s is not a multiple record links field", field.name);
-          }
-          const airtableInterface2 = this.parentTable.parentBase.__sdk.__airtableInterface;
-          return airtableInterface2.fetchForeignRecordsAsync(parentTable.id, this.id, field.id, filterString);
-        }
-      };
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/models/record_store.js
-  var WatchableRecordStoreKeys, RecordStore;
-  var init_record_store = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/record_store.js"() {
-      init_record_store_core();
-      init_private_utils();
-      init_record();
-      WatchableRecordStoreKeys = Object.freeze(__spreadProps(__spreadValues({}, WatchableRecordStoreKeysCore), {
-        recordOrder: "recordOrder"
+      init_mutations();
+      init_object_pool();
+      init_record_query_result();
+      init_field();
+      init_table_or_view_query_result();
+      init_view();
+      WatchableTableKeys = Object.freeze(__spreadProps(__spreadValues({}, WatchableTableKeysCore), {
+        views: "views"
       }));
-      RecordStore = class extends record_store_core_default {
-        static _className = "RecordStore";
+      Table = class extends TableCore {
+        /** @internal */
+        static _className = "Table";
+        /** @internal */
         static _isWatchableKey(key) {
-          return isEnumValue(WatchableRecordStoreKeys, key) || key.startsWith(WatchableCellValuesInFieldKeyPrefix);
+          return isEnumValue(WatchableTableKeys, key);
         }
-        _constructRecord(recordId, parentTable) {
-          return new Record(this._sdk, this, parentTable, recordId);
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        constructor(parentBase, recordStore, tableId, sdk4) {
+          super(parentBase, recordStore, tableId, sdk4);
+          this._viewModelsById = {};
+          this.__tableOrViewQueryResultPool = new ObjectPool(table_or_view_query_result_default);
+        }
+        /** @internal */
+        _constructField(fieldId) {
+          return new field_default(this.parentBase.__sdk, this, fieldId);
         }
         /**
-         * The record Ids in this table.
+         * The URL for the table. You can visit this URL in the browser to be taken to the table in the Airtable UI.
+         *
+         * @example
+         * ```js
+         * console.log(myTable.url);
+         * // => 'https://airtable.com/appxxxxxxxxxxxxxx/tblxxxxxxxxxxxxxx'
+         * ```
          */
-        get recordIds() {
-          return this._data.recordOrder.filter((recordId) => this.getRecordByIdIfExists(recordId) !== null);
+        get url() {
+          return this._sdk.__airtableInterface.urlConstructor.getTableUrl(this.id);
         }
-        __onDataDeletion() {
+        // Experimental, do not document yet. Allows fetching default cell values for
+        // a table or view. Before documenting, we should explore making this synchronous.
+        /**
+         * @internal
+         */
+        // istanbul ignore next
+        async getDefaultCellValuesByFieldIdAsync(opts) {
+          const viewId = opts && opts.view ? opts.view.id : null;
+          const cellValuesByFieldId = await this._sdk.__airtableInterface.fetchDefaultCellValuesByFieldIdAsync(this._id, viewId);
+          return cellValuesByFieldId;
         }
-        triggerOnChangeForDirtyPaths(dirtyPaths) {
-          super.triggerOnChangeForDirtyPaths(dirtyPaths);
-          if (dirtyPaths.recordOrder) {
-            this._onChange(WatchableRecordStoreKeys.recordOrder);
+        /**
+         * The views in this table. Can be watched to know when views are created,
+         * deleted, or reordered.
+         *
+         * @example
+         * ```js
+         * console.log(`This table has ${myTable.views.length} views`);
+         * ```
+         */
+        get views() {
+          const views = [];
+          this._data.viewOrder.forEach((viewId) => {
+            const view = this.getViewById(viewId);
+            views.push(view);
+          });
+          return views;
+        }
+        /**
+         * Gets the view matching the given ID, or `null` if that view does not exist in this table.
+         *
+         * @param viewId The ID of the view.
+         * @example
+         * ```js
+         * const viewId = 'viwxxxxxxxxxxxxxx';
+         * const view = myTable.getViewByIdIfExists(viewId);
+         * if (view !== null) {
+         *     console.log(view.name);
+         * } else {
+         *     console.log('No view exists with that ID');
+         * }
+         * ```
+         */
+        getViewByIdIfExists(viewId) {
+          if (!this._data.viewsById[viewId]) {
+            return null;
+          } else {
+            if (!this._viewModelsById[viewId]) {
+              this._viewModelsById[viewId] = new view_default(this._sdk, this, this._recordStore.getViewDataStore(viewId), viewId);
+            }
+            return this._viewModelsById[viewId];
           }
         }
+        /**
+         * Gets the view matching the given ID. Throws if that view does not exist in this table. Use
+         * {@link getViewByIdIfExists} instead if you are unsure whether a view exists with the given
+         * ID.
+         *
+         * @param viewId The ID of the view.
+         * @example
+         * ```js
+         * const viewId = 'viwxxxxxxxxxxxxxx';
+         * const view = myTable.getViewById(viewId);
+         * console.log(view.name);
+         * // => 'Grid view'
+         * ```
+         */
+        getViewById(viewId) {
+          const view = this.getViewByIdIfExists(viewId);
+          if (!view) {
+            throw spawnError("No view with ID %s in table '%s'", viewId, this.name);
+          }
+          return view;
+        }
+        /**
+         * Gets the view matching the given name, or `null` if no view exists with that name in this
+         * table.
+         *
+         * @param viewName The name of the view you're looking for.
+         * @example
+         * ```js
+         * const view = myTable.getViewByNameIfExists('Name');
+         * if (view !== null) {
+         *     console.log(view.id);
+         * } else {
+         *     console.log('No view exists with that name');
+         * }
+         * ```
+         */
+        getViewByNameIfExists(viewName) {
+          for (const [viewId, viewData] of entries(this._data.viewsById)) {
+            if (viewData.name === viewName) {
+              return this.getViewByIdIfExists(viewId);
+            }
+          }
+          return null;
+        }
+        /**
+         * Gets the view matching the given name. Throws if no view exists with that name in this table.
+         * Use {@link getViewByNameIfExists} instead if you are unsure whether a view exists with the
+         * given name.
+         *
+         * @param viewName The name of the view you're looking for.
+         * @example
+         * ```js
+         * const view = myTable.getViewByName('Name');
+         * console.log(view.id);
+         * // => 'viwxxxxxxxxxxxxxx'
+         * ```
+         */
+        getViewByName(viewName) {
+          const view = this.getViewByNameIfExists(viewName);
+          if (!view) {
+            throw spawnError("No view named '%s' in table '%s'", viewName, this.name);
+          }
+          return view;
+        }
+        /**
+         * The view matching the given ID or name. Returns `null` if no matching view exists within
+         * this table.
+         *
+         * This method is convenient when building an extension for a specific base, but for more generic
+         * extensions the best practice is to use the {@link getViewByIdIfExists} or
+         * {@link getViewByNameIfExists} methods instead.
+         *
+         * @param viewIdOrName The ID or name of the view you're looking for.
+         */
+        getViewIfExists(viewIdOrName) {
+          return this.getViewByIdIfExists(viewIdOrName) ?? this.getViewByNameIfExists(viewIdOrName);
+        }
+        /**
+         * The view matching the given ID or name. Throws if no matching view exists within this table.
+         * Use {@link getViewIfExists} instead if you are unsure whether a view exists with the given
+         * name/ID.
+         *
+         * This method is convenient when building an extension for a specific base, but for more generic
+         * extensions the best practice is to use the {@link getViewById} or {@link getViewByName} methods
+         * instead.
+         *
+         * @param viewIdOrName The ID or name of the view you're looking for.
+         */
+        getView(viewIdOrName) {
+          const view = this.getViewIfExists(viewIdOrName);
+          if (!view) {
+            throw spawnError("No view with ID or name '%s' in table '%s'", viewIdOrName, this.name);
+          }
+          return view;
+        }
+        /**
+         * Select records from the table. Returns a {@link RecordQueryResult}.
+         *
+         * Consider using {@link useRecords} or {@link useRecordIds} instead, unless you need the
+         * features of a QueryResult (e.g. `queryResult.getRecordById`). Record hooks handle
+         * loading/unloading and updating your UI automatically, but manually `select`ing records is
+         * useful for one-off data processing.
+         *
+         * @param opts Options for the query, such as sorts and fields.
+         * @example
+         * ```js
+         * import {useBase, useRecords} from '@airtable/blocks/base/ui';
+         * import React from 'react';
+         *
+         * function TodoList() {
+         *     const base = useBase();
+         *     const table = base.getTableByName('Tasks');
+         *
+         *     const queryResult = table.selectRecords();
+         *     const records = useRecords(queryResult);
+         *
+         *     return (
+         *         <ul>
+         *             {records.map(record => (
+         *                 <li key={record.id}>
+         *                     {record.name || 'Unnamed record'}
+         *                 </li>
+         *             ))}
+         *         </ul>
+         *     );
+         * }
+         * ```
+         */
+        selectRecords(opts) {
+          const normalizedOpts = record_query_result_default._normalizeOpts(this, this._recordStore, opts || {});
+          return this.__tableOrViewQueryResultPool.getObjectForReuse(this._sdk, this, normalizedOpts);
+        }
+        /**
+         * Select and load records from the table. Returns a {@link RecordQueryResult} promise where
+         * record data has been loaded.
+         *
+         * Consider using {@link useRecords} or {@link useRecordIds} instead, unless you need the
+         * features of a QueryResult (e.g. `queryResult.getRecordById`). Record hooks handle
+         * loading/unloading and updating your UI automatically, but manually `select`ing records is
+         * useful for one-off data processing.
+         *
+         * Once you've finished with your query, remember to call `queryResult.unloadData()`.
+         *
+         * @param opts Options for the query, such as sorts and fields.
+         * @example
+         * ```js
+         * async function logRecordCountAsync(table) {
+         *     const query = await table.selectRecordsAsync();
+         *     console.log(query.recordIds.length);
+         *     query.unloadData();
+         * }
+         * ```
+         */
+        async selectRecordsAsync(opts) {
+          const queryResult = this.selectRecords(opts);
+          await queryResult.loadDataAsync();
+          return queryResult;
+        }
+        /**
+         * Returns the first view in the table where the type is one of `allowedViewTypes`, or `null` if
+         * no such view exists in the table.
+         *
+         * @param allowedViewTypes An array of view types or a single view type to match against.
+         * @param preferredViewOrViewId If a view or view ID is supplied and that view exists & has the
+         * correct type, that view will be returned before checking the other views in the table.
+         * @example
+         * ```js
+         * import {ViewType} from '@airtable/blocks/base/models';
+         * const firstCalendarView = myTable.getFirstViewOfType(ViewType.CALENDAR);
+         * if (firstCalendarView !== null) {
+         *     console.log(firstCalendarView.name);
+         * } else {
+         *     console.log('No calendar views exist in the table');
+         * }
+         * ```
+         */
+        getFirstViewOfType(allowedViewTypes, preferredViewOrViewId) {
+          if (!Array.isArray(allowedViewTypes)) {
+            allowedViewTypes = cast([allowedViewTypes]);
+          }
+          if (preferredViewOrViewId) {
+            const preferredView = this.getViewByIdIfExists(typeof preferredViewOrViewId === "string" ? preferredViewOrViewId : preferredViewOrViewId.id);
+            if (preferredView && allowedViewTypes.includes(preferredView.type)) {
+              return preferredView;
+            }
+          }
+          return this.views.find((view) => {
+            return allowedViewTypes.includes(view.type);
+          }) ?? null;
+        }
+        /**
+         * @internal
+         */
+        __getViewMatching(viewOrViewIdOrViewName) {
+          let view;
+          if (viewOrViewIdOrViewName instanceof view_default) {
+            if (viewOrViewIdOrViewName.parentTable.id !== this.id) {
+              throw spawnError("View '%s' is from a different table than table '%s'", viewOrViewIdOrViewName.name, this.name);
+            }
+            view = viewOrViewIdOrViewName;
+          } else {
+            view = this.getViewByIdIfExists(viewOrViewIdOrViewName) || this.getViewByNameIfExists(viewOrViewIdOrViewName);
+            if (view === null) {
+              throw spawnError("View '%s' does not exist in table '%s'", viewOrViewIdOrViewName, this.name);
+            }
+          }
+          if (view.isDeleted) {
+            throw spawnError("View '%s' was deleted from table '%s'", view.name, this.name);
+          }
+          return view;
+        }
+        /**
+         * Checks whether the current user has permission to create a field in this table.
+         *
+         * Accepts partial input, in the same format as {@link createFieldAsync}.
+         *
+         * Returns `{hasPermission: true}` if the current user can update the specified record,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @param name name for the field. must be case-insensitive unique for the table
+         * @param type type for the field
+         * @param options options for the field. omit for fields without writable options
+         * @param description description for the field. omit to leave blank
+         *
+         * @example
+         * ```js
+         * const createFieldCheckResult = table.checkPermissionsForCreateField();
+         *
+         * if (!createFieldCheckResult.hasPermission) {
+         *     alert(createFieldCheckResult.reasonDisplayString);
+         * }
+         * ```
+         */
+        checkPermissionsForCreateField(name, type, options, description) {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.CREATE_SINGLE_FIELD,
+            tableId: this.id,
+            id: void 0,
+            // Generated in createFieldAsync.
+            name,
+            config: type ? __spreadValues({
+              type
+            }, options ? {
+              options
+            } : null) : void 0,
+            description
+          });
+        }
+        /**
+         * An alias for `checkPermissionsForCreateField(name, type, options, description).hasPermission`.
+         *
+         * Checks whether the current user has permission to create a field in this table.
+         *
+         * Accepts partial input, in the same format as {@link createFieldAsync}.
+         *
+         * @param name name for the field. must be case-insensitive unique for the table
+         * @param type type for the field
+         * @param options options for the field. omit for fields without writable options
+         * @param description description for the field. omit to leave blank
+         *
+         * @example
+         * ```js
+         * const canCreateField = table.hasPermissionToCreateField();
+         *
+         * if (!canCreateField) {
+         *     alert('not allowed!');
+         * }
+         * ```
+         */
+        hasPermissionToCreateField(name, type, options, description) {
+          return this.checkPermissionsForCreateField(name, type, options, description).hasPermission;
+        }
+        /**
+         * Creates a new field.
+         *
+         * Similar to creating a field from the Airtable UI, the new field will not be visible
+         * in views that have other hidden fields and views that are publicly shared.
+         *
+         * Throws an error if the user does not have permission to create a field, if invalid
+         * name, type or options are provided, or if creating fields of this type is not supported.
+         *
+         * Refer to {@link FieldType} for supported field types, the write format for options, and
+         * other specifics for certain field types.
+         *
+         * This action is asynchronous. Unlike new records, new fields are **not** created
+         * optimistically locally. You must `await` the returned promise before using the new
+         * field in your extension.
+         *
+         * @param name name for the field. must be case-insensitive unique
+         * @param type type for the field
+         * @param options options for the field. omit for fields without writable options
+         * @param description description for the field. is optional and will be `''` if not specified
+         * or if specified as `null`.
+         *
+         * @example
+         * ```js
+         * async function createNewSingleLineTextField(table, name) {
+         *     if (table.hasPermissionToCreateField(name, FieldType.SINGLE_LINE_TEXT)) {
+         *         await table.createFieldAsync(name, FieldType.SINGLE_LINE_TEXT);
+         *     }
+         * }
+         *
+         * async function createNewCheckboxField(table, name) {
+         *     const options = {
+         *         icon: 'check',
+         *         color: 'greenBright',
+         *     };
+         *     if (table.hasPermissionToCreateField(name, FieldType.CHECKBOX, options)) {
+         *         await table.createFieldAsync(name, FieldType.CHECKBOX, options);
+         *     }
+         * }
+         *
+         * async function createNewDateField(table, name) {
+         *     const options = {
+         *         dateFormat: {
+         *             name: 'iso',
+         *         },
+         *     };
+         *     if (table.hasPermissionToCreateField(name, FieldType.DATE, options)) {
+         *         await table.createFieldAsync(name, FieldType.DATE, options);
+         *     }
+         * }
+         * ```
+         */
+        async createFieldAsync(name, type, options, description) {
+          const fieldId = this._sdk.__airtableInterface.idGenerator.generateFieldId();
+          await this._sdk.__mutations.applyMutationAsync({
+            type: MutationTypes.CREATE_SINGLE_FIELD,
+            tableId: this.id,
+            id: fieldId,
+            name,
+            config: __spreadValues({
+              type
+            }, options ? {
+              options
+            } : null),
+            // Coerce undefined to null so that only old SDKs pass "undefined" for description
+            // '' is permitted, as we already set empty descriptions to '' when editing descriptions
+            // from the UI
+            description: description ?? null
+          });
+          return this.getFieldById(fieldId);
+        }
+        /** @internal */
+        __triggerOnChangeForDirtyPaths(dirtyPaths) {
+          let didTableSchemaChange = false;
+          if (super.__triggerOnChangeForDirtyPaths(dirtyPaths)) {
+            didTableSchemaChange = true;
+          }
+          if (dirtyPaths.viewOrder) {
+            this._onChange(WatchableTableKeys.views);
+            didTableSchemaChange = true;
+            for (const [viewId, viewModel] of entries(this._viewModelsById)) {
+              if (viewModel.isDeleted) {
+                delete this._viewModelsById[viewId];
+              }
+            }
+          }
+          if (dirtyPaths.viewsById) {
+            for (const [viewId, dirtyViewPaths] of entries(dirtyPaths.viewsById)) {
+              const view = this._viewModelsById[viewId];
+              if (view) {
+                const didViewSchemaChange = view.__triggerOnChangeForDirtyPaths(dirtyViewPaths);
+                if (didViewSchemaChange) {
+                  didTableSchemaChange = true;
+                }
+              }
+            }
+          }
+          return didTableSchemaChange;
+        }
+      };
+      table_default = Table;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/create_aggregators.js
+  function createAggregators(sdk4) {
+    const {
+      __airtableInterface: airtableInterface2
+    } = sdk4;
+    const aggregators = {};
+    const aggregatorKeys = airtableInterface2.aggregators.getAllAvailableAggregatorKeys();
+    for (const key of aggregatorKeys) {
+      const config = airtableInterface2.aggregators.getAggregatorConfig(key);
+      aggregators[key] = Object.freeze({
+        key,
+        displayName: config.displayName,
+        shortDisplayName: config.shortDisplayName,
+        aggregate: aggregate.bind(null, sdk4, key),
+        aggregateToString: aggregateToString.bind(null, sdk4, key)
+      });
+    }
+    Object.freeze(aggregators);
+    return aggregators;
+  }
+  var aggregate, aggregateToString;
+  var init_create_aggregators = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/create_aggregators.js"() {
+      init_error_utils();
+      aggregate = (sdk4, aggregatorKey, records, field) => {
+        if (!field.isAggregatorAvailable(aggregatorKey)) {
+          throw spawnError("The %s aggregator is not available for %s fields", aggregatorKey, field.type);
+        }
+        const {
+          __appInterface: appInterface,
+          __airtableInterface: airtableInterface2
+        } = sdk4;
+        const cellValues = records.map((record) => record._getRawCellValue(field));
+        return airtableInterface2.aggregators.aggregate(appInterface, aggregatorKey, cellValues, field._data);
+      };
+      aggregateToString = (sdk4, aggregatorKey, records, field) => {
+        if (!field.isAggregatorAvailable(aggregatorKey)) {
+          throw spawnError("The %s aggregator is not available for %s fields", aggregatorKey, field.type);
+        }
+        const {
+          __appInterface: appInterface,
+          __airtableInterface: airtableInterface2
+        } = sdk4;
+        const cellValues = records.map((record) => record._getRawCellValue(field));
+        return airtableInterface2.aggregators.aggregateToString(appInterface, aggregatorKey, cellValues, field._data);
       };
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/models/base.js
-  var Base;
+  // node_modules/@airtable/blocks/dist/esm/base/models/base.js
+  var Base, base_default;
   var init_base = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/base.js"() {
+    "node_modules/@airtable/blocks/dist/esm/base/models/base.js"() {
       init_base_core();
-      init_table();
+      init_mutations();
       init_record_store();
+      init_table();
+      init_create_aggregators();
       Base = class extends BaseCore {
+        /** @internal */
+        static _className = "Base";
+        /** @internal */
+        _aggregators = null;
         /** @internal */
         _constructTable(tableId) {
           const recordStore = this.__getRecordStore(tableId);
-          return new Table(this, recordStore, tableId, this._sdk);
+          return new table_default(this, recordStore, tableId, this._sdk);
         }
         /** @internal */
-        _constructRecordStore(sdk3, tableId) {
-          return new RecordStore(sdk3, tableId);
-        }
-        /** @internal */
-        _getAllTableDataForEditModeConfiguration() {
-          return this._data.allTableDataForEditModeConfiguration;
-        }
-        /** @internal */
-        __triggerOnChangeForChangedPaths(changedPaths) {
-          super.__triggerOnChangeForChangedPaths(changedPaths);
-          if (changedPaths.allTableDataForEditModeConfiguration) {
-            this._onChange(WatchableBaseKeys.schema);
-          }
-        }
-      };
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/models/search_params.js
-  var WatchableSearchParamsKeys, SearchParams;
-  var init_search_params = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/models/search_params.js"() {
-      init_error_utils();
-      init_private_utils();
-      init_watchable();
-      WatchableSearchParamsKeys = Object.freeze({
-        searchParams: "searchParams"
-      });
-      SearchParams = class extends watchable_default {
-        static _className = "SearchParams";
-        static _isWatchableKey(key) {
-          return isEnumValue(WatchableSearchParamsKeys, key);
-        }
-        constructor(initialSearchParams, sdk3) {
-          super();
-          this._sdk = sdk3;
-          this._searchParams = initialSearchParams;
-        }
-        getSearchParams() {
-          return this._searchParams;
-        }
-        setSearchParamsAsync(searchParams) {
-          for (const key of Object.keys(searchParams)) {
-            invariant(/^\w+$/.test(key), 'Invalid search param key "%s". Keys must only contain letters, digits, and underscores.', key);
-          }
-          return this._sdk.__airtableInterface.setSearchParamsAsync(searchParams);
+        _constructRecordStore(sdk4, tableId) {
+          return new record_store_default(sdk4, tableId);
         }
         /**
-         * This shouldn't be called directly - instead, use this._sdk.__applySearchParamsUpdates().
-         * This is called by the SDK when hyperbase sends a message with new search params.
+         * Aggregators can be used to compute aggregates for cell values.
+         *
+         * @example
+         * ```js
+         * import {base} from '@airtable/blocks/base';
+         *
+         * // To get a list of aggregators supported for a specific field:
+         * const fieldAggregators = myField.availableAggregators;
+         *
+         * // To compute the total attachment size of an attachment field:
+         * const aggregator = base.aggregators.totalAttachmentSize;
+         * const value = aggregator.aggregate(myRecords, myAttachmentField);
+         * const valueAsString = aggregate.aggregateToString(myRecords, myAttachmentField);
+         * ```
          */
-        __set(searchParams) {
-          this._searchParams = searchParams;
-          this._onChange(WatchableSearchParamsKeys.searchParams);
+        get aggregators() {
+          if (!this._aggregators) {
+            this._aggregators = createAggregators(this._sdk);
+          }
+          return this._aggregators;
+        }
+        /**
+         * Checks whether the current user has permission to create a table.
+         *
+         * Accepts partial input, in the same format as {@link createTableAsync}.
+         *
+         * Returns `{hasPermission: true}` if the current user can update the specified record,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @param name name for the table. must be case-insensitive unique
+         * @param fields array of fields to create in the table
+         *
+         * @example
+         * ```js
+         * const createTableCheckResult = base.checkPermissionsForCreateTable();
+         *
+         * if (!createTableCheckResult.hasPermission) {
+         *     alert(createTableCheckResult.reasonDisplayString);
+         * }
+         * ```
+         */
+        checkPermissionsForCreateTable(name, fields) {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.CREATE_SINGLE_TABLE,
+            id: void 0,
+            // Generated in createTableAsync.
+            name,
+            fields: fields?.map((field) => {
+              return {
+                name: field.name,
+                config: field.type ? __spreadValues({
+                  type: field.type
+                }, field.options ? {
+                  options: field.options
+                } : null) : void 0,
+                description: field.description
+              };
+            })
+          });
+        }
+        /**
+         * An alias for `checkPermissionsForCreateTable(name, fields).hasPermission`.
+         *
+         * Checks whether the current user has permission to create a table.
+         *
+         * Accepts partial input, in the same format as {@link createTableAsync}.
+         *
+         * @param name name for the table. must be case-insensitive unique
+         * @param fields array of fields to create in the table
+         *
+         * @example
+         * ```js
+         * const canCreateTable = table.hasPermissionToCreateTable();
+         *
+         * if (!canCreateTable) {
+         *     alert('not allowed!');
+         * }
+         * ```
+         */
+        hasPermissionToCreateTable(name, fields) {
+          return this.checkPermissionsForCreateTable(name, fields).hasPermission;
+        }
+        /**
+         * Creates a new table.
+         *
+         * Throws an error if the user does not have permission to create a table, if an invalid
+         * table name is provided, or if invalid fields are provided (invalid name, type, options or
+         * description).
+         *
+         * Refer to {@link FieldType} for supported field types, the write format for field options, and
+         * other specifics for certain field types.
+         *
+         * At least one field must be specified. The first field in the `fields` array will be used as
+         * the table's [primary field](https://support.airtable.com/hc/en-us/articles/202624179-The-Name-Field)
+         * and must be a supported primary field type. Fields must have case-insensitive unique names
+         * within the table.
+         *
+         * A default grid view will be created with all fields visible.
+         *
+         * This action is asynchronous. Unlike new records, new tables are **not** created
+         * optimistically locally. You must `await` the returned promise before using the new
+         * table in your extension.
+         *
+         * @param name name for the table. must be case-insensitive unique
+         * @param fields array of fields to create in the table: see below for an example. `name` and
+         * `type` must be specified for all fields, while `options` is only required for fields that
+         * have field options. `description` is optional and will be `''` if not specified or if
+         * specified as `null`.
+         *
+         * @example
+         * ```js
+         * async function createNewTable() {
+         *     const name = 'My new table';
+         *     const fields = [
+         *         // Name will be the primary field of the table.
+         *         {name: 'Name', type: FieldType.SINGLE_LINE_TEXT, description: 'This is the primary field'},
+         *         {name: 'Notes', type: FieldType.RICH_TEXT},
+         *         {name: 'Attachments', type: FieldType.MULTIPLE_ATTACHMENTS},
+         *         {name: 'Number', type: FieldType.NUMBER, options: {
+         *             precision: 8,
+         *         }},
+         *         {name: 'Select', type: FieldType.SINGLE_SELECT, options: {
+         *             choices: [
+         *                 {name: 'A'},
+         *                 {name: 'B'},
+         *             ],
+         *         }},
+         *     ];
+         *
+         *     if (base.hasPermissionToCreateTable(name, fields)) {
+         *         await base.createTableAsync(name, fields);
+         *     }
+         * }
+         * ```
+         */
+        async createTableAsync(name, fields) {
+          const tableId = this._sdk.__airtableInterface.idGenerator.generateTableId();
+          await this._sdk.__mutations.applyMutationAsync({
+            id: tableId,
+            type: MutationTypes.CREATE_SINGLE_TABLE,
+            name,
+            fields: fields.map((field) => {
+              return {
+                name: field.name,
+                config: __spreadValues({
+                  type: field.type
+                }, field.options ? {
+                  options: field.options
+                } : null),
+                // Coerce undefined to null so that only old SDKs pass "undefined" for description
+                // '' is permitted, as we already set empty descriptions to '' when editing descriptions
+                // from the UI
+                description: field.description ?? null
+              };
+            })
+          });
+          return this.getTableById(tableId);
+        }
+      };
+      base_default = Base;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/models/session_core.js
+  var WatchableSessionKeys, SessionCore;
+  var init_session_core = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/session_core.js"() {
+      init_error_utils();
+      init_private_utils();
+      init_abstract_model();
+      WatchableSessionKeys = Object.freeze({
+        permissionLevel: "permissionLevel",
+        // NOTE: the current user's identity will never change, but their name/email/profile pic/etc. can.
+        currentUser: "currentUser"
+      });
+      SessionCore = class extends abstract_model_default {
+        /** @internal */
+        static _className = "SessionCore";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableSessionKeys, key);
+        }
+        /** @internal */
+        /** @internal */
+        /**
+         * @internal
+         */
+        constructor(sdk4) {
+          super(sdk4, "session");
+          this._airtableInterface = sdk4.__airtableInterface;
+          const {
+            permissionLevel,
+            currentUserId,
+            enabledFeatureNames
+          } = this._airtableInterface.sdkInitData.baseData;
+          this._sessionData = {
+            permissionLevel,
+            currentUserId,
+            enabledFeatureNames
+          };
+          Object.seal(this);
+        }
+        /**
+         * @internal
+         */
+        get _dataOrNullIfDeleted() {
+          return this._sessionData;
+        }
+        /**
+         * The current user, or `null` if the extension is running in a publicly shared base.
+         *
+         * @example
+         * ```js
+         * import {useSession} from '@airtable/blocks/[placeholder-path]/ui';
+         *
+         * function CurrentUser() {
+         *     const session = useSession();
+         *
+         *     if (!session.currentUser) {
+         *         return <div>This extension is being used in a public share.</div>;
+         *     }
+         *
+         *     return <ul>
+         *         <li>ID: {session.currentUser.id}</li>
+         *         <li>E-mail: {session.currentUser.email}</li>
+         *         <li>Name: {session.currentUser.name}</li>
+         *     </ul>;
+         * }
+         * ```
+         */
+        get currentUser() {
+          const userId = this._sessionData.currentUserId;
+          if (!userId) {
+            return null;
+          } else {
+            const {
+              base: base2
+            } = this._sdk;
+            return base2.getCollaboratorByIdIfExists(userId);
+          }
+        }
+        /**
+         * Returns true if `featureName` is enabled and automatically tracks an exposure.
+         *
+         * @internal
+         */
+        __isFeatureEnabled(featureName) {
+          this._airtableInterface.trackExposure(featureName);
+          return this.__peekIfFeatureIsEnabled(featureName);
+        }
+        /**
+         * Returns true if `featureName` is enabled; does not track an exposure.
+         *
+         * @internal
+         */
+        __peekIfFeatureIsEnabled(featureName) {
+          return this._sessionData.enabledFeatureNames.includes(featureName);
+        }
+        /**
+         * @internal
+         */
+        __applyChangesWithoutTriggeringEvents(changes) {
+          const changedKeys = {
+            [WatchableSessionKeys.permissionLevel]: false,
+            [WatchableSessionKeys.currentUser]: false
+          };
+          for (const {
+            path,
+            value
+          } of changes) {
+            if (path[0] === "permissionLevel") {
+              invariant(path.length === 1, "cannot set within permissionLevel");
+              invariant(typeof value === "string", "permissionLevel must be a string");
+              this._sessionData.permissionLevel = value;
+              changedKeys[WatchableSessionKeys.permissionLevel] = true;
+            }
+            if (path[0] === "collaboratorsById") {
+              changedKeys[WatchableSessionKeys.currentUser] = true;
+            }
+          }
+          return changedKeys;
+        }
+        /**
+         * @internal
+         */
+        __triggerOnChangeForChangedKeys(changedKeys) {
+          for (const [key, didChange] of entries(changedKeys)) {
+            if (didChange) {
+              this._onChange(key);
+            }
+          }
         }
       };
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/sdk.js
-  var InterfaceBlockSdk;
-  var init_sdk = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/sdk.js"() {
-      init_sdk_core();
+  // node_modules/@airtable/blocks/dist/esm/base/models/session.js
+  var Session, session_default;
+  var init_session = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/session.js"() {
+      init_session_core();
+      init_mutations();
+      Session = class extends SessionCore {
+        /** @internal */
+        static _className = "Session";
+        /**
+         * Checks whether the current user has permission to update any records in the current base. For
+         * more granular permission checks, see {@link Table.checkPermissionsForUpdateRecords}.
+         *
+         * Returns `{hasPermission: true}` if the current user can update records,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may
+         * be used to display an error message to the user.
+         *
+         * @example
+         * ```js
+         * import {useSession} from '@airtable/blocks/base/ui';
+         *
+         * function UpdateButton({onClick}) {
+         *     const session = useSession();
+         *     const updateRecordsCheckResult = session.checkPermissionsForUpdateRecords();
+         *     const deniedReason = updateRecordsCheckResult.hasPermission
+         *         ? <span>{updateRecordsCheckResult.reasonDisplayString}</span>
+         *         : null;
+         *
+         *     return <div>
+         *         {deniedReason}
+         *         <button onClick={onClick} disabled={!!deniedReason}>
+         *             Update
+         *         </button>
+         *     </div>;
+         * }
+         */
+        checkPermissionsForUpdateRecords() {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.SET_MULTIPLE_RECORDS_CELL_VALUES,
+            tableId: void 0,
+            records: void 0
+          });
+        }
+        /**
+         * An alias for `session.checkPermissionsForUpdateRecords().hasPermission`. For more granular
+         * permission checks, see {@link Table.hasPermissionToUpdateRecords}.
+         */
+        hasPermissionToUpdateRecords() {
+          return this.checkPermissionsForUpdateRecords().hasPermission;
+        }
+        /**
+         * Checks whether the current user has permission to create any records in the current base. For
+         * more granular permission checks, see {@link Table.checkPermissionsForCreateRecords}.
+         *
+         * Returns `{hasPermission: true}` if the current user can create records,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @example
+         * ```js
+         * import {useSession} from '@airtable/blocks/base/ui';
+         *
+         * function CreateButton({onClick}) {
+         *     const session = useSession();
+         *     const updateRecordsCheckResult = session.checkPermissionsForCreateRecords();
+         *     const deniedReason = updateRecordsCheckResult.hasPermission
+         *         ? <span>{updateRecordsCheckResult.reasonDisplayString}</span>
+         *         : null;
+         *
+         *     return <div>
+         *         {deniedReason}
+         *         <button onClick={onClick} disabled={!!deniedReason}>
+         *             Create
+         *         </button>
+         *     </div>;
+         * }
+         */
+        checkPermissionsForCreateRecords() {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.CREATE_MULTIPLE_RECORDS,
+            tableId: void 0,
+            records: void 0
+          });
+        }
+        /**
+         * An alias for `session.checkPermissionsForCreateRecords().hasPermission`. For more granular
+         * permission checks, see {@link Table.hasPermissionToCreateRecords}.
+         */
+        hasPermissionToCreateRecords() {
+          return this.checkPermissionsForCreateRecords().hasPermission;
+        }
+        /**
+         * Checks whether the current user has permission to delete any records in the current base. For
+         * more granular permission checks, see {@link Table.checkPermissionsForDeleteRecords}.
+         *
+         * Returns `{hasPermission: true}` if the current user can delete records,
+         * `{hasPermission: false, reasonDisplayString: string}` otherwise. `reasonDisplayString` may be
+         * used to display an error message to the user.
+         *
+         * @example
+         * ```js
+         * import {useSession} from '@airtable/blocks/base/ui';
+         *
+         * function DeleteButton({onClick}) {
+         *     const session = useSession();
+         *     const updateRecordsCheckResult = session.checkPermissionsForDeleteRecords();
+         *     const deniedReason = updateRecordsCheckResult.hasPermission
+         *         ? <span>{updateRecordsCheckResult.reasonDisplayString}</span>
+         *         : null;
+         *
+         *     return <div>
+         *         {deniedReason}
+         *         <button onClick={onClick} disabled={!!deniedReason}>
+         *             Delete
+         *         </button>
+         *     </div>;
+         */
+        checkPermissionsForDeleteRecords() {
+          return this._sdk.__mutations.checkPermissionsForMutation({
+            type: MutationTypes.DELETE_MULTIPLE_RECORDS,
+            tableId: void 0,
+            recordIds: void 0
+          });
+        }
+        /**
+         * An alias for `session.checkPermissionsForDeleteRecords().hasPermission`. For more granular
+         * permission checks, see {@link Table.hasPermissionToDeleteRecords}.
+         */
+        hasPermissionToDeleteRecords() {
+          return this.checkPermissionsForDeleteRecords().hasPermission;
+        }
+      };
+      session_default = Session;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/types/mutation_constants.js
+  var MAX_FIELD_NAME_LENGTH, MAX_FIELD_DESCRIPTION_LENGTH, MAX_TABLE_NAME_LENGTH, MAX_NUM_FIELDS_PER_TABLE;
+  var init_mutation_constants = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/types/mutation_constants.js"() {
+      MAX_FIELD_NAME_LENGTH = 255;
+      MAX_FIELD_DESCRIPTION_LENGTH = 2e4;
+      MAX_TABLE_NAME_LENGTH = 255;
+      MAX_NUM_FIELDS_PER_TABLE = 500;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/models/mutations_core.js
+  var MUTATIONS_MAX_BATCH_SIZE, MUTATIONS_MAX_BODY_SIZE, MUTATION_HOLD_FOR_MS, MutationsCore;
+  var init_mutations_core2 = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/models/mutations_core.js"() {
+      init_mutations_core();
       init_error_utils();
-      init_session();
-      init_mutations2();
-      init_base();
-      init_search_params();
-      InterfaceBlockSdk = class extends BlockSdkCore {
+      init_private_utils();
+      MUTATIONS_MAX_BATCH_SIZE = 50;
+      MUTATIONS_MAX_BODY_SIZE = 1.9 * 1024 * 1024;
+      MUTATION_HOLD_FOR_MS = 100;
+      MutationsCore = class {
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /** @internal */
+        /** @hidden */
+        constructor(sdk4, session, base2, applyModelChanges, applyGlobalConfigUpdates) {
+          this._airtableInterface = sdk4.__airtableInterface;
+          this._session = session;
+          this._sdk = sdk4;
+          this._base = base2;
+          this._applyModelChanges = applyModelChanges;
+          this._applyGlobalConfigUpdates = applyGlobalConfigUpdates;
+        }
+        /** @hidden */
+        async applyMutationAsync(mutation) {
+          this._assertMutationIsValid(mutation);
+          this._assertMutationUnderLimits(mutation);
+          const permissionCheck = this.checkPermissionsForMutation(mutation);
+          if (!permissionCheck.hasPermission) {
+            throw spawnError("Cannot apply %s mutation: %s", mutation.type, permissionCheck.reasonDisplayString);
+          }
+          const didApplyOptimisticUpdates = this._applyOptimisticUpdatesForMutation(mutation);
+          try {
+            await this._getAirtableInterfaceAsAirtableInterfaceCore().applyMutationAsync(mutation, {
+              holdForMs: MUTATION_HOLD_FOR_MS
+            });
+          } catch (err) {
+            if (didApplyOptimisticUpdates) {
+              setTimeout(() => {
+                throw err;
+              }, 0);
+              await new Promise(() => {
+              });
+            } else {
+              throw err;
+            }
+          }
+        }
+        /** @hidden */
+        checkPermissionsForMutation(mutation) {
+          return this._getAirtableInterfaceAsAirtableInterfaceCore().checkPermissionsForMutation(mutation, this._base.__getBaseData());
+        }
+        // Not really sure why this is necessary. It seems like all callsites could just use
+        // this._airtableInterface directly, but TS complains.
+        /** @hidden */
+        _getAirtableInterfaceAsAirtableInterfaceCore() {
+          return this._airtableInterface;
+        }
+        /** @internal */
+        _assertMutationUnderLimits(mutation) {
+          if (encodeURIComponent(JSON.stringify(mutation)).length > MUTATIONS_MAX_BODY_SIZE) {
+            throw spawnError("Request exceeds maximum size limit of %s bytes", MUTATIONS_MAX_BODY_SIZE);
+          }
+          if (this._doesMutationExceedBatchSizeLimit(mutation)) {
+            throw spawnError("Request exceeds maximum batch size limit of %s items", MUTATIONS_MAX_BATCH_SIZE);
+          }
+        }
+        /** @internal */
+        _applyOptimisticUpdatesForMutation(mutation) {
+          if (mutation.type === MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS) {
+            const _mutation = mutation;
+            this._applyGlobalConfigUpdates(_mutation.updates);
+            return true;
+          }
+          const modelChanges = this._getOptimisticModelChangesForMutation(mutation);
+          if (modelChanges.length > 0) {
+            this._applyModelChanges(modelChanges);
+            return true;
+          }
+          return false;
+        }
+        /** @internal */
+        _doesMutationExceedBatchSizeLimit(mutation) {
+          switch (mutation.type) {
+            case MutationTypesCore.SET_MULTIPLE_RECORDS_CELL_VALUES:
+            case MutationTypesCore.CREATE_MULTIPLE_RECORDS:
+              return mutation.records.length > MUTATIONS_MAX_BATCH_SIZE;
+            case MutationTypesCore.DELETE_MULTIPLE_RECORDS:
+              return mutation.recordIds.length > MUTATIONS_MAX_BATCH_SIZE;
+            case MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS:
+              return mutation.updates.length > MUTATIONS_MAX_BATCH_SIZE;
+            // The "default" case cannot be reached because this method is only
+            // invoked after the mutation type has been validated.
+            // istanbul ignore next
+            default:
+              return false;
+          }
+        }
+        /** @internal */
+        _assertFieldIsValidForMutation(field) {
+          if (field.isComputed) {
+            throw spawnError("Can't set cell values: Field '%s' is computed and cannot be set", field.name);
+          }
+        }
+        /** @internal */
+        _assertMutationIsValid(mutation) {
+          const appInterface = this._sdk.__appInterface;
+          switch (mutation.type) {
+            case MutationTypesCore.SET_MULTIPLE_RECORDS_CELL_VALUES: {
+              const {
+                tableId,
+                records
+              } = mutation;
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't set cell values: No table with id %s exists", tableId);
+              }
+              const recordStore = this._base.__getRecordStore(tableId);
+              const checkedFieldIds = /* @__PURE__ */ new Set();
+              for (const record of records) {
+                let existingRecord = null;
+                if (this._isRecordStoreReadyForMutations(recordStore)) {
+                  existingRecord = recordStore.getRecordByIdIfExists(record.id);
+                  if (!existingRecord) {
+                    throw spawnError("Can't set cell values: No record with id %s exists", record.id);
+                  }
+                }
+                for (const fieldId of Object.keys(record.cellValuesByFieldId)) {
+                  const field = table.getFieldByIdIfExists(fieldId);
+                  if (!field) {
+                    throw spawnError("Can't set cell values: No field with id %s exists in table '%s'", fieldId, table.name);
+                  }
+                  if (!checkedFieldIds.has(fieldId)) {
+                    this._assertFieldIsValidForMutation(field);
+                    checkedFieldIds.add(fieldId);
+                  }
+                  if (existingRecord && this._isFieldAvailableForMutation(recordStore, field.id)) {
+                    const validationResult = this._airtableInterface.fieldTypeProvider.validateCellValueForUpdate(appInterface, record.cellValuesByFieldId[fieldId], existingRecord._getRawCellValue(field), field._data);
+                    if (!validationResult.isValid) {
+                      throw spawnError("Can't set cell values: invalid cell value for field '%s'.\n%s", field.name, validationResult.reason);
+                    }
+                  }
+                }
+              }
+              return;
+            }
+            case MutationTypesCore.DELETE_MULTIPLE_RECORDS: {
+              const {
+                tableId,
+                recordIds
+              } = mutation;
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't delete records: No table with id %s exists", tableId);
+              }
+              const recordStore = this._base.__getRecordStore(tableId);
+              if (this._isRecordStoreReadyForMutations(recordStore)) {
+                for (const recordId of recordIds) {
+                  const record = recordStore.getRecordByIdIfExists(recordId);
+                  if (!record) {
+                    throw spawnError("Can't delete records: No record with id %s exists in table '%s'", recordId, table.name);
+                  }
+                }
+              }
+              return;
+            }
+            case MutationTypesCore.CREATE_MULTIPLE_RECORDS: {
+              const {
+                tableId,
+                records
+              } = mutation;
+              const checkedFieldIds = /* @__PURE__ */ new Set();
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't create records: No table with id %s exists", tableId);
+              }
+              for (const record of records) {
+                for (const fieldId of Object.keys(record.cellValuesByFieldId)) {
+                  const field = table.getFieldByIdIfExists(fieldId);
+                  if (!field) {
+                    throw spawnError("Can't create records: No field with id %s exists in table '%s'", fieldId, table.name);
+                  }
+                  if (!checkedFieldIds.has(fieldId)) {
+                    this._assertFieldIsValidForMutation(field);
+                    checkedFieldIds.add(fieldId);
+                  }
+                  const validationResult = this._airtableInterface.fieldTypeProvider.validateCellValueForUpdate(appInterface, record.cellValuesByFieldId[fieldId], null, field._data);
+                  if (!validationResult.isValid) {
+                    throw spawnError("Can't create records: invalid cell value for field '%s'.\n%s", field.name, validationResult.reason);
+                  }
+                }
+              }
+              return;
+            }
+            case MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS: {
+              return;
+            }
+            default:
+              throw spawnError("unhandled mutation type: %s", mutation.type);
+          }
+        }
+        /** @internal */
+        _getOptimisticModelChangesForMutation(mutation) {
+          switch (mutation.type) {
+            case MutationTypesCore.SET_MULTIPLE_RECORDS_CELL_VALUES: {
+              const {
+                tableId,
+                records
+              } = mutation;
+              const recordStore = this._base.__getRecordStore(tableId);
+              return records.flatMap((record) => Object.keys(record.cellValuesByFieldId).filter((fieldId) => this._isFieldAvailableForMutation(recordStore, fieldId)).map((fieldId) => ({
+                path: ["tablesById", tableId, "recordsById", record.id, "cellValuesByFieldId", fieldId],
+                value: record.cellValuesByFieldId[fieldId]
+              })));
+            }
+            case MutationTypesCore.DELETE_MULTIPLE_RECORDS: {
+              const {
+                tableId,
+                recordIds
+              } = mutation;
+              return recordIds.map((recordId) => ({
+                path: ["tablesById", tableId, "recordsById", recordId],
+                value: void 0
+              }));
+            }
+            case MutationTypesCore.CREATE_MULTIPLE_RECORDS: {
+              const {
+                tableId,
+                records
+              } = mutation;
+              const recordStore = this._base.__getRecordStore(tableId);
+              return records.map((record) => {
+                const filteredCellValuesByFieldId = {};
+                for (const [fieldId, cellValue] of entries(record.cellValuesByFieldId)) {
+                  if (this._isFieldAvailableForMutation(recordStore, fieldId)) {
+                    filteredCellValuesByFieldId[fieldId] = cellValue;
+                  }
+                }
+                return {
+                  path: ["tablesById", tableId, "recordsById", record.id],
+                  value: __spreadProps(__spreadValues({}, this._getDefaultRecordProperties()), {
+                    id: record.id,
+                    cellValuesByFieldId: filteredCellValuesByFieldId
+                  })
+                };
+              });
+            }
+            // The following branch is unreachable because this method's only
+            // call site is preceded by an explicit guard for this condition.
+            // istanbul ignore next
+            case MutationTypesCore.SET_MULTIPLE_GLOBAL_CONFIG_PATHS: {
+              throw spawnError("attempting to generate model updates for SET_MULTIPLE_GLOBAL_CONFIG_PATH");
+            }
+            // The following branch is unreachable because this method's only
+            // call site is preceded by an explicit guard for this condition.
+            // istanbul ignore next
+            default:
+              throw spawnError("unhandled mutation type: %s", mutation.type);
+          }
+        }
+        /** @internal */
+        /** @internal */
+        /** @internal */
+      };
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/mutations.js
+  var Mutations, mutations_default;
+  var init_mutations2 = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/mutations.js"() {
+      init_airtable_interface2();
+      init_mutations();
+      init_error_utils();
+      init_mutation_constants();
+      init_mutations_core2();
+      Mutations = class extends MutationsCore {
+        /** @internal */
+        _isRecordStoreReadyForMutations(recordStore) {
+          return recordStore.isRecordMetadataLoaded;
+        }
+        /** @internal */
+        _isFieldAvailableForMutation(recordStore, fieldId) {
+          return recordStore.areCellValuesLoadedForFieldId(fieldId);
+        }
+        /** @internal */
+        _getDefaultRecordProperties() {
+          return {
+            commentCount: 0,
+            createdTime: (/* @__PURE__ */ new Date()).toJSON()
+          };
+        }
+        /** @internal */
+        _assertMutationIsValid(mutation) {
+          const appInterface = this._sdk.__appInterface;
+          const billingPlanGrouping = this._base.__billingPlanGrouping;
+          switch (mutation.type) {
+            case MutationTypes.SET_MULTIPLE_GLOBAL_CONFIG_PATHS:
+            case MutationTypes.SET_MULTIPLE_RECORDS_CELL_VALUES:
+            case MutationTypes.CREATE_MULTIPLE_RECORDS:
+            case MutationTypes.DELETE_MULTIPLE_RECORDS: {
+              super._assertMutationIsValid(mutation);
+              return;
+            }
+            case MutationTypes.CREATE_SINGLE_FIELD: {
+              const {
+                tableId,
+                name,
+                config,
+                description
+              } = mutation;
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't create field: No table with id %s exists", tableId);
+              }
+              if (table.fields.length >= MAX_NUM_FIELDS_PER_TABLE) {
+                throw spawnError("Can't create field: table already has the maximum of %s fields", MAX_NUM_FIELDS_PER_TABLE);
+              }
+              this._assertFieldNameIsValidForMutation(name, table);
+              const validationResult = this._airtableInterface.fieldTypeProvider.validateConfigForUpdate(appInterface, config, null, null, billingPlanGrouping);
+              if (!validationResult.isValid) {
+                throw spawnError("Can't create field: invalid field config.\n%s", validationResult.reason);
+              }
+              if (description && description.length > MAX_FIELD_DESCRIPTION_LENGTH) {
+                throw spawnError("Can't create field: description exceeds maximum length of %s characters", MAX_FIELD_DESCRIPTION_LENGTH);
+              }
+              return;
+            }
+            case MutationTypes.UPDATE_SINGLE_FIELD_CONFIG: {
+              const {
+                tableId,
+                id,
+                config,
+                opts
+              } = mutation;
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't update field: No table with id %s exists", tableId);
+              }
+              const field = table.getFieldByIdIfExists(id);
+              if (!field) {
+                throw spawnError("Can't update field: No field with id %s exists", id);
+              }
+              const currentConfig = this._airtableInterface.fieldTypeProvider.getConfig(appInterface, field._data, field.parentTable.__getFieldNamesById());
+              const validationResult = this._airtableInterface.fieldTypeProvider.validateConfigForUpdate(appInterface, config, currentConfig, field._data, billingPlanGrouping, opts);
+              if (!validationResult.isValid) {
+                throw spawnError("Can't update field: invalid field config.\n%s", validationResult.reason);
+              }
+              return;
+            }
+            case MutationTypes.UPDATE_SINGLE_FIELD_DESCRIPTION: {
+              const {
+                tableId,
+                id,
+                description
+              } = mutation;
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't update field: No table with id %s exists", tableId);
+              }
+              const field = table.getFieldByIdIfExists(id);
+              if (!field) {
+                throw spawnError("Can't update field: No field with id %s exists", id);
+              }
+              if (description && description.length > MAX_FIELD_DESCRIPTION_LENGTH) {
+                throw spawnError("Can't update field: description exceeds maximum length of %s characters", MAX_FIELD_DESCRIPTION_LENGTH);
+              }
+              return;
+            }
+            case MutationTypes.UPDATE_SINGLE_FIELD_NAME: {
+              const {
+                tableId,
+                id,
+                name
+              } = mutation;
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't update field: No table with id %s exists", tableId);
+              }
+              const field = table.getFieldByIdIfExists(id);
+              if (!field) {
+                throw spawnError("Can't update field: No field with id %s exists", id);
+              }
+              if (field.name.toLowerCase() !== name.toLowerCase()) {
+                this._assertFieldNameIsValidForMutation(name, table);
+              }
+              return;
+            }
+            case MutationTypes.CREATE_SINGLE_TABLE: {
+              const {
+                name,
+                fields
+              } = mutation;
+              if (!name) {
+                throw spawnError("Can't create table: must provide non-empty name");
+              }
+              if (name.length > MAX_TABLE_NAME_LENGTH) {
+                throw spawnError("Can't create table: name '%s' exceeds maximum length of %s characters", name, MAX_TABLE_NAME_LENGTH);
+              }
+              const existingLowercaseTableNames = this._base.tables.map((table) => table.name.toLowerCase());
+              if (existingLowercaseTableNames.includes(name.toLowerCase())) {
+                throw spawnError("Can't create table: table with name '%s' already exists", name);
+              }
+              if (fields.length === 0) {
+                throw spawnError("Can't create table: must specify at least one field");
+              }
+              if (fields.length > MAX_NUM_FIELDS_PER_TABLE) {
+                throw spawnError("Can't create table: number of fields exceeds maximum of %s", MAX_NUM_FIELDS_PER_TABLE);
+              }
+              const lowercaseFieldNames = /* @__PURE__ */ new Set();
+              for (const field of fields) {
+                if (!field.name) {
+                  throw spawnError("Can't create table: must provide non-empty name for every field");
+                }
+                if (field.name.length > MAX_FIELD_NAME_LENGTH) {
+                  throw spawnError("Can't create table: field name '%s' exceeds maximum length of %s characters", field.name, MAX_FIELD_NAME_LENGTH);
+                }
+                const lowercaseFieldName = field.name.toLowerCase();
+                if (lowercaseFieldNames.has(lowercaseFieldName)) {
+                  throw spawnError("Can't create table: duplicate field name '%s'", field.name);
+                }
+                lowercaseFieldNames.add(lowercaseFieldName);
+                const validationResult = this._airtableInterface.fieldTypeProvider.validateConfigForUpdate(appInterface, field.config, null, null, billingPlanGrouping);
+                if (!validationResult.isValid) {
+                  throw spawnError("Can't create table: invalid field config for field '%s'.\n%s", field.name, validationResult.reason);
+                }
+                if (field.description && field.description.length > MAX_FIELD_DESCRIPTION_LENGTH) {
+                  throw spawnError("Can't create table: description for field '%s' exceeds maximum length of %s characters", field.name, MAX_FIELD_DESCRIPTION_LENGTH);
+                }
+              }
+              const primaryField = fields[0];
+              if (!this._airtableInterface.fieldTypeProvider.canBePrimary(appInterface, primaryField.config, billingPlanGrouping)) {
+                throw spawnError("Can't create table: first field '%s' has type '%s' which cannot be a primary field", primaryField.name, primaryField.config.type);
+              }
+              return;
+            }
+            case MutationTypes.UPDATE_VIEW_METADATA: {
+              const {
+                tableId,
+                viewId
+              } = mutation;
+              const {
+                runContext
+              } = this._airtableInterface.sdkInitData;
+              if (runContext.type !== BlockRunContextType.VIEW) {
+                throw spawnError("Setting view metadata is only valid for views");
+              }
+              if (runContext.viewId !== viewId || runContext.tableId !== tableId) {
+                throw spawnError("Custom views can only set view metadata on themselves");
+              }
+              const table = this._base.getTableByIdIfExists(tableId);
+              if (!table) {
+                throw spawnError("Can't update metadata: No table with id %s exists", tableId);
+              }
+              const view = table.getViewByIdIfExists(viewId);
+              if (!view) {
+                throw spawnError("Can't update metadata: No view with id %s exists", viewId);
+              }
+              return;
+            }
+            default:
+              throw spawnUnknownSwitchCaseError("mutation type", mutation, "type");
+          }
+        }
+        /** @internal */
+        _assertFieldNameIsValidForMutation(name, table) {
+          if (!name) {
+            throw spawnError("Can't create or update field: must provide non-empty name");
+          }
+          if (name.length > MAX_FIELD_NAME_LENGTH) {
+            throw spawnError("Can't create or update field: name '%s' exceeds maximum length of %s characters", name, MAX_FIELD_NAME_LENGTH);
+          }
+          const existingLowercaseFieldNames = table.fields.map((field) => field.name.toLowerCase());
+          if (existingLowercaseFieldNames.includes(name.toLowerCase())) {
+            throw spawnError("Can't create or update field: field with name '%s' already exists", name);
+          }
+        }
+        /** @internal */
+        _getOptimisticModelChangesForMutation(mutation) {
+          switch (mutation.type) {
+            case MutationTypes.SET_MULTIPLE_GLOBAL_CONFIG_PATHS:
+            case MutationTypes.SET_MULTIPLE_RECORDS_CELL_VALUES:
+              return super._getOptimisticModelChangesForMutation(mutation);
+            case MutationTypes.CREATE_MULTIPLE_RECORDS: {
+              const {
+                tableId,
+                records
+              } = mutation;
+              const recordStore = this._base.__getRecordStore(tableId);
+              if (!recordStore.isRecordMetadataLoaded) {
+                return [];
+              }
+              const superChanges = super._getOptimisticModelChangesForMutation(mutation);
+              return [...superChanges, ...this._base.getTableById(tableId).views.flatMap((view) => {
+                const viewDataStore = recordStore.getViewDataStore(view.id);
+                if (!viewDataStore.isDataLoaded) {
+                  return [];
+                }
+                return viewDataStore.__generateChangesForParentTableAddMultipleRecords(records.map((record) => record.id));
+              })];
+            }
+            case MutationTypes.DELETE_MULTIPLE_RECORDS: {
+              const {
+                tableId,
+                recordIds
+              } = mutation;
+              const recordStore = this._base.__getRecordStore(tableId);
+              if (!recordStore.isRecordMetadataLoaded) {
+                return [];
+              }
+              const superChanges = super._getOptimisticModelChangesForMutation(mutation);
+              return [...superChanges, ...this._base.getTableById(tableId).views.flatMap((view) => {
+                const viewDataStore = recordStore.getViewDataStore(view.id);
+                if (!viewDataStore.isDataLoaded) {
+                  return [];
+                }
+                return viewDataStore.__generateChangesForParentTableDeleteMultipleRecords(recordIds);
+              })];
+            }
+            case MutationTypes.CREATE_SINGLE_FIELD:
+            case MutationTypes.UPDATE_SINGLE_FIELD_CONFIG:
+            case MutationTypes.UPDATE_SINGLE_FIELD_DESCRIPTION:
+            case MutationTypes.UPDATE_SINGLE_FIELD_NAME:
+            case MutationTypes.UPDATE_VIEW_METADATA:
+            case MutationTypes.CREATE_SINGLE_TABLE: {
+              return [];
+            }
+            // The following branch is unreachable because this method's only
+            // call site is preceded by an explicit guard for this condition.
+            // istanbul ignore next
+            default:
+              throw spawnUnknownSwitchCaseError("mutation type", mutation, "type");
+          }
+        }
+      };
+      mutations_default = Mutations;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/models/cursor.js
+  var WatchableCursorKeys, Cursor, cursor_default;
+  var init_cursor = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/models/cursor.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_abstract_model_with_async_data();
+      init_table();
+      init_view();
+      init_record();
+      WatchableCursorKeys = Object.freeze({
+        selectedRecordIds: "selectedRecordIds",
+        selectedFieldIds: "selectedFieldIds",
+        activeTableId: "activeTableId",
+        activeViewId: "activeViewId",
+        isDataLoaded: "isDataLoaded"
+      });
+      Cursor = class extends AbstractModelWithAsyncData {
+        /** @internal */
+        static _className = "Cursor";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableCursorKeys, key);
+        }
+        /** @internal */
+        static _shouldLoadDataForKey(key) {
+          return true;
+        }
+        /** @internal */
+        /** @internal */
+        constructor(sdk4) {
+          super(sdk4, "cursor");
+          const baseData = sdk4.__airtableInterface.sdkInitData.baseData;
+          const selectedRecordIdSet = baseData.cursorData?.selectedRecordIdSet ?? null;
+          const selectedFieldIdSet = baseData.cursorData?.selectedFieldIdSet ?? null;
+          const activeTableId = baseData.activeTableId;
+          const activeTable = activeTableId ? baseData.tablesById[activeTableId] : null;
+          const activeViewId = activeTable?.activeViewId ?? null;
+          this._cursorData = {
+            selectedRecordIdSet,
+            selectedFieldIdSet,
+            activeTableId,
+            activeViewId
+          };
+          Object.seal(this);
+        }
+        /**
+         * @internal
+         */
+        get _dataOrNullIfDeleted() {
+          return this._cursorData;
+        }
+        /**
+         * @internal
+         */
+        _onChangeIsDataLoaded() {
+          this._onChange(WatchableCursorKeys.isDataLoaded);
+        }
+        /**
+         * @internal
+         */
+        async _loadDataAsync() {
+          const cursorData = await this._sdk.__airtableInterface.fetchAndSubscribeToCursorDataAsync();
+          this._cursorData.selectedRecordIdSet = cursorData.selectedRecordIdSet;
+          this._cursorData.selectedFieldIdSet = cursorData.selectedFieldIdSet;
+          return [WatchableCursorKeys.selectedRecordIds, WatchableCursorKeys.selectedFieldIds];
+        }
+        /**
+         * @internal
+         */
+        _unloadData() {
+          this._sdk.__airtableInterface.unsubscribeFromCursorData();
+          this._cursorData.selectedRecordIdSet = null;
+          this._cursorData.selectedFieldIdSet = null;
+        }
+        /**
+         * The record IDs of all currently selected records, or an empty array if no records are selected.
+         *
+         * Not loaded by default. You must load cursor data with `useLoadable(cursor)` (recommended) or
+         * `cursor.loadDataAsync()` before use.
+         *
+         * Can be watched.
+         */
+        get selectedRecordIds() {
+          const {
+            selectedRecordIdSet
+          } = this._data;
+          invariant(selectedRecordIdSet, "Cursor data is not loaded");
+          const selectedRecordIds = Object.keys(selectedRecordIdSet);
+          return selectedRecordIds;
+        }
+        /**
+         * The field IDs of all currently selected fields, or an empty array if no fields are selected.
+         *
+         * Not loaded by default: you must load cursor data with `useLoadable(cursor)` (recommended) or
+         * `cursor.loadDataAsync()` before use.
+         *
+         * Can be watched.
+         */
+        get selectedFieldIds() {
+          const {
+            selectedFieldIdSet
+          } = this._data;
+          invariant(selectedFieldIdSet, "Cursor data is not loaded");
+          const selectedRecordIds = Object.keys(selectedFieldIdSet);
+          return selectedRecordIds;
+        }
+        /**
+         * Checks whether a given record is selected.
+         *
+         * Selected records are not loaded by default. You must load cursor data with
+         * `useLoadable(cursor)` (recommended) or `cursor.loadDataAsync()` before use.
+         *
+         * @param recordOrRecordId The record or record ID to check for.
+         */
+        isRecordSelected(recordOrRecordId) {
+          const {
+            selectedRecordIdSet
+          } = this._data;
+          invariant(selectedRecordIdSet, "Cursor data is not loaded");
+          let recordId;
+          if (recordOrRecordId instanceof record_default) {
+            recordId = recordOrRecordId.id;
+          } else {
+            recordId = recordOrRecordId;
+          }
+          return !!selectedRecordIdSet[recordId];
+        }
+        /**
+         * The currently active table ID. Can be null when the active table has changed and is not yet
+         * loaded, and can also refer to a table that is not yet loaded.
+         *
+         * When fetching the {@link Table}, use `base.getTableByIdIfExists(cursor.activeTableId)` and
+         * check the return value is not `null` to be resilient to those cases.
+         *
+         * Can be watched.
+         */
+        get activeTableId() {
+          return this._data.activeTableId;
+        }
+        /**
+         * The currently active view ID. This will always be a view belonging to `activeTableId`. Can be
+         * null when the active view has changed and is not yet loaded, and can also refer to a view
+         * that is not yet loaded.
+         *
+         * When fetching the {@link View}, use `table.getViewByIdIfExists(cursor.activeViewId)` and
+         * check the return value is not `null` to be resilient to those cases.
+         *
+         * Can be watched.
+         */
+        get activeViewId() {
+          return this._data.activeViewId;
+        }
+        /**
+         * Sets the specified table to active in the Airtable UI. If the extension installation or extensions pane
+         * is fullscreen, fullscreen mode will be exited.
+         *
+         * @param tableOrTableId The target table or table ID to set as active in the Airtable main page.
+         */
+        setActiveTable(tableOrTableId) {
+          const tableId = tableOrTableId instanceof table_default ? tableOrTableId.id : tableOrTableId;
+          this._sdk.__airtableInterface.setActiveViewOrTable(tableId);
+        }
+        /**
+         * Sets the specified view (and corresponding table) to active in the Airtable UI. If the extension
+         * installation or extensions pane is fullscreen, fullscreen mode will be exited.
+         *
+         * @param tableOrTableId The table or table ID that the target view belongs to.
+         * @param viewOrViewId The target view or view ID to set as active in the Airtable main page.
+         */
+        setActiveView(tableOrTableId, viewOrViewId) {
+          const tableId = tableOrTableId instanceof table_default ? tableOrTableId.id : tableOrTableId;
+          const viewId = viewOrViewId instanceof view_default ? viewOrViewId.id : viewOrViewId;
+          this._sdk.__airtableInterface.setActiveViewOrTable(tableId, viewId);
+        }
+        /**
+         * @internal
+         */
+        __applyChangesWithoutTriggeringEvents(changes) {
+          const changedKeys = {
+            [WatchableCursorKeys.selectedRecordIds]: false,
+            [WatchableCursorKeys.activeTableId]: false,
+            [WatchableCursorKeys.activeViewId]: false
+          };
+          for (const {
+            path,
+            value
+          } of changes) {
+            if (path[0] === "cursorData") {
+              switch (path[1]) {
+                case "selectedRecordIdSet": {
+                  invariant(path.length === 2, "cannot set within selectedRecordIdSet");
+                  this._cursorData.selectedRecordIdSet = value;
+                  changedKeys[WatchableCursorKeys.selectedRecordIds] = true;
+                  break;
+                }
+                case "selectedFieldIdSet": {
+                  invariant(path.length === 2, "cannot set within selectedFieldIdSet");
+                  this._cursorData.selectedFieldIdSet = value;
+                  changedKeys[WatchableCursorKeys.selectedFieldIds] = true;
+                  break;
+                }
+                default:
+              }
+            }
+            if (path[0] === "activeTableId") {
+              invariant(value === null || typeof value === "string", "activeTableId must be string or null");
+              this._cursorData.activeTableId = value;
+              changedKeys[WatchableCursorKeys.activeTableId] = true;
+              if (value === null) {
+                this._cursorData.activeViewId = null;
+                changedKeys[WatchableCursorKeys.activeViewId] = true;
+              }
+            }
+            if (path[0] === "tablesById" && path[1] === this.activeTableId && path[2] === "activeViewId") {
+              invariant(value === null || typeof value === "string", "activeTableId must be string or null");
+              this._cursorData.activeViewId = value;
+              changedKeys[WatchableCursorKeys.activeViewId] = true;
+            }
+          }
+          return changedKeys;
+        }
+        /**
+         * @internal
+         */
+        __triggerOnChangeForChangedKeys(changedKeys) {
+          for (const [key, didChange] of entries(changedKeys)) {
+            if (didChange) {
+              this._onChange(key);
+            }
+          }
+        }
+      };
+      cursor_default = Cursor;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/settings_button.js
+  var WatchableSettingsButtonKeys, SettingsButton, settings_button_default;
+  var init_settings_button = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/settings_button.js"() {
+      init_watchable();
+      init_private_utils();
+      WatchableSettingsButtonKeys = Object.freeze({
+        isVisible: "isVisible",
+        click: "click"
+      });
+      SettingsButton = class extends watchable_default {
+        /** @internal */
+        static _className = "SettingsButton";
+        /** @internal */
+        static _isWatchableKey(key) {
+          return isEnumValue(WatchableSettingsButtonKeys, key);
+        }
+        /** @internal */
+        /** @internal */
         /** @internal */
         constructor(airtableInterface2) {
+          super();
+          this._refCount = 0;
+          this._airtableInterface = airtableInterface2;
+        }
+        /**
+         * Whether the settings button is being shown.
+         * Can be watched.
+         */
+        get isVisible() {
+          return this._refCount > 0;
+        }
+        /**
+         * Show the settings button.
+         */
+        show() {
+          if (this._refCount === 0) {
+            this._onChange(WatchableSettingsButtonKeys.isVisible, true);
+            this._airtableInterface.setSettingsButtonVisibility(true);
+          }
+          this._refCount += 1;
+        }
+        /**
+         * Hide the settings button.
+         *
+         * Note: A count of calls to `show()` and `hide()` is maintained internally. The button will
+         * stay visible if there are more calls to `show()` than `hide()`.
+         */
+        hide() {
+          if (this._refCount > 0) {
+            this._refCount -= 1;
+          }
+          if (this._refCount === 0) {
+            this._onChange(WatchableSettingsButtonKeys.isVisible, false);
+            this._airtableInterface.setSettingsButtonVisibility(false);
+          }
+        }
+        /** @internal */
+        __onClick() {
+          this._onChange(WatchableSettingsButtonKeys.click);
+        }
+      };
+      settings_button_default = SettingsButton;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/types/undo_redo.js
+  var UndoRedoModes;
+  var init_undo_redo = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/types/undo_redo.js"() {
+      UndoRedoModes = Object.freeze({
+        NONE: "none",
+        AUTO: "auto"
+      });
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/undo_redo.js
+  var UndoRedo, undo_redo_default;
+  var init_undo_redo2 = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/undo_redo.js"() {
+      init_private_utils();
+      init_error_utils();
+      init_undo_redo();
+      UndoRedo = class {
+        /** @hidden */
+        modes = UndoRedoModes;
+        /** @internal */
+        /** @internal */
+        _mode = UndoRedoModes.NONE;
+        /** @hidden */
+        constructor(airtableInterface2) {
+          this._airtableInterface = airtableInterface2;
+        }
+        /** @hidden */
+        get mode() {
+          return this._mode;
+        }
+        /** @hidden */
+        set mode(mode) {
+          if (!values(UndoRedoModes).includes(mode)) {
+            throw spawnError("Unexpected UndoRedo mode");
+          }
+          this._mode = mode;
+          this._airtableInterface.setUndoRedoMode(mode);
+        }
+      };
+      undo_redo_default = UndoRedo;
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/sdk.js
+  function defaultUpdateBatcher(applyUpdates) {
+    applyUpdates();
+  }
+  var BaseBlockSdk;
+  var init_sdk = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/sdk.js"() {
+      init_sdk_core();
+      init_viewport();
+      init_base();
+      init_session();
+      init_mutations2();
+      init_cursor();
+      init_settings_button();
+      init_undo_redo2();
+      init_perform_record_action();
+      BaseBlockSdk = class extends BlockSdkCore {
+        /** Controls the block's viewport. You can fullscreen the block and add size
+         * constrains using `viewport`.
+         */
+        /** Returns information about the active table, active view, and selected records. */
+        /**
+         * Controls the block's {@link settingsButton settings button}.
+         */
+        /** @hidden */
+        /** @internal */
+        // When models are updated on the frontend, we want to batch them together and have React do a
+        // single render.
+        //
+        // Without this, in sync-mode React (the current default), anything that triggers an update
+        // (like .setState or .forceUpdate) will instantly, synchronously re-render. So if you have an
+        // update that triggers multiple updates across your tree, you get multiple renders in an
+        // unpredictable order. This is bad because it's unnecessary work and the update order can
+        // contradict react's normal top-down data flow which can cause subtle bugs.
+        //
+        // We set _runWithUpdateBatching to ReactDOM.unstable_batchedUpdates to facilitate this. We
+        // don't know for sure though that React is in use on the page, so we leave actually setting
+        // this when the developer sets up their block with React, in UI.initializeBlock.
+        //
+        // This can be eliminated if we stop supporting versions of React below 18. In React 18,
+        // updates are always batched by default.
+        /** @internal */
+        _runWithUpdateBatching = defaultUpdateBatcher;
+        /** @hidden */
+        constructor(airtableInterface2) {
           super(airtableInterface2);
-          this._searchParams = new SearchParams(airtableInterface2.sdkInitData.initialSearchParams, this);
+          const sdkInitData = airtableInterface2.sdkInitData;
+          this.unstable_fetchAsync = this.unstable_fetchAsync.bind(this);
+          this.viewport = new viewport_default(sdkInitData.isFullscreen, airtableInterface2);
+          this.cursor = new cursor_default(this);
+          this.settingsButton = new settings_button_default(airtableInterface2);
+          this.undoRedo = new undo_redo_default(airtableInterface2);
+          this.performRecordAction = new PerformRecordAction(this, airtableInterface2);
           this._registerHandlers();
         }
         /** @internal */
         _constructSession() {
-          return new Session(this);
+          return new session_default(this);
         }
         /** @internal */
         _constructBase() {
-          return new Base(this);
+          return new base_default(this);
         }
         /** @internal */
         _constructMutations() {
-          return new Mutations(this, this.session, this.base, (changes) => this.__applyModelChanges(changes), (updates) => this.__applyGlobalConfigUpdates(updates));
+          return new mutations_default(this, this.session, this.base, (changes) => this.__applyModelChanges(changes), (updates) => this.__applyGlobalConfigUpdates(updates));
+        }
+        /** @internal */
+        __applyModelChanges(changes) {
+          this._runWithUpdateBatching(() => {
+            const changedBasePaths = this.base.__applyChangesWithoutTriggeringEvents(changes);
+            const changedCursorKeys = this.cursor.__applyChangesWithoutTriggeringEvents(changes);
+            const changedSessionKeys = this.session.__applyChangesWithoutTriggeringEvents(changes);
+            this.base.__triggerOnChangeForChangedPaths(changedBasePaths);
+            this.cursor.__triggerOnChangeForChangedKeys(changedCursorKeys);
+            this.session.__triggerOnChangeForChangedKeys(changedSessionKeys);
+          });
+        }
+        /** @internal */
+        __applyGlobalConfigUpdates(updates) {
+          this._runWithUpdateBatching(() => {
+            this.globalConfig.__setMultipleKvPaths(updates);
+          });
         }
         /** @internal */
         _registerHandlers() {
@@ -20966,72 +26452,40 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
             } = _ref2;
             this.__applyGlobalConfigUpdates(updates);
           });
-          this.__airtableInterface.subscribeToSearchParamsUpdates((_ref3) => {
-            let {
-              searchParams
-            } = _ref3;
-            this.__applySearchParamsUpdates(searchParams);
+          this.__airtableInterface.subscribeToSettingsButtonClick(() => {
+            if (this.settingsButton.isVisible) {
+              this._runWithUpdateBatching(() => {
+                this.settingsButton.__onClick();
+              });
+            }
+          });
+          this.__airtableInterface.subscribeToEnterFullScreen(() => {
+            this._runWithUpdateBatching(() => {
+              this.viewport.__onEnterFullscreen();
+            });
+          });
+          this.__airtableInterface.subscribeToExitFullScreen(() => {
+            this._runWithUpdateBatching(() => {
+              this.viewport.__onExitFullscreen();
+            });
+          });
+          this.__airtableInterface.subscribeToFocus(() => {
+            this._runWithUpdateBatching(() => {
+              this.viewport.__focus();
+            });
           });
         }
         /** @internal */
-        __applyModelChanges(changes) {
-          const changedBasePaths = this.base.__applyChangesWithoutTriggeringEvents(changes);
-          const changedSessionKeys = this.session.__applyChangesWithoutTriggeringEvents(changes);
-          this.base.__triggerOnChangeForChangedPaths(changedBasePaths);
-          this.session.__triggerOnChangeForChangedKeys(changedSessionKeys);
+        __setBatchedUpdatesFn(newUpdateBatcher) {
+          this._runWithUpdateBatching = newUpdateBatcher;
         }
-        /** @internal */
-        __applyGlobalConfigUpdates(updates) {
-          this.globalConfig.__setMultipleKvPaths(updates);
-        }
-        /** @internal */
-        __applySearchParamsUpdates(searchParams) {
-          this._searchParams.__set(searchParams);
-        }
-        /**
-         * @internal
-         */
-        get __appInterface() {
-          return this.base._baseData.appInterface;
+        /** @hidden */
+        async unstable_fetchAsync(requestJson) {
+          return await this.__airtableInterface.performBackendFetchAsync(requestJson);
         }
         /** @hidden */
         getBlockRunContext() {
           return this.__airtableInterface.sdkInitData.runContext;
-        }
-        /** @internal */
-        getInitialSearchParams() {
-          return this.__airtableInterface.sdkInitData.initialSearchParams;
-        }
-        /**
-         * @internal
-         */
-        setCustomPropertiesAsync(properties) {
-          return this.__airtableInterface.setCustomPropertiesAsync(properties);
-        }
-        /**
-         * @internal
-         */
-        setSelectedSubElementAsync(selectedSubElement) {
-          return this.__airtableInterface.setSelectedSubElementAsync(selectedSubElement);
-        }
-        /**
-         * @internal
-         */
-        fetchAndSubscribeToSelectionDataAsync(callback) {
-          return this.__airtableInterface.fetchAndSubscribeToSelectionDataAsync(callback);
-        }
-        /**
-         * @internal
-         */
-        unsubscribeFromSelectionData() {
-          return this.__airtableInterface.unsubscribeFromSelectionData();
-        }
-        /**
-         * @internal
-         */
-        unstable_getMapApiTokenAsync() {
-          invariant(this.__airtableInterface.getMapApiTokenAsync, "map API token is not supported in this context");
-          return this.__airtableInterface.getMapApiTokenAsync();
         }
       };
     }
@@ -22798,7 +28252,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           node.defaultValue !== "" + value && (node.defaultValue = "" + value);
         }
         function validateOptionProps(element, props) {
-          null == props.value && ("object" === typeof props.children && null !== props.children ? React8.Children.forEach(props.children, function(child) {
+          null == props.value && ("object" === typeof props.children && null !== props.children ? React10.Children.forEach(props.children, function(child) {
             null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             ));
@@ -39946,11 +45400,11 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React8 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var Scheduler = require_scheduler(), React10 = require_react(), ReactDOM2 = require_react_dom(), searchTarget = null, searchBoundary = null, assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
         Symbol.for("react.scope");
         var REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_LEGACY_HIDDEN_TYPE = Symbol.for("react.legacy_hidden");
         Symbol.for("react.tracing_marker");
-        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_RECOVERABLE_TYPE = Symbol.for("react.recoverable"), MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM2.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -43142,7 +48596,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           }
         };
         (function() {
-          var isomorphicReactPackageVersion = React8.version;
+          var isomorphicReactPackageVersion = React10.version;
           if ("19.3.1" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.3.1\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -43283,10 +48737,10 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/loader.js
-  var React2, ORIGINAL_SIZE, Loader, loader_default;
+  var React3, ORIGINAL_SIZE, Loader, loader_default;
   var init_loader = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/loader.js"() {
-      React2 = __toESM(require_react(), 1);
+      React3 = __toESM(require_react(), 1);
       ORIGINAL_SIZE = 54;
       Loader = (_ref) => {
         let {
@@ -43295,7 +48749,7 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           className,
           style: style2
         } = _ref;
-        return /* @__PURE__ */ React2.createElement("svg", {
+        return /* @__PURE__ */ React3.createElement("svg", {
           width: ORIGINAL_SIZE * scale,
           height: ORIGINAL_SIZE * scale,
           viewBox: `0 0 ${ORIGINAL_SIZE} ${ORIGINAL_SIZE}`,
@@ -43303,13 +48757,13 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
           style: __spreadValues({
             shapeRendering: "geometricPrecision"
           }, style2)
-        }, /* @__PURE__ */ React2.createElement("g", null, /* @__PURE__ */ React2.createElement("path", {
+        }, /* @__PURE__ */ React3.createElement("g", null, /* @__PURE__ */ React3.createElement("path", {
           d: "M10.9,48.6c-1.6-1.3-2-3.6-0.7-5.3c1.3-1.6,3.6-2.1,5.3-0.8c0.8,0.5,1.5,1.1,2.4,1.5c7.5,4.1,16.8,2.7,22.8-3.4c1.5-1.5,3.8-1.5,5.3,0c1.4,1.5,1.4,3.9,0,5.3c-8.4,8.5-21.4,10.6-31.8,4.8C13,50.1,11.9,49.3,10.9,48.6z",
           fill: fillColor
-        }), /* @__PURE__ */ React2.createElement("path", {
+        }), /* @__PURE__ */ React3.createElement("path", {
           d: "M53.6,31.4c-0.3,2.1-2.3,3.5-4.4,3.2c-2.1-0.3-3.4-2.3-3.1-4.4c0.2-1.1,0.2-2.2,0.2-3.3c0-8.7-5.7-16.2-13.7-18.5c-2-0.5-3.2-2.7-2.6-4.7s2.6-3.2,4.7-2.6C46,4.4,53.9,14.9,53.9,27C53.9,28.5,53.8,30,53.6,31.4z",
           fill: fillColor
-        }), /* @__PURE__ */ React2.createElement("path", {
+        }), /* @__PURE__ */ React3.createElement("path", {
           d: "M16.7,1.9c1.9-0.8,4.1,0.2,4.8,2.2s-0.2,4.2-2.1,5c-7.2,2.9-12,10-12,18.1c0,1.6,0.2,3.2,0.6,4.7c0.5,2-0.7,4.1-2.7,4.6c-2,0.5-4-0.7-4.5-2.8C0.3,31.5,0,29.3,0,27.1C0,15.8,6.7,5.9,16.7,1.9z",
           fill: fillColor
         })));
@@ -43318,37 +48772,97 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/global_css_helpers.js
-  var SPIN_SCALE_ANIMATION_NAME, spinScaleKeyframesStyle, getCssContentToAddToHead;
-  var init_global_css_helpers = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/global_css_helpers.js"() {
-      SPIN_SCALE_ANIMATION_NAME = `spinScale_${Math.random().toString(36).substring(2, 11)}`;
-      spinScaleKeyframesStyle = `
-    @keyframes ${SPIN_SCALE_ANIMATION_NAME} {
-        0% {
-            transform: rotate(0) scale(1);
-        }
-        50% {
-            transform: rotate(360deg) scale(0.9);
-        }
-        100% {
-            transform: rotate(720deg) scale(1);
-        }
-    }
-`;
-      getCssContentToAddToHead = () => {
-        return `${spinScaleKeyframesStyle}`;
+  // node_modules/@airtable/blocks/dist/esm/base/ui/block_wrapper.js
+  function BlockWrapper(props) {
+    const {
+      sdk: sdk4,
+      children
+    } = props;
+    const [globalAlertInfoIfExists, setGlobalAlertInfoIfExists] = React4.useState(null);
+    React4.useEffect(() => {
+      if (globalAlertInfoIfExists) {
+        return () => {
+        };
+      }
+      if (globalAlert.__alertInfo) {
+        setGlobalAlertInfoIfExists(globalAlert.__alertInfo);
+      }
+      const onAlertInfoChange = (a) => setGlobalAlertInfoIfExists(a.__alertInfo);
+      globalAlert.watch("__alertInfo", onAlertInfoChange);
+      return () => {
+        globalAlert.unwatch("__alertInfo", onAlertInfoChange);
       };
+    }, [globalAlertInfoIfExists]);
+    const viewport2 = sdk4.viewport;
+    useWatchable(viewport2, ["size", "minSize"]);
+    const minSizeBeforeFirstRender = React4.useRef(viewport2.minSize);
+    const [, forceUpdate] = React4.useReducer((x) => x + 1, 0);
+    React4.useEffect(() => {
+      if (minSizeBeforeFirstRender.current) {
+        const prevMinSize = minSizeBeforeFirstRender.current;
+        minSizeBeforeFirstRender.current = null;
+        const currentMinSize = viewport2.minSize;
+        if (currentMinSize.width !== prevMinSize.width || currentMinSize.height !== prevMinSize.height) {
+          forceUpdate();
+        }
+      }
+    }, [viewport2]);
+    React4.useLayoutEffect(() => {
+      const styleElement = document.createElement("style");
+      styleElement.textContent = getCssContentToAddToHead();
+      document.head.appendChild(styleElement);
+      return () => {
+        if (document.head.contains(styleElement)) {
+          document.head.removeChild(styleElement);
+        }
+      };
+    }, []);
+    if (globalAlertInfoIfExists) {
+      return /* @__PURE__ */ React4.createElement(SdkContext.Provider, {
+        value: sdk4
+      }, /* @__PURE__ */ React4.createElement("div", {
+        style: fullscreenMessageStyle
+      }, globalAlertInfoIfExists.content));
     }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/block_wrapper.js
-  var React3, suspenseFallbackStyle, animateSpinnerStyle, BlockWrapper;
+    return /* @__PURE__ */ React4.createElement(SdkContext.Provider, {
+      value: sdk4
+    }, /* @__PURE__ */ React4.createElement(React4.Suspense, {
+      fallback: /* @__PURE__ */ React4.createElement("div", {
+        style: suspenseFallbackStyle
+      }, /* @__PURE__ */ React4.createElement(loader_default, {
+        style: animateSpinnerStyle
+      }))
+    }, /* @__PURE__ */ React4.createElement("div", {
+      style: viewport2.isSmallerThanMinSize ? wrapperStyle : void 0
+    }, children)), viewport2.isSmallerThanMinSize && /* @__PURE__ */ React4.createElement(MakeBiggerOrFullscreenMessage, {
+      viewport: viewport2
+    }));
+  }
+  function MakeBiggerOrFullscreenMessage(_ref) {
+    let {
+      viewport: viewport2
+    } = _ref;
+    return /* @__PURE__ */ React4.createElement("div", {
+      style: fullscreenMessageStyle
+    }, /* @__PURE__ */ React4.createElement("span", {
+      style: {
+        textAlign: "center",
+        lineHeight: 1.5,
+        opacity: 0.75,
+        fontWeight: 500
+      }
+    }, /* @__PURE__ */ React4.createElement("span", null, "Please make this extension bigger or "), /* @__PURE__ */ React4.createElement("span", {
+      className: BUTTON_LINK_CLASS_NAME,
+      onClick: () => viewport2.enterFullscreenIfPossible()
+    }, "fullscreen")));
+  }
+  var React4, suspenseFallbackStyle, wrapperStyle, fullscreenMessageStyle, animateSpinnerStyle;
   var init_block_wrapper = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/block_wrapper.js"() {
-      React3 = __toESM(require_react(), 1);
-      init_loader();
+    "node_modules/@airtable/blocks/dist/esm/base/ui/block_wrapper.js"() {
+      React4 = __toESM(require_react(), 1);
       init_sdk_context();
+      init_loader();
+      init_ui();
       init_global_css_helpers();
       suspenseFallbackStyle = {
         position: "absolute",
@@ -43360,42 +48874,42 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         alignItems: "center",
         justifyContent: "center"
       };
+      wrapperStyle = {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: "hidden"
+      };
+      fullscreenMessageStyle = {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "1rem",
+        backgroundColor: "#ffffff",
+        zIndex: 2147483647
+        // largest 32-bit signed integer (maximum z-index)
+      };
       animateSpinnerStyle = {
         animationIterationCount: "infinite",
         animationName: SPIN_SCALE_ANIMATION_NAME,
         animationDuration: "1800ms",
         animationTimingFunction: "cubic-bezier(0.785, 0.135, 0.15, 0.86)"
       };
-      BlockWrapper = (_ref) => {
-        let {
-          sdk: sdk3,
-          children
-        } = _ref;
-        React3.useLayoutEffect(() => {
-          const styleElement = document.createElement("style");
-          styleElement.textContent = getCssContentToAddToHead();
-          document.head.appendChild(styleElement);
-          return () => {
-            if (document.head.contains(styleElement)) {
-              document.head.removeChild(styleElement);
-            }
-          };
-        }, []);
-        return /* @__PURE__ */ React3.createElement(SdkContext.Provider, {
-          value: sdk3
-        }, /* @__PURE__ */ React3.createElement(React3.Suspense, {
-          fallback: /* @__PURE__ */ React3.createElement("div", {
-            style: suspenseFallbackStyle
-          }, /* @__PURE__ */ React3.createElement(loader_default, {
-            style: animateSpinnerStyle
-          }))
-        }, children));
-      };
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/initialize_block.js
-  function initializeBlock(entryPoints) {
+  // node_modules/@airtable/blocks/dist/esm/base/ui/initialize_block.js
+  function initializeBlock(getEntryElement) {
+    const entryPoints = typeof getEntryElement === "function" ? {
+      dashboard: getEntryElement
+    } : getEntryElement;
     const body = typeof document !== "undefined" ? document.body : null;
     if (!body) {
       throw spawnError("initializeBlock should only be called from browser environments");
@@ -43406,39 +48920,56 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     hasBeenInitialized = true;
     const airtableInterface2 = getAirtableInterface();
     let entryElement;
-    const runContext = airtableInterface2.sdkInitData.runContext;
+    const runContext = airtableInterface2.sdkInitData.runContext ?? {
+      type: BlockRunContextType.DASHBOARD_APP
+    };
     switch (runContext.type) {
-      case BlockRunContextType.PAGE_ELEMENT_IN_QUERY_CONTAINER: {
-        if (entryPoints.interface === void 0) {
-          throw spawnError("If running an extension within the interface, it must have a interface initialization function");
+      case BlockRunContextType.DASHBOARD_APP: {
+        if (entryPoints.dashboard === void 0) {
+          throw spawnError("If running an extension within the dashboard, it must have a dashboard initialization function");
         }
-        if (typeof entryPoints.interface !== "function") {
-          throw spawnError("initializeBlock must contain a interface function that returns a React element");
+        if (typeof entryPoints.dashboard !== "function") {
+          throw spawnError("initializeBlock must contain a dashboard function that returns a React element");
         }
-        entryElement = entryPoints.interface();
+        entryElement = entryPoints.dashboard();
+        break;
+      }
+      case BlockRunContextType.VIEW: {
+        if (entryPoints.view === void 0) {
+          throw spawnError("If running an extension within a view, it must have a view initialization function");
+        }
+        if (typeof entryPoints.view !== "function") {
+          throw spawnError("initializeBlock must contain a view function that returns a React element");
+        }
+        const table = sdk3.base.getTableById(runContext.tableId);
+        const view = table.getViewById(runContext.viewId);
+        entryElement = entryPoints.view({
+          table,
+          view
+        });
         break;
       }
       default:
         throw spawnError("Invalid context to run ");
     }
-    if (!/* @__PURE__ */ React4.isValidElement(entryElement)) {
+    if (!/* @__PURE__ */ React5.isValidElement(entryElement)) {
       throw spawnError("The first argument to initializeBlock didn't return a valid React element");
     }
     const container = document.createElement("div");
     container.style.height = "100%";
     container.style.width = "100%";
     body.appendChild(container);
-    (0, import_client.createRoot)(container).render(/* @__PURE__ */ React4.createElement(BlockWrapper, {
-      sdk: sdk2
+    (0, import_client.createRoot)(container).render(/* @__PURE__ */ React5.createElement(BlockWrapper, {
+      sdk: sdk3
     }, entryElement));
   }
   function __injectSdkIntoInitializeBlock(_sdk) {
-    sdk2 = _sdk;
+    sdk3 = _sdk;
   }
-  var React4, import_client, hasBeenInitialized, sdk2;
+  var React5, import_client, hasBeenInitialized, sdk3;
   var init_initialize_block = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/initialize_block.js"() {
-      React4 = __toESM(require_react(), 1);
+    "node_modules/@airtable/blocks/dist/esm/base/ui/initialize_block.js"() {
+      React5 = __toESM(require_react(), 1);
       import_client = __toESM(require_client(), 1);
       init_error_utils();
       init_airtable_interface();
@@ -43448,23 +48979,63 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/index.js
+  // node_modules/@airtable/blocks/dist/esm/base/index.js
   function __reset() {
-    const __sdk = new InterfaceBlockSdk(getAirtableInterface());
+    __sdk = new BaseBlockSdk(getAirtableInterface());
+    ({
+      base,
+      globalConfig,
+      installationId,
+      reload,
+      runInfo,
+      settingsButton,
+      undoRedo,
+      viewport,
+      unstable_fetchAsync
+    } = __sdk);
+    __injectSdkIntoPerformRecordAction(__sdk);
     __injectSdkIntoInitializeBlock(__sdk);
     __injectSdkIntoWarning(__sdk);
   }
-  var init_interface = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/index.js"() {
+  var __sdk, base, globalConfig, installationId, reload, runInfo, settingsButton, undoRedo, viewport, unstable_fetchAsync;
+  var init_base2 = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/index.js"() {
+      init_assert_run_context();
       init_warning();
       init_airtable_interface();
+      init_perform_record_action();
       init_sdk();
       init_initialize_block();
       __reset();
     }
   });
 
+  // node_modules/@airtable/blocks/dist/esm/base/ui/base_provider.js
+  var React6;
+  var init_base_provider = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/base_provider.js"() {
+      React6 = __toESM(require_react(), 1);
+      init_sdk_context();
+    }
+  });
+
   // node_modules/@airtable/blocks/dist/esm/shared/ui/use_array_identity.js
+  function useArrayIdentity(array) {
+    const arrayRef = (0, import_react2.useRef)(array);
+    if (arrayRef.current !== array) {
+      if (arrayRef.current.length !== array.length) {
+        arrayRef.current = array;
+      } else {
+        for (let i = 0; i < array.length; i++) {
+          if (arrayRef.current[i] !== array[i]) {
+            arrayRef.current = array;
+            break;
+          }
+        }
+      }
+    }
+    return arrayRef.current;
+  }
   var import_react2;
   var init_use_array_identity = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/use_array_identity.js"() {
@@ -43473,6 +49044,47 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/use_watchable.js
+  function useWatchable(models, keys2, callback) {
+    if (keys2 === void 0) {
+      throw spawnError("Invalid call to useWatchable: keys cannot be undefined. Pass a key or array of keys corresponding to the model being watched as the second argument.");
+    }
+    const compactModels = useArrayIdentity(compact(Array.isArray(models) ? models : [models]));
+    const compactKeys = useArrayIdentity(compact(Array.isArray(keys2) ? keys2 : [keys2]));
+    const callbackRef = (0, import_react3.useRef)(callback);
+    callbackRef.current = callback;
+    const watchSubscription = (0, import_react3.useMemo)(() => {
+      return {
+        getCurrentValue: () => compactModels.map((model) => model.__getWatchableKey()).join(","),
+        subscribe: (notifyChange) => {
+          let isDisabled = false;
+          const onChange = function(model, key) {
+            if (isDisabled) {
+              return;
+            }
+            notifyChange();
+            if (callbackRef.current) {
+              for (var _len = arguments.length, args = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+                args[_key - 2] = arguments[_key];
+              }
+              callbackRef.current(model, key, ...args);
+            }
+          };
+          for (const model of compactModels) {
+            model.watch(compactKeys, onChange);
+          }
+          return () => {
+            isDisabled = true;
+            setTimeout(() => {
+              for (const model of compactModels) {
+                model.unwatch(compactKeys, onChange);
+              }
+            }, 0);
+          };
+        }
+      };
+    }, [compactModels, compactKeys]);
+    (0, import_react3.useSyncExternalStore)(watchSubscription.subscribe, watchSubscription.getCurrentValue);
+  }
   var import_react3;
   var init_use_watchable = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/use_watchable.js"() {
@@ -43492,10 +49104,10 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/cell_renderer.js
-  var React5;
+  var React7;
   var init_cell_renderer = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/cell_renderer.js"() {
-      React5 = __toESM(require_react(), 1);
+      React7 = __toESM(require_react(), 1);
       init_error_utils();
       init_field_core();
       init_use_watchable();
@@ -43504,18 +49116,56 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/cell_renderer.js
-  var React6;
+  // node_modules/@airtable/blocks/dist/esm/base/ui/cell_renderer.js
+  var React8;
   var init_cell_renderer2 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/cell_renderer.js"() {
-      React6 = __toESM(require_react(), 1);
+    "node_modules/@airtable/blocks/dist/esm/base/ui/cell_renderer.js"() {
+      React8 = __toESM(require_react(), 1);
       init_cell_renderer();
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/expand_record.js
+  // node_modules/@airtable/blocks/dist/esm/base/ui/expand_record.js
   var init_expand_record = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/expand_record.js"() {
+    "node_modules/@airtable/blocks/dist/esm/base/ui/expand_record.js"() {
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/expand_record_list.js
+  var init_expand_record_list = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/expand_record_list.js"() {
+      init_error_utils();
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/expand_record_picker_async.js
+  var init_expand_record_picker_async = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/expand_record_picker_async.js"() {
+      init_error_utils();
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/shared/ui/use_loadable.js
+  var import_react5;
+  var init_use_loadable = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/ui/use_loadable.js"() {
+      import_react5 = __toESM(require_react(), 1);
+      init_private_utils();
+      init_error_utils();
+      init_use_array_identity();
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_records.js
+  var init_use_records = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_records.js"() {
+      init_error_utils();
+      init_table();
+      init_record_query_result();
+      init_record_coloring();
+      init_view();
+      init_use_watchable();
+      init_use_loadable();
     }
   });
 
@@ -43527,55 +49177,17 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/use_base.js
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_base.js
   var init_use_base2 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/use_base.js"() {
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_base.js"() {
       init_use_base();
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/ui/use_global_config.js
-  var init_use_global_config = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/ui/use_global_config.js"() {
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_cursor.js
+  var init_use_cursor = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_cursor.js"() {
       init_use_watchable();
-      init_sdk_context();
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/use_custom_properties.js
-  var import_react5;
-  var init_use_custom_properties = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/use_custom_properties.js"() {
-      import_react5 = __toESM(require_react(), 1);
-      init_sdk_context();
-      init_airtable_interface2();
-      init_use_global_config();
-      init_error_utils();
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/use_records.js
-  var init_use_records = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/use_records.js"() {
-      init_sdk_context();
-      init_use_watchable();
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/use_search_params.js
-  var import_react6;
-  var init_use_search_params = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/use_search_params.js"() {
-      import_react6 = __toESM(require_react(), 1);
-      init_sdk_context();
-      init_use_watchable();
-      init_error_utils();
-    }
-  });
-
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/use_run_info.js
-  var init_use_run_info = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/use_run_info.js"() {
       init_sdk_context();
     }
   });
@@ -43588,23 +49200,27 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/use_session.js
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_session.js
   var init_use_session2 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/use_session.js"() {
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_session.js"() {
       init_use_session();
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/base/types/airtable_interface.js
-  var init_airtable_interface3 = __esm({
-    "node_modules/@airtable/blocks/dist/esm/base/types/airtable_interface.js"() {
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_settings_button.js
+  var import_react6;
+  var init_use_settings_button = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_settings_button.js"() {
+      import_react6 = __toESM(require_react(), 1);
+      init_use_watchable();
+      init_sdk_context();
     }
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/global_config_synced_component_helpers.js
   var init_global_config_synced_component_helpers = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/global_config_synced_component_helpers.js"() {
-      init_airtable_interface3();
+      init_airtable_interface2();
       init_use_watchable();
       init_sdk_context();
     }
@@ -43618,172 +49234,38 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/colors.js
-  var Colors, rgbTuplesByColor;
-  var init_colors = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/colors.js"() {
-      Colors = {
-        /** @docsPath UI/utils/Colors */
-        BLUE_BRIGHT: "blueBright",
-        /** @docsPath UI/utils/Colors */
-        BLUE_DARK_1: "blueDark1",
-        /** @docsPath UI/utils/Colors */
-        BLUE_LIGHT_1: "blueLight1",
-        /** @docsPath UI/utils/Colors */
-        BLUE_LIGHT_2: "blueLight2",
-        /** @docsPath UI/utils/Colors */
-        BLUE: "blue",
-        /** @docsPath UI/utils/Colors */
-        CYAN_BRIGHT: "cyanBright",
-        /** @docsPath UI/utils/Colors */
-        CYAN_DARK_1: "cyanDark1",
-        /** @docsPath UI/utils/Colors */
-        CYAN_LIGHT_1: "cyanLight1",
-        /** @docsPath UI/utils/Colors */
-        CYAN_LIGHT_2: "cyanLight2",
-        /** @docsPath UI/utils/Colors */
-        CYAN: "cyan",
-        /** @docsPath UI/utils/Colors */
-        GRAY_BRIGHT: "grayBright",
-        /** @docsPath UI/utils/Colors */
-        GRAY_DARK_1: "grayDark1",
-        /** @docsPath UI/utils/Colors */
-        GRAY_LIGHT_1: "grayLight1",
-        /** @docsPath UI/utils/Colors */
-        GRAY_LIGHT_2: "grayLight2",
-        /** @docsPath UI/utils/Colors */
-        GRAY: "gray",
-        /** @docsPath UI/utils/Colors */
-        GREEN_BRIGHT: "greenBright",
-        /** @docsPath UI/utils/Colors */
-        GREEN_DARK_1: "greenDark1",
-        /** @docsPath UI/utils/Colors */
-        GREEN_LIGHT_1: "greenLight1",
-        /** @docsPath UI/utils/Colors */
-        GREEN_LIGHT_2: "greenLight2",
-        /** @docsPath UI/utils/Colors */
-        GREEN: "green",
-        /** @docsPath UI/utils/Colors */
-        ORANGE_BRIGHT: "orangeBright",
-        /** @docsPath UI/utils/Colors */
-        ORANGE_DARK_1: "orangeDark1",
-        /** @docsPath UI/utils/Colors */
-        ORANGE_LIGHT_1: "orangeLight1",
-        /** @docsPath UI/utils/Colors */
-        ORANGE_LIGHT_2: "orangeLight2",
-        /** @docsPath UI/utils/Colors */
-        ORANGE: "orange",
-        /** @docsPath UI/utils/Colors */
-        PINK_BRIGHT: "pinkBright",
-        /** @docsPath UI/utils/Colors */
-        PINK_DARK_1: "pinkDark1",
-        /** @docsPath UI/utils/Colors */
-        PINK_LIGHT_1: "pinkLight1",
-        /** @docsPath UI/utils/Colors */
-        PINK_LIGHT_2: "pinkLight2",
-        /** @docsPath UI/utils/Colors */
-        PINK: "pink",
-        /** @docsPath UI/utils/Colors */
-        PURPLE_BRIGHT: "purpleBright",
-        /** @docsPath UI/utils/Colors */
-        PURPLE_DARK_1: "purpleDark1",
-        /** @docsPath UI/utils/Colors */
-        PURPLE_LIGHT_1: "purpleLight1",
-        /** @docsPath UI/utils/Colors */
-        PURPLE_LIGHT_2: "purpleLight2",
-        /** @docsPath UI/utils/Colors */
-        PURPLE: "purple",
-        /** @docsPath UI/utils/Colors */
-        RED_BRIGHT: "redBright",
-        /** @docsPath UI/utils/Colors */
-        RED_DARK_1: "redDark1",
-        /** @docsPath UI/utils/Colors */
-        RED_LIGHT_1: "redLight1",
-        /** @docsPath UI/utils/Colors */
-        RED_LIGHT_2: "redLight2",
-        /** @docsPath UI/utils/Colors */
-        RED: "red",
-        /** @docsPath UI/utils/Colors */
-        TEAL_BRIGHT: "tealBright",
-        /** @docsPath UI/utils/Colors */
-        TEAL_DARK_1: "tealDark1",
-        /** @docsPath UI/utils/Colors */
-        TEAL_LIGHT_1: "tealLight1",
-        /** @docsPath UI/utils/Colors */
-        TEAL_LIGHT_2: "tealLight2",
-        /** @docsPath UI/utils/Colors */
-        TEAL: "teal",
-        /** @docsPath UI/utils/Colors */
-        YELLOW_BRIGHT: "yellowBright",
-        /** @docsPath UI/utils/Colors */
-        YELLOW_DARK_1: "yellowDark1",
-        /** @docsPath UI/utils/Colors */
-        YELLOW_LIGHT_1: "yellowLight1",
-        /** @docsPath UI/utils/Colors */
-        YELLOW_LIGHT_2: "yellowLight2",
-        /** @docsPath UI/utils/Colors */
-        YELLOW: "yellow"
-      };
-      rgbTuplesByColor = {
-        [Colors.BLUE_BRIGHT]: [45, 127, 249],
-        [Colors.BLUE_DARK_1]: [39, 80, 174],
-        [Colors.BLUE_LIGHT_1]: [156, 199, 255],
-        [Colors.BLUE_LIGHT_2]: [207, 223, 255],
-        [Colors.BLUE]: [18, 131, 218],
-        [Colors.CYAN_BRIGHT]: [24, 191, 255],
-        [Colors.CYAN_DARK_1]: [11, 118, 183],
-        [Colors.CYAN_LIGHT_1]: [119, 209, 243],
-        [Colors.CYAN_LIGHT_2]: [208, 240, 253],
-        [Colors.CYAN]: [1, 169, 219],
-        [Colors.GRAY_BRIGHT]: [102, 102, 102],
-        [Colors.GRAY_DARK_1]: [68, 68, 68],
-        [Colors.GRAY_LIGHT_1]: [204, 204, 204],
-        [Colors.GRAY_LIGHT_2]: [238, 238, 238],
-        [Colors.GRAY]: [102, 102, 102],
-        [Colors.GREEN_BRIGHT]: [32, 201, 51],
-        [Colors.GREEN_DARK_1]: [51, 138, 23],
-        [Colors.GREEN_LIGHT_1]: [147, 224, 136],
-        [Colors.GREEN_LIGHT_2]: [209, 247, 196],
-        [Colors.GREEN]: [17, 175, 34],
-        [Colors.ORANGE_BRIGHT]: [255, 111, 44],
-        [Colors.ORANGE_DARK_1]: [215, 77, 38],
-        [Colors.ORANGE_LIGHT_1]: [255, 169, 129],
-        [Colors.ORANGE_LIGHT_2]: [254, 226, 213],
-        [Colors.ORANGE]: [247, 101, 59],
-        [Colors.PINK_BRIGHT]: [255, 8, 194],
-        [Colors.PINK_DARK_1]: [178, 21, 139],
-        [Colors.PINK_LIGHT_1]: [249, 157, 226],
-        [Colors.PINK_LIGHT_2]: [255, 218, 246],
-        [Colors.PINK]: [233, 41, 186],
-        [Colors.PURPLE_BRIGHT]: [139, 70, 255],
-        [Colors.PURPLE_DARK_1]: [107, 28, 176],
-        [Colors.PURPLE_LIGHT_1]: [205, 176, 255],
-        [Colors.PURPLE_LIGHT_2]: [237, 226, 254],
-        [Colors.PURPLE]: [124, 57, 237],
-        [Colors.RED_BRIGHT]: [248, 43, 96],
-        [Colors.RED_DARK_1]: [186, 30, 69],
-        [Colors.RED_LIGHT_1]: [255, 158, 183],
-        [Colors.RED_LIGHT_2]: [255, 220, 229],
-        [Colors.RED]: [239, 48, 97],
-        [Colors.TEAL_BRIGHT]: [32, 217, 210],
-        [Colors.TEAL_DARK_1]: [6, 160, 155],
-        [Colors.TEAL_LIGHT_1]: [114, 221, 195],
-        [Colors.TEAL_LIGHT_2]: [194, 245, 233],
-        [Colors.TEAL]: [2, 170, 164],
-        [Colors.YELLOW_BRIGHT]: [252, 180, 0],
-        [Colors.YELLOW_DARK_1]: [184, 117, 3],
-        [Colors.YELLOW_LIGHT_1]: [255, 214, 110],
-        [Colors.YELLOW_LIGHT_2]: [255, 234, 182],
-        [Colors.YELLOW]: [224, 141, 0]
-      };
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_viewport.js
+  var init_use_viewport = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_viewport.js"() {
+      init_use_watchable();
+      init_sdk_context();
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/shared/color_utils.js
-  var init_color_utils = __esm({
-    "node_modules/@airtable/blocks/dist/esm/shared/color_utils.js"() {
-      init_private_utils();
-      init_colors();
+  // node_modules/@airtable/blocks/dist/esm/shared/ui/use_global_config.js
+  var init_use_global_config = __esm({
+    "node_modules/@airtable/blocks/dist/esm/shared/ui/use_global_config.js"() {
+      init_use_watchable();
+      init_sdk_context();
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_view_metadata.js
+  var init_use_view_metadata = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_view_metadata.js"() {
+      init_view();
+      init_use_watchable();
+      init_use_loadable();
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/use_record_action_data.js
+  var init_use_record_action_data = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/use_record_action_data.js"() {
+      init_perform_record_action();
+      init_use_watchable();
+      init_sdk_context();
+      init_use_loadable();
     }
   });
 
@@ -43794,27 +49276,45 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
     }
   });
 
-  // node_modules/@airtable/blocks/dist/esm/interface/ui/ui.js
-  var init_ui = __esm({
-    "node_modules/@airtable/blocks/dist/esm/interface/ui/ui.js"() {
-      init_assert_run_context();
-      init_interface();
-      init_cell_renderer2();
-      init_expand_record();
-      init_initialize_block();
-      init_use_base2();
-      init_use_color_scheme();
-      init_use_custom_properties();
-      init_use_records();
-      init_use_search_params();
-      init_use_run_info();
-      init_use_session2();
-      init_use_global_config();
-      init_use_synced();
-      init_use_watchable();
+  // node_modules/@airtable/blocks/dist/esm/base/ui/unstable_standalone_ui.js
+  var init_unstable_standalone_ui = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/unstable_standalone_ui.js"() {
       init_colors();
       init_color_utils();
       init_remote_utils();
+    }
+  });
+
+  // node_modules/@airtable/blocks/dist/esm/base/ui/ui.js
+  var globalAlert;
+  var init_ui = __esm({
+    "node_modules/@airtable/blocks/dist/esm/base/ui/ui.js"() {
+      init_assert_run_context();
+      init_global_alert();
+      init_base2();
+      init_base_provider();
+      init_initialize_block();
+      init_cell_renderer2();
+      init_expand_record();
+      init_expand_record_list();
+      init_expand_record_picker_async();
+      init_global_alert();
+      init_use_loadable();
+      init_use_color_scheme();
+      init_use_records();
+      init_use_base2();
+      init_use_cursor();
+      init_use_session2();
+      init_use_settings_button();
+      init_use_synced();
+      init_use_watchable();
+      init_use_viewport();
+      init_use_global_config();
+      init_use_view_metadata();
+      init_use_record_action_data();
+      init_perform_record_action();
+      init_unstable_standalone_ui();
+      globalAlert = new global_alert_default();
     }
   });
 
@@ -44044,18 +49544,18 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
         function isValidElement2(object) {
           return "object" === typeof object && null !== object && object.$$typeof === REACT_ELEMENT_TYPE;
         }
-        var React8 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
+        var React10 = require_react(), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy"), REACT_ACTIVITY_TYPE = Symbol.for("react.activity"), REACT_VIEW_TRANSITION_TYPE = Symbol.for("react.view_transition"), REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), ReactSharedInternals = React10.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, hasOwnProperty = Object.prototype.hasOwnProperty, isArrayImpl = Array.isArray, createTask = console.createTask ? console.createTask : function() {
           return null;
         };
-        React8 = {
+        React10 = {
           react_stack_bottom_frame: function(callStackForError) {
             return callStackForError();
           }
         };
         var specialPropKeyWarningShown;
         var didWarnAboutElementRef = {};
-        var unknownOwnerDebugStack = React8.react_stack_bottom_frame.bind(
-          React8,
+        var unknownOwnerDebugStack = React10.react_stack_bottom_frame.bind(
+          React10,
           UnknownOwner
         )();
         var unknownOwnerDebugTask = createTask(getTaskName(UnknownOwner));
@@ -44225,19 +49725,19 @@ A.finished.finally(function(){document.__reactViewTransition===A&&(document.__re
       init_ui();
       init_style();
       import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime());
-      initializeBlock({ interface: () => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(HelloWorldApp, {}, void 0, false, {
+      initializeBlock(() => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(HelloWorldApp, {}, void 0, false, {
         fileName: "frontend/index.js",
         lineNumber: 48,
-        columnNumber: 35
-      }) });
+        columnNumber: 23
+      }));
     }
   });
 
   // .tmp/index.js
   var ReactDOM = require_react_dom();
-  var React7 = require_react();
+  var React9 = require_react();
   var ReactDOMServer = require_server_browser();
-  window["_airtableReact"] = React7;
+  window["_airtableReact"] = React9;
   window["_airtableReactDOM"] = ReactDOM;
   window["_airtableReactDOMServer"] = ReactDOMServer;
   var didRun = false;
