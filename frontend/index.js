@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
-import { initializeBlock, useBase, useRecords, useSynced, useSession, useSettingsButton } from '@airtable/blocks/base/ui';
+import { initializeBlock, useBase, useRecords, useSynced, useSettingsButton } from '@airtable/blocks/base/ui';
 import { getQRCodePathData, generateQRCodeDataUrl } from './qr_lib';
 import './style.css';
 
@@ -62,7 +62,6 @@ function usePersistentState(key, defaultValue) {
 
 function QRGenerator() {
     const base = useBase();
-    const session = useSession();
     const tables = useMemo(() => base.tables || [], [base]);
 
     // Table Selection (Persisted)
@@ -424,13 +423,6 @@ function QRGenerator() {
             const subtitle = subtitleField ? getFieldValue(record, subtitleField) : '';
             const detail = detailField ? getFieldValue(record, detailField) : '';
 
-            const qrSvg = generateQRCodeSvg(payload || ' ', {
-                errorCorrection,
-                fgColor,
-                bgColor,
-                margin: 1,
-            });
-
             for (let c = 0; c < count; c++) {
                 result.push({
                     isBlank: false,
@@ -439,7 +431,6 @@ function QRGenerator() {
                     subtitle,
                     detail,
                     payload,
-                    qrSvg,
                 });
             }
         });
@@ -455,9 +446,6 @@ function QRGenerator() {
         quantityFieldId,
         getPayloadForRecord,
         getFieldValue,
-        errorCorrection,
-        fgColor,
-        bgColor,
     ]);
 
     // Group labels into 30-per-sheet pages for Avery 88560
@@ -469,8 +457,25 @@ function QRGenerator() {
         return list;
     }, [printLabels]);
 
+    // Handle empty base state (no tables in base)
+    if (!tables || tables.length === 0) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 text-center">
+                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4 shadow-sm">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                </div>
+                <h2 className="text-lg font-bold text-gray-900 mb-1">No Tables Found</h2>
+                <p className="text-sm text-gray-500 max-w-sm">
+                    This base does not contain any tables yet. Create a table in Airtable to start generating QR codes and printing Avery labels.
+                </p>
+            </div>
+        );
+    }
+
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
+        <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col justify-between">
             {/* Header / Navigation */}
             <header className="no-print bg-white border-b border-gray-200 px-6 py-3.5 flex flex-wrap items-center justify-between gap-4 shadow-sm">
                 <div className="flex items-center space-x-3">
@@ -618,6 +623,18 @@ function QRGenerator() {
             {/* ========================================================= */}
             {activeTab === 'auto-column' && (
                 <main className="no-print flex-1 p-6 max-w-6xl mx-auto w-full space-y-6">
+                    {/* Read-only Collaborator Warning Banner */}
+                    {!canUpdateRecords && (
+                        <div className="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-3 rounded-xl text-xs flex items-center gap-2.5">
+                            <svg className="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span>
+                                <strong>Read-only access:</strong> You do not have permission to update records in this table. You can still preview QR codes, customize styling, download PNGs, and print Avery sheets, but column writing is disabled.
+                            </span>
+                        </div>
+                    )}
+
                     {/* Setup Card */}
                     <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 space-y-5">
                         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -757,13 +774,16 @@ function QRGenerator() {
 
                             <button
                                 onClick={handleRunBatchInsert}
-                                disabled={isSyncing || !targetField || !records?.length || missingRecords.length === 0}
+                                disabled={isSyncing || !targetField || !records?.length || missingRecords.length === 0 || !canUpdateRecords}
                                 className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white rounded-xl text-xs font-bold shadow transition flex items-center gap-2"
+                                title={!canUpdateRecords ? "You do not have permission to update records in this table" : undefined}
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
-                                {isSyncing
+                                {!canUpdateRecords
+                                    ? 'Read-Only (No Write Access)'
+                                    : isSyncing
                                     ? 'Generating QR Codes...'
                                     : missingRecords.length === 0
                                     ? `All QR Codes Set (${records?.length || 0})`
@@ -796,31 +816,38 @@ function QRGenerator() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-100 text-gray-700">
-                                    {(records || []).slice(0, 50).map((record) => {
-                                        const payload = getPayloadForRecord(record);
-                                        const isSet = isRecordSet(record);
-                                        const isPending = inFlightIds.has(record.id);
-                                        const qrSvg = generateQRCodeSvg(payload || ' ', {
-                                            errorCorrection,
-                                            fgColor,
-                                            bgColor,
-                                            margin: 1,
-                                        });
+                                    {(!records || records.length === 0) ? (
+                                        <tr>
+                                            <td colSpan="5" className="py-8 text-center text-gray-500 italic">
+                                                No records found in this table. Add records to generate QR codes.
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        records.slice(0, 50).map((record) => {
+                                            const payload = getPayloadForRecord(record);
+                                            const isSet = isRecordSet(record);
+                                            const isPending = inFlightIds.has(record.id);
 
-                                        return (
-                                            <tr key={record.id} className="hover:bg-gray-50 transition">
-                                                <td className="py-2.5 px-4 font-semibold text-gray-900">
-                                                    {record.name || record.id}
-                                                </td>
-                                                <td className="py-2.5 px-4 font-mono text-[11px] text-gray-600 max-w-xs truncate">
-                                                    {payload || <span className="text-gray-300 italic">Empty</span>}
-                                                </td>
-                                                <td className="py-2 px-4">
-                                                    <div
-                                                        className="w-9 h-9 border border-gray-200 rounded p-0.5 bg-white shadow-xs"
-                                                        dangerouslySetInnerHTML={{ __html: qrSvg }}
-                                                    />
-                                                </td>
+                                            return (
+                                                <tr key={record.id} className="hover:bg-gray-50 transition">
+                                                    <td className="py-2.5 px-4 font-semibold text-gray-900">
+                                                        {record.name || record.id}
+                                                    </td>
+                                                    <td className="py-2.5 px-4 font-mono text-[11px] text-gray-600 max-w-xs truncate">
+                                                        {payload || <span className="text-gray-300 italic">Empty</span>}
+                                                    </td>
+                                                    <td className="py-2 px-4">
+                                                        <div className="w-9 h-9 border border-gray-200 rounded p-0.5 bg-white shadow-xs">
+                                                            <QRCodeSvgComponent
+                                                                payload={payload || ' '}
+                                                                errorCorrection={errorCorrection}
+                                                                fgColor={fgColor}
+                                                                bgColor={bgColor}
+                                                                margin={1}
+                                                                className="w-full h-full"
+                                                            />
+                                                        </div>
+                                                    </td>
                                                 <td className="py-2.5 px-4">
                                                     {!targetField ? (
                                                         <span className="text-gray-400 italic">Select column</span>
@@ -852,7 +879,8 @@ function QRGenerator() {
                                                     ) : (
                                                         <button
                                                             onClick={() => handleUpdateSingleRecord(record)}
-                                                            disabled={!targetField || !payload || isSyncing}
+                                                            disabled={!targetField || !payload || isSyncing || !canUpdateRecords}
+                                                            title={!canUpdateRecords ? "You do not have permission to update records in this table" : undefined}
                                                             className="px-2.5 py-1 bg-gray-100 hover:bg-blue-50 hover:text-blue-600 disabled:opacity-40 rounded-lg border border-gray-300 text-[11px] font-semibold transition"
                                                         >
                                                             Insert
@@ -861,7 +889,7 @@ function QRGenerator() {
                                                 </td>
                                             </tr>
                                         );
-                                    })}
+                                    }))}
                                 </tbody>
                             </table>
                         </div>
@@ -1006,109 +1034,155 @@ function QRGenerator() {
 
                     {/* Avery Sheet Canvas Container */}
                     <div className="flex-1 bg-gray-200 p-6 overflow-auto">
-                        <div className="space-y-8">
-                            {sheets.map((sheetLabels, sheetIndex) => (
-                                <div
-                                    key={sheetIndex}
-                                    className="avery-preview-sheet"
-                                >
-                                    <div className="avery-grid">
-                                        {sheetLabels.map((lbl, idx) => {
-                                            if (lbl.isBlank) {
+                        {sheets.length === 0 ? (
+                            <div className="bg-white rounded-2xl p-12 text-center max-w-md mx-auto my-12 shadow-sm border border-gray-200">
+                                <div className="w-12 h-12 bg-gray-100 text-gray-400 rounded-xl flex items-center justify-center mx-auto mb-3">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                    </svg>
+                                </div>
+                                <p className="text-sm font-semibold text-gray-800">No records to print</p>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Add records to this table to preview and print Avery 5160 / 88560 sheets.
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="space-y-8">
+                                {sheets.map((sheetLabels, sheetIndex) => (
+                                    <div
+                                        key={sheetIndex}
+                                        className="avery-preview-sheet"
+                                    >
+                                        <div className="avery-grid">
+                                            {sheetLabels.map((lbl, idx) => {
+                                                if (lbl.isBlank) {
+                                                    return (
+                                                        <div
+                                                            key={lbl.key}
+                                                            className="avery-label border border-dashed border-gray-200 flex items-center justify-center text-[10px] text-gray-300 select-none"
+                                                        >
+                                                            (Empty)
+                                                        </div>
+                                                    );
+                                                }
+
                                                 return (
                                                     <div
-                                                        key={lbl.key}
-                                                        className="avery-label border border-dashed border-gray-200 flex items-center justify-center text-[10px] text-gray-300 select-none"
+                                                        key={lbl.key || idx}
+                                                        className="avery-label border border-gray-100 flex items-center"
                                                     >
-                                                        (Empty)
+                                                        {labelLayout === 'qr-left' && (
+                                                            <div className="flex items-center w-full h-full gap-2 overflow-hidden">
+                                                                <div
+                                                                    className="shrink-0 flex items-center justify-center overflow-hidden"
+                                                                    style={{ width: qrSizeInches, height: qrSizeInches }}
+                                                                >
+                                                                    <QRCodeSvgComponent
+                                                                        payload={lbl.payload || ' '}
+                                                                        errorCorrection={errorCorrection}
+                                                                        fgColor={fgColor}
+                                                                        bgColor={bgColor}
+                                                                        margin={1}
+                                                                        className="w-full h-full"
+                                                                    />
+                                                                </div>
+                                                                <div className="flex-1 min-w-0 flex flex-col justify-center overflow-hidden pr-0.5">
+                                                                    <div className="text-[9.5px] leading-[1.2] font-bold text-gray-900 break-words line-clamp-2">
+                                                                        {lbl.title}
+                                                                    </div>
+                                                                    {lbl.subtitle && (
+                                                                        <div className="text-[8px] font-mono text-gray-600 truncate mt-0.5 leading-none">
+                                                                            {lbl.subtitle}
+                                                                        </div>
+                                                                    )}
+                                                                    {lbl.detail && (
+                                                                        <div className="text-[8px] font-semibold text-blue-700 truncate mt-0.5 leading-none">
+                                                                            {lbl.detail}
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        )}
+
+                                                        {labelLayout === 'qr-right' && (
+                                                            <div className="flex items-center w-full h-full gap-2 overflow-hidden">
+                                                                <div className="flex-1 min-w-0 flex flex-col justify-center overflow-hidden pr-0.5">
+                                                                    <div className="text-[9.5px] leading-[1.2] font-bold text-gray-900 break-words line-clamp-2">
+                                                                        {lbl.title}
+                                                                    </div>
+                                                                    {lbl.subtitle && (
+                                                                        <div className="text-[8px] font-mono text-gray-600 truncate mt-0.5 leading-none">
+                                                                            {lbl.subtitle}
+                                                                        </div>
+                                                                    )}
+                                                                    {lbl.detail && (
+                                                                        <div className="text-[8px] font-semibold text-blue-700 truncate mt-0.5 leading-none">
+                                                                            {lbl.detail}
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                                <div
+                                                                    className="shrink-0 flex items-center justify-center overflow-hidden"
+                                                                    style={{ width: qrSizeInches, height: qrSizeInches }}
+                                                                >
+                                                                    <QRCodeSvgComponent
+                                                                        payload={lbl.payload || ' '}
+                                                                        errorCorrection={errorCorrection}
+                                                                        fgColor={fgColor}
+                                                                        bgColor={bgColor}
+                                                                        margin={1}
+                                                                        className="w-full h-full"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )}
+
+                                                        {labelLayout === 'qr-center' && (
+                                                            <div className="flex flex-col items-center justify-center w-full h-full overflow-hidden text-center">
+                                                                <div
+                                                                    className="shrink-0 flex items-center justify-center overflow-hidden"
+                                                                    style={{ width: '0.50in', height: '0.50in' }}
+                                                                >
+                                                                    <QRCodeSvgComponent
+                                                                        payload={lbl.payload || ' '}
+                                                                        errorCorrection={errorCorrection}
+                                                                        fgColor={fgColor}
+                                                                        bgColor={bgColor}
+                                                                        margin={1}
+                                                                        className="w-full h-full"
+                                                                    />
+                                                                </div>
+                                                                <div className="text-[8.5px] leading-[1.15] font-bold text-gray-900 break-words line-clamp-2 w-full mt-0.5 px-0.5">
+                                                                    {lbl.title}
+                                                                </div>
+                                                            </div>
+                                                        )}
+
+                                                        {labelLayout === 'qr-only' && (
+                                                            <div className="flex items-center justify-center w-full h-full overflow-hidden">
+                                                                <div
+                                                                    className="shrink-0 flex items-center justify-center overflow-hidden"
+                                                                    style={{ width: '0.84in', height: '0.84in' }}
+                                                                >
+                                                                    <QRCodeSvgComponent
+                                                                        payload={lbl.payload || ' '}
+                                                                        errorCorrection={errorCorrection}
+                                                                        fgColor={fgColor}
+                                                                        bgColor={bgColor}
+                                                                        margin={1}
+                                                                        className="w-full h-full"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 );
-                                            }
-
-                                            return (
-                                                <div
-                                                    key={lbl.key || idx}
-                                                    className="avery-label border border-gray-100 flex items-center"
-                                                >
-                                                    {labelLayout === 'qr-left' && (
-                                                        <div className="flex items-center w-full h-full gap-2 overflow-hidden">
-                                                            <div
-                                                                className="shrink-0 flex items-center justify-center overflow-hidden"
-                                                                style={{ width: qrSizeInches, height: qrSizeInches }}
-                                                                dangerouslySetInnerHTML={{ __html: lbl.qrSvg }}
-                                                            />
-                                                            <div className="flex-1 min-w-0 flex flex-col justify-center overflow-hidden pr-0.5">
-                                                                <div className="text-[9.5px] leading-[1.2] font-bold text-gray-900 break-words line-clamp-2">
-                                                                    {lbl.title}
-                                                                </div>
-                                                                {lbl.subtitle && (
-                                                                    <div className="text-[8px] font-mono text-gray-600 truncate mt-0.5 leading-none">
-                                                                        {lbl.subtitle}
-                                                                    </div>
-                                                                )}
-                                                                {lbl.detail && (
-                                                                    <div className="text-[8px] font-semibold text-blue-700 truncate mt-0.5 leading-none">
-                                                                        {lbl.detail}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                    )}
-
-                                                    {labelLayout === 'qr-right' && (
-                                                        <div className="flex items-center w-full h-full gap-2 overflow-hidden">
-                                                            <div className="flex-1 min-w-0 flex flex-col justify-center overflow-hidden pr-0.5">
-                                                                <div className="text-[9.5px] leading-[1.2] font-bold text-gray-900 break-words line-clamp-2">
-                                                                    {lbl.title}
-                                                                </div>
-                                                                {lbl.subtitle && (
-                                                                    <div className="text-[8px] font-mono text-gray-600 truncate mt-0.5 leading-none">
-                                                                        {lbl.subtitle}
-                                                                    </div>
-                                                                )}
-                                                                {lbl.detail && (
-                                                                    <div className="text-[8px] font-semibold text-blue-700 truncate mt-0.5 leading-none">
-                                                                        {lbl.detail}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                            <div
-                                                                className="shrink-0 flex items-center justify-center overflow-hidden"
-                                                                style={{ width: qrSizeInches, height: qrSizeInches }}
-                                                                dangerouslySetInnerHTML={{ __html: lbl.qrSvg }}
-                                                            />
-                                                        </div>
-                                                    )}
-
-                                                    {labelLayout === 'qr-center' && (
-                                                        <div className="flex flex-col items-center justify-center w-full h-full overflow-hidden text-center">
-                                                            <div
-                                                                className="shrink-0 flex items-center justify-center overflow-hidden"
-                                                                style={{ width: '0.50in', height: '0.50in' }}
-                                                                dangerouslySetInnerHTML={{ __html: lbl.qrSvg }}
-                                                            />
-                                                            <div className="text-[8.5px] leading-[1.15] font-bold text-gray-900 break-words line-clamp-2 w-full mt-0.5 px-0.5">
-                                                                {lbl.title}
-                                                            </div>
-                                                        </div>
-                                                    )}
-
-                                                    {labelLayout === 'qr-only' && (
-                                                        <div className="flex items-center justify-center w-full h-full overflow-hidden">
-                                                            <div
-                                                                className="shrink-0 flex items-center justify-center overflow-hidden"
-                                                                style={{ width: '0.84in', height: '0.84in' }}
-                                                                dangerouslySetInnerHTML={{ __html: lbl.qrSvg }}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                </div>
-                                            );
-                                        })}
+                                            })}
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
             )}
@@ -1201,15 +1275,18 @@ function QRGenerator() {
                             className="p-6 rounded-2xl border border-gray-100 shadow-md inline-block"
                             style={{ backgroundColor: bgColor }}
                         >
-                            <div
-                                className="w-64 h-64 flex items-center justify-center"
-                                dangerouslySetInnerHTML={{
-                                    __html: generateQRCodeSvg(
-                                        previewRecord ? getPayloadForRecord(previewRecord) || ' ' : 'AIRTABLE',
-                                        { errorCorrection, fgColor, bgColor, margin: 2 }
-                                    ),
-                                }}
-                            />
+                            <div className="w-64 h-64 flex items-center justify-center">
+                                <QRCodeSvgComponent
+                                    payload={
+                                        previewRecord ? getPayloadForRecord(previewRecord) || ' ' : 'AIRTABLE'
+                                    }
+                                    errorCorrection={errorCorrection}
+                                    fgColor={fgColor}
+                                    bgColor={bgColor}
+                                    margin={2}
+                                    className="w-full h-full"
+                                />
+                            </div>
                         </div>
 
                         <div className="mt-6">
@@ -1226,6 +1303,23 @@ function QRGenerator() {
                     </div>
                 </main>
             )}
+
+            {/* Privacy & Transparency Footer */}
+            <footer className="no-print border-t border-gray-200 bg-white py-3 px-6 text-center text-[11px] text-gray-500 flex flex-wrap items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1 text-green-700 font-medium">
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        Client-Side Processing
+                    </span>
+                    <span>•</span>
+                    <span>QR generation, styling, PNG export &amp; Avery printing run 100% locally in your browser.</span>
+                </div>
+                <div className="text-gray-400">
+                    Attachment mode uses HTTPS QRServer API for Airtable image ingestion.
+                </div>
+            </footer>
         </div>
     );
 }
