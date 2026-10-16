@@ -1,37 +1,103 @@
 import { useState, useMemo, useCallback, useEffect, useRef } from 'react';
-import { initializeBlock, useBase, useRecords } from '@airtable/blocks/base/ui';
-import { generateQRCodeSvg, generateQRCodeDataUrl } from './qr_lib';
+import { initializeBlock, useBase, useRecords, useSynced, useSession, useSettingsButton } from '@airtable/blocks/base/ui';
+import { getQRCodePathData, generateQRCodeDataUrl } from './qr_lib';
 import './style.css';
 
 // Avery 88560 standard dimensions: 30 labels per sheet (3 columns x 10 rows)
 const LABELS_PER_SHEET = 30;
 
+// Pure React SVG QR Code Component (No dangerouslySetInnerHTML, completely safe & CSP compliant)
+function QRCodeSvgComponent({ payload, errorCorrection = 'M', fgColor = '#000000', bgColor = '#ffffff', margin = 1, className, style }) {
+    const { size, paths } = useMemo(() => {
+        return getQRCodePathData(payload || ' ', { errorCorrection, margin });
+    }, [payload, errorCorrection, margin]);
+
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox={`0 0 ${size} ${size}`}
+            shapeRendering="crispEdges"
+            className={className}
+            style={style}
+        >
+            <rect width={size} height={size} fill={bgColor} />
+            <path d={paths} fill={fgColor} />
+        </svg>
+    );
+}
+
+// Persistent state hook synchronizing with Airtable globalConfig and falling back to localStorage
+function usePersistentState(key, defaultValue) {
+    const [syncedValue, setSyncedValue, canSetSyncedValue] = useSynced(`qr_${key}`);
+    const [localValue, setLocalValue] = useState(() => {
+        try {
+            const stored = localStorage.getItem(`airtable_qr_${key}`);
+            if (stored !== null) {
+                return JSON.parse(stored);
+            }
+        } catch {
+            // ignore
+        }
+        return defaultValue;
+    });
+
+    const isSyncedDefined = syncedValue !== undefined && syncedValue !== null;
+    const value = isSyncedDefined ? syncedValue : localValue;
+
+    const setValue = useCallback((updaterOrVal) => {
+        const nextVal = typeof updaterOrVal === 'function' ? updaterOrVal(value) : updaterOrVal;
+        setLocalValue(nextVal);
+        try {
+            localStorage.setItem(`airtable_qr_${key}`, JSON.stringify(nextVal));
+        } catch {
+            // ignore
+        }
+        if (canSetSyncedValue) {
+            setSyncedValue(nextVal);
+        }
+    }, [canSetSyncedValue, setSyncedValue, value, key]);
+
+    return [value, setValue];
+}
+
 function QRGenerator() {
     const base = useBase();
+    const session = useSession();
     const tables = useMemo(() => base.tables || [], [base]);
 
-    // Table Selection
-    const [selectedTableId, setSelectedTableId] = useState(() => tables[0]?.id || '');
+    // Table Selection (Persisted)
+    const [selectedTableId, setSelectedTableId] = usePersistentState('tableId', tables[0]?.id || '');
     const table = useMemo(() => {
         return tables.find((t) => t.id === selectedTableId) || tables[0] || null;
     }, [tables, selectedTableId]);
 
+    // Permissions: check if current user has permission to write/update records in this table
+    const canUpdateRecords = useMemo(() => {
+        if (!table) return false;
+        return Boolean(table.hasPermissionToUpdateRecords());
+    }, [table]);
+
+    // Wire up Airtable's native block settings button to toggle the styling/designer tab
+    useSettingsButton(() => {
+        setActiveTab((prev) => (prev === 'designer' ? 'auto-column' : 'designer'));
+    });
+
     const records = useRecords(table || undefined);
     const fields = useMemo(() => (table ? table.fields : []), [table]);
 
-    // Navigation Tabs
-    const [activeTab, setActiveTab] = useState('auto-column'); // 'auto-column' | 'avery-print' | 'designer'
+    // Navigation Tabs (Persisted)
+    const [activeTab, setActiveTab] = usePersistentState('activeTab', 'auto-column');
 
-    // Source Field (Data to encode into QR code)
-    const [sourceFieldId, setSourceFieldId] = useState('__airtable_record_url__');
+    // Source Field (Persisted)
+    const [sourceFieldId, setSourceFieldId] = usePersistentState('sourceFieldId', '__airtable_record_url__');
     const effectiveSourceField = useMemo(() => {
         if (sourceFieldId === '__airtable_record_url__') return null;
         if (!fields.length) return null;
         return fields.find((f) => f.id === sourceFieldId) || fields[0];
     }, [fields, sourceFieldId]);
 
-    // Target Column (Where QR code will be inserted)
-    const [targetFieldId, setTargetFieldId] = useState('');
+    // Target Column (Persisted)
+    const [targetFieldId, setTargetFieldId] = usePersistentState('targetFieldId', '');
     const targetField = useMemo(() => {
         return fields.find((f) => f.id === targetFieldId) || null;
     }, [fields, targetFieldId]);
@@ -39,29 +105,29 @@ function QRGenerator() {
     // Detect target column capabilities
     const isAttachmentTarget = targetField?.type === 'multipleAttachments';
 
-    // QR Configuration
-    const [prefix, setPrefix] = useState('');
-    const [suffix, setSuffix] = useState('');
-    const [errorCorrection, setErrorCorrection] = useState('M'); // L, M, Q, H
-    const [fgColor, setFgColor] = useState('#000000');
-    const [bgColor, setBgColor] = useState('#ffffff');
+    // QR Configuration (Persisted)
+    const [prefix, setPrefix] = usePersistentState('prefix', '');
+    const [suffix, setSuffix] = usePersistentState('suffix', '');
+    const [errorCorrection, setErrorCorrection] = usePersistentState('errorCorrection', 'M'); // L, M, Q, H
+    const [fgColor, setFgColor] = usePersistentState('fgColor', '#000000');
+    const [bgColor, setBgColor] = usePersistentState('bgColor', '#ffffff');
 
-    // Auto-Generate Settings
-    const [insertMode, setInsertMode] = useState('image-attachment'); // 'image-attachment' | 'payload-text' | 'image-url'
-    const [syncFilter, setSyncFilter] = useState('missing-only'); // 'missing-only' | 'all'
-    const [autoSyncEnabled, setAutoSyncEnabled] = useState(false);
+    // Auto-Generate Settings (Persisted)
+    const [insertMode, setInsertMode] = usePersistentState('insertMode', 'image-attachment'); // 'image-attachment' | 'payload-text' | 'image-url'
+    const [autoSyncEnabled, setAutoSyncEnabled] = usePersistentState('autoSyncEnabled', false);
     const [isSyncing, setIsSyncing] = useState(false);
     const [syncProgress, setSyncProgress] = useState({ current: 0, total: 0 });
     const [syncMessage, setSyncMessage] = useState(null);
+    const [inFlightIds, setInFlightIds] = useState(() => new Set());
 
-    // Avery 88560 Print Settings
-    const [labelLayout, setLabelLayout] = useState('qr-left'); // 'qr-left' | 'qr-right' | 'qr-center' | 'qr-only'
-    const [averyQrSize, setAveryQrSize] = useState('medium'); // 'compact' | 'medium' | 'large'
-    const [titleFieldId, setTitleFieldId] = useState('');
-    const [subtitleFieldId, setSubtitleFieldId] = useState('');
-    const [detailFieldId, setDetailFieldId] = useState('');
-    const [quantityFieldId, setQuantityFieldId] = useState(''); // '' means 1 per record
-    const [startLabelNumber, setStartLabelNumber] = useState(1); // 1-30 for partial sheet reuse
+    // Avery 88560 Print Settings (Persisted)
+    const [labelLayout, setLabelLayout] = usePersistentState('labelLayout', 'qr-left'); // 'qr-left' | 'qr-right' | 'qr-center' | 'qr-only'
+    const [averyQrSize, setAveryQrSize] = usePersistentState('averyQrSize', 'medium'); // 'compact' | 'medium' | 'large'
+    const [titleFieldId, setTitleFieldId] = usePersistentState('titleFieldId', '');
+    const [subtitleFieldId, setSubtitleFieldId] = usePersistentState('subtitleFieldId', '');
+    const [detailFieldId, setDetailFieldId] = usePersistentState('detailFieldId', '');
+    const [quantityFieldId, setQuantityFieldId] = usePersistentState('quantityFieldId', ''); // '' means 1 per record
+    const [startLabelNumber, setStartLabelNumber] = usePersistentState('startLabelNumber', 1); // 1-30 for partial sheet reuse
 
     const qrSizeInches = useMemo(() => {
         if (labelLayout === 'qr-only') return '0.84in';
@@ -108,29 +174,46 @@ function QRGenerator() {
         if (!record || !targetField) return false;
         try {
             const val = record.getCellValue(targetField.id);
-            if (val === null || val === undefined) return false;
-            if (Array.isArray(val)) return val.length > 0;
-            if (typeof val === 'string') return val.trim().length > 0;
-            return Boolean(val);
+            if (val !== null && val !== undefined) {
+                if (Array.isArray(val) && val.length > 0) return true;
+                if (typeof val === 'string' && val.trim().length > 0) return true;
+                if (typeof val === 'number' || typeof val === 'boolean') return true;
+                if (typeof val === 'object' && Object.keys(val).length > 0) return true;
+            }
+            const strVal = record.getCellValueAsString(targetField.id);
+            if (strVal && strVal.trim().length > 0) return true;
+            return false;
         } catch {
             return false;
         }
     }, [targetField]);
 
-    // Records that need QR codes generated (missing target value)
+    // Check if a record already has a QR code or is currently in-flight
+    const isRecordSet = useCallback((record) => {
+        if (!record) return false;
+        if (inFlightIds.has(record.id)) return true;
+        return recordHasTargetData(record);
+    }, [inFlightIds, recordHasTargetData]);
+
+    // Records that need QR codes generated (strictly excludes records that already have QR codes set)
     const missingRecords = useMemo(() => {
         if (!records || !targetField) return [];
-        return records.filter((r) => !recordHasTargetData(r) && getPayloadForRecord(r).trim().length > 0);
-    }, [records, targetField, recordHasTargetData, getPayloadForRecord]);
+        return records.filter((r) => !isRecordSet(r) && getPayloadForRecord(r).trim().length > 0);
+    }, [records, targetField, isRecordSet, getPayloadForRecord]);
 
-    // Construct update payload for a record
+    // Construct update payload for a record (strictly guards against updating already set records)
     const buildUpdateFields = useCallback((record) => {
         if (!targetField) return null;
+        if (isRecordSet(record)) return null;
+
         const payload = getPayloadForRecord(record);
-        if (!payload) return null;
+        if (!payload || !payload.trim()) return null;
 
         const cleanName = (record.name || 'qr-code').replace(/[^a-zA-Z0-9_-]/g, '_');
-        const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=2&data=${encodeURIComponent(payload)}`;
+        const fgHex = (fgColor || '#000000').replace('#', '');
+        const bgHex = (bgColor || '#ffffff').replace('#', '');
+        const ecc = errorCorrection || 'M';
+        const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=2&ecc=${ecc}&color=${fgHex}&bgcolor=${bgHex}&data=${encodeURIComponent(payload)}`;
 
         if (isAttachmentTarget || insertMode === 'image-attachment') {
             return {
@@ -153,44 +236,80 @@ function QRGenerator() {
         return {
             [targetField.id]: payload,
         };
-    }, [targetField, getPayloadForRecord, isAttachmentTarget, insertMode]);
+    }, [targetField, isRecordSet, getPayloadForRecord, fgColor, bgColor, errorCorrection, isAttachmentTarget, insertMode]);
 
-    // Update a single record
+    // Update a single record (strictly prevents recreating records after they are set)
     const handleUpdateSingleRecord = useCallback(async (record) => {
         if (!table || !targetField) {
-            alert('Please select a Target Column first.');
+            setSyncMessage({
+                type: 'error',
+                text: 'Please select a Target Column first.',
+            });
+            return;
+        }
+        if (!canUpdateRecords) {
+            const check = table.checkPermissionsForUpdateRecord(record);
+            setSyncMessage({
+                type: 'error',
+                text: check.reasonDisplayString || 'You do not have permission to update records in this table.',
+            });
+            return;
+        }
+        if (isRecordSet(record)) {
+            setSyncMessage({
+                type: 'info',
+                text: `QR code is already set for "${record.name || record.id}". It will not be re-generated.`,
+            });
             return;
         }
         const fieldsToUpdate = buildUpdateFields(record);
         if (!fieldsToUpdate) return;
 
+        setInFlightIds((prev) => new Set([...prev, record.id]));
+
         try {
             await table.updateRecordAsync(record, fieldsToUpdate);
             setSyncMessage({
                 type: 'success',
-                text: `Updated "${record.name || record.id}" with QR code!`,
+                text: `Created QR code for "${record.name || record.id}"!`,
             });
         } catch (err) {
+            setInFlightIds((prev) => {
+                const next = new Set(prev);
+                next.delete(record.id);
+                return next;
+            });
             console.error(err);
             setSyncMessage({
                 type: 'error',
                 text: `Failed to update record: ${err.message}`,
             });
         }
-    }, [table, targetField, buildUpdateFields]);
+    }, [table, targetField, canUpdateRecords, isRecordSet, buildUpdateFields]);
 
-    // Batch Auto-Generate and Insert QR codes
+    // Batch Auto-Generate and Insert QR codes (strictly generates only for records where QR codes are not yet set)
     const handleRunBatchInsert = useCallback(async () => {
         if (!table || !targetField || !records || !records.length) {
-            alert('Please select both a Source Field and a Target Column.');
+            setSyncMessage({
+                type: 'error',
+                text: 'Please select both a Source Field and a Target Column.',
+            });
+            return;
+        }
+        if (!canUpdateRecords) {
+            const check = table.checkPermissionsForUpdateRecords();
+            setSyncMessage({
+                type: 'error',
+                text: check.reasonDisplayString || 'You do not have permission to update records in this table.',
+            });
             return;
         }
 
-        const targets = syncFilter === 'missing-only' ? missingRecords : records;
+        const targets = missingRecords.filter((r) => !isRecordSet(r));
         if (!targets.length) {
             setSyncMessage({
                 type: 'success',
-                text: 'All records already have QR codes in the selected column!',
+                text: 'All records already have QR codes set in the selected column.',
             });
             return;
         }
@@ -204,18 +323,22 @@ function QRGenerator() {
             for (let i = 0; i < targets.length; i += chunkSize) {
                 const chunk = targets.slice(i, i + chunkSize);
                 const updates = [];
+                const updatedIds = [];
 
                 for (const rec of chunk) {
+                    if (isRecordSet(rec)) continue;
                     const fieldsToUpdate = buildUpdateFields(rec);
                     if (fieldsToUpdate) {
                         updates.push({
                             id: rec.id,
                             fields: fieldsToUpdate,
                         });
+                        updatedIds.push(rec.id);
                     }
                 }
 
                 if (updates.length > 0) {
+                    setInFlightIds((prev) => new Set([...prev, ...updatedIds]));
                     await table.updateRecordsAsync(updates);
                 }
 
@@ -227,7 +350,7 @@ function QRGenerator() {
 
             setSyncMessage({
                 type: 'success',
-                text: `Successfully generated and inserted QR codes into "${targetField.name}" for ${targets.length} records!`,
+                text: `Successfully created QR codes for ${targets.length} records in "${targetField.name}"! Existing QR codes were preserved.`,
             });
         } catch (err) {
             console.error('Batch insert error:', err);
@@ -238,12 +361,12 @@ function QRGenerator() {
         } finally {
             setIsSyncing(false);
         }
-    }, [table, targetField, records, syncFilter, missingRecords, buildUpdateFields]);
+    }, [table, targetField, records, canUpdateRecords, missingRecords, isRecordSet, buildUpdateFields]);
 
-    // Optional Live Auto-Sync Watcher
+    // Optional Live Auto-Sync Watcher: strictly executes on records without QR codes and when permissions allow
     const autoSyncTimer = useRef(null);
     useEffect(() => {
-        if (!autoSyncEnabled || isSyncing || !targetField || !table || !missingRecords.length) {
+        if (!autoSyncEnabled || isSyncing || !canUpdateRecords || !targetField || !table || !missingRecords.length) {
             return;
         }
 
@@ -253,7 +376,7 @@ function QRGenerator() {
         }, 1500);
 
         return () => clearTimeout(autoSyncTimer.current);
-    }, [autoSyncEnabled, isSyncing, targetField, table, missingRecords.length, handleRunBatchInsert]);
+    }, [autoSyncEnabled, isSyncing, canUpdateRecords, targetField, table, missingRecords.length, handleRunBatchInsert]);
 
     // Download Single QR Code as PNG
     const handleDownloadPng = useCallback(() => {
@@ -376,10 +499,16 @@ function QRGenerator() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
                         </svg>
                         1. Insert QR Codes to Column
-                        {missingRecords.length > 0 && targetField && (
-                            <span className="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold">
-                                {missingRecords.length} missing
-                            </span>
+                        {targetField && (
+                            missingRecords.length > 0 ? (
+                                <span className="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold">
+                                    {missingRecords.length} unset
+                                </span>
+                            ) : (
+                                <span className="bg-green-100 text-green-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold">
+                                    All Set
+                                </span>
+                            )
                         )}
                     </button>
 
@@ -422,6 +551,7 @@ function QRGenerator() {
                         value={selectedTableId}
                         onChange={(e) => {
                             setSelectedTableId(e.target.value);
+                            setInFlightIds(new Set());
                             setSourceFieldId('');
                             setTargetFieldId('');
                             setTitleFieldId('');
@@ -523,6 +653,7 @@ function QRGenerator() {
                                     value={targetFieldId}
                                     onChange={(e) => {
                                         setTargetFieldId(e.target.value);
+                                        setInFlightIds(new Set());
                                         const found = fields.find((f) => f.id === e.target.value);
                                         if (found?.type === 'multipleAttachments') {
                                             setInsertMode('image-attachment');
@@ -569,20 +700,14 @@ function QRGenerator() {
 
                             <div>
                                 <label className="block text-xs font-bold text-gray-700 mb-1">
-                                    3. Scope / Filter
+                                    3. Generation Scope
                                 </label>
-                                <select
-                                    value={syncFilter}
-                                    onChange={(e) => setSyncFilter(e.target.value)}
-                                    className="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
-                                >
-                                    <option value="missing-only">
-                                        Only Missing (Skip records that already have QR)
-                                    </option>
-                                    <option value="all">
-                                        Overwrite All ({records?.length || 0} records)
-                                    </option>
-                                </select>
+                                <div className="w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs flex items-center justify-between">
+                                    <span className="font-semibold text-gray-800">Only Unset Records</span>
+                                    <span className="text-[10px] text-green-700 font-bold bg-green-50 px-2 py-0.5 rounded-full border border-green-200">
+                                        Preserves Set QRs
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -591,6 +716,8 @@ function QRGenerator() {
                             <div className={`p-3.5 rounded-xl text-xs font-medium ${
                                 syncMessage.type === 'success'
                                     ? 'bg-green-50 text-green-800 border border-green-200'
+                                    : syncMessage.type === 'info'
+                                    ? 'bg-blue-50 text-blue-800 border border-blue-200'
                                     : 'bg-red-50 text-red-800 border border-red-200'
                             }`}>
                                 {syncMessage.text}
@@ -620,7 +747,7 @@ function QRGenerator() {
                                     <>
                                         Target: <strong>{targetField.name}</strong> ({targetField.type}) &bull;{' '}
                                         <span className="text-amber-600 font-semibold">
-                                            {missingRecords.length} empty / missing QR
+                                            {missingRecords.length} unset records
                                         </span>
                                     </>
                                 ) : (
@@ -630,17 +757,17 @@ function QRGenerator() {
 
                             <button
                                 onClick={handleRunBatchInsert}
-                                disabled={isSyncing || !targetField || !records?.length}
+                                disabled={isSyncing || !targetField || !records?.length || missingRecords.length === 0}
                                 className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white rounded-xl text-xs font-bold shadow transition flex items-center gap-2"
                             >
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
                                 {isSyncing
-                                    ? 'Syncing In Progress...'
-                                    : syncFilter === 'missing-only'
-                                    ? `Auto-Generate (${missingRecords.length} Missing)`
-                                    : `Update All (${records?.length || 0} Records)`}
+                                    ? 'Generating QR Codes...'
+                                    : missingRecords.length === 0
+                                    ? `All QR Codes Set (${records?.length || 0})`
+                                    : `Generate Missing (${missingRecords.length} Unset)`}
                             </button>
                         </div>
                     </div>
@@ -671,7 +798,8 @@ function QRGenerator() {
                                 <tbody className="divide-y divide-gray-100 text-gray-700">
                                     {(records || []).slice(0, 50).map((record) => {
                                         const payload = getPayloadForRecord(record);
-                                        const hasData = recordHasTargetData(record);
+                                        const isSet = isRecordSet(record);
+                                        const isPending = inFlightIds.has(record.id);
                                         const qrSvg = generateQRCodeSvg(payload || ' ', {
                                             errorCorrection,
                                             fgColor,
@@ -696,7 +824,11 @@ function QRGenerator() {
                                                 <td className="py-2.5 px-4">
                                                     {!targetField ? (
                                                         <span className="text-gray-400 italic">Select column</span>
-                                                    ) : hasData ? (
+                                                    ) : isPending ? (
+                                                        <span className="inline-flex items-center gap-1 text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md font-medium border border-blue-200 animate-pulse">
+                                                            Setting...
+                                                        </span>
+                                                    ) : isSet ? (
                                                         <span className="inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded-md font-medium border border-green-200">
                                                             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                                                                 <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -705,18 +837,27 @@ function QRGenerator() {
                                                         </span>
                                                     ) : (
                                                         <span className="inline-flex items-center gap-1 text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md font-medium border border-amber-200">
-                                                            Empty
+                                                            Unset
                                                         </span>
                                                     )}
                                                 </td>
                                                 <td className="py-2.5 px-4 text-right">
-                                                    <button
-                                                        onClick={() => handleUpdateSingleRecord(record)}
-                                                        disabled={!targetField || !payload}
-                                                        className="px-2.5 py-1 bg-gray-100 hover:bg-blue-50 hover:text-blue-600 disabled:opacity-40 rounded-lg border border-gray-300 text-[11px] font-semibold transition"
-                                                    >
-                                                        Insert
-                                                    </button>
+                                                    {isSet || isPending ? (
+                                                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-400 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-lg select-none">
+                                                            <svg className="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                                            </svg>
+                                                            Set
+                                                        </span>
+                                                    ) : (
+                                                        <button
+                                                            onClick={() => handleUpdateSingleRecord(record)}
+                                                            disabled={!targetField || !payload || isSyncing}
+                                                            className="px-2.5 py-1 bg-gray-100 hover:bg-blue-50 hover:text-blue-600 disabled:opacity-40 rounded-lg border border-gray-300 text-[11px] font-semibold transition"
+                                                        >
+                                                            Insert
+                                                        </button>
+                                                    )}
                                                 </td>
                                             </tr>
                                         );

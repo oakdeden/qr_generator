@@ -525,6 +525,31 @@ const QRUtil = {
 };
 
 /**
+ * Extract QR path and dimension data for pure React SVG rendering (no dangerouslySetInnerHTML needed)
+ */
+export function getQRCodePathData(text, options = {}) {
+    const { errorCorrection = 'M', margin = 1 } = options;
+    const ecLevel = QRErrorCorrectionLevel[errorCorrection] ?? QRErrorCorrectionLevel.M;
+    const qr = new QRCodeModel(0, ecLevel);
+    qr.addData(text || ' ');
+    qr.make();
+
+    const count = qr.getModuleCount();
+    const size = count + margin * 2;
+    let paths = '';
+
+    for (let r = 0; r < count; r++) {
+        for (let c = 0; c < count; c++) {
+            if (qr.isDark(r, c)) {
+                paths += `M${c + margin},${r + margin}h1v1h-1z `;
+            }
+        }
+    }
+
+    return { size, paths };
+}
+
+/**
  * Generate QR SVG data string
  */
 export function generateQRCodeSvg(text, options = {}) {

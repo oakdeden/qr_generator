@@ -49282,21 +49282,49 @@ ${buttonLinkStyle}`;
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/use_session.js
+  var useSession, use_session_default;
   var init_use_session = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/use_session.js"() {
       init_use_watchable();
       init_sdk_context();
+      useSession = () => {
+        const {
+          session,
+          base: base2
+        } = useSdk();
+        useWatchable(session, ["permissionLevel", "currentUser"]);
+        useWatchable(base2, ["schema"]);
+        return session;
+      };
+      use_session_default = useSession;
     }
   });
 
   // node_modules/@airtable/blocks/dist/esm/base/ui/use_session.js
+  function useSession2() {
+    return use_session_default();
+  }
+  var use_session_default2;
   var init_use_session2 = __esm({
     "node_modules/@airtable/blocks/dist/esm/base/ui/use_session.js"() {
       init_use_session();
+      use_session_default2 = useSession2;
     }
   });
 
   // node_modules/@airtable/blocks/dist/esm/base/ui/use_settings_button.js
+  function useSettingsButton(onClickCallback) {
+    const {
+      settingsButton: settingsButton2
+    } = useSdk();
+    (0, import_react6.useEffect)(() => {
+      settingsButton2.show();
+      return () => {
+        settingsButton2.hide();
+      };
+    }, [settingsButton2]);
+    useWatchable(settingsButton2, ["click"], onClickCallback);
+  }
   var import_react6;
   var init_use_settings_button = __esm({
     "node_modules/@airtable/blocks/dist/esm/base/ui/use_settings_button.js"() {
@@ -49307,15 +49335,44 @@ ${buttonLinkStyle}`;
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/global_config_synced_component_helpers.js
+  var globalConfigSyncedComponentHelpers, global_config_synced_component_helpers_default;
   var init_global_config_synced_component_helpers = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/global_config_synced_component_helpers.js"() {
       init_airtable_interface2();
       init_use_watchable();
       init_sdk_context();
+      globalConfigSyncedComponentHelpers = {
+        useDefaultWatchesForSyncedComponent(globalConfigKey) {
+          const sdk4 = useSdk();
+          const {
+            globalConfig: globalConfig2,
+            session
+          } = sdk4;
+          const runContext = sdk4.getBlockRunContext();
+          useWatchable(globalConfig2, [globalConfig2.__getTopLevelKey(globalConfigKey)]);
+          useWatchable(session, ["permissionLevel"]);
+          const viewIfInViewContext = runContext.type === BlockRunContextType.VIEW ? sdk4.base.getTableById(runContext.tableId).getViewById(runContext.viewId) : null;
+          useWatchable(viewIfInViewContext, ["isLockedView"]);
+        }
+      };
+      global_config_synced_component_helpers_default = globalConfigSyncedComponentHelpers;
     }
   });
 
   // node_modules/@airtable/blocks/dist/esm/shared/ui/use_synced.js
+  function useSynced(globalConfigKey) {
+    global_config_synced_component_helpers_default.useDefaultWatchesForSyncedComponent(globalConfigKey);
+    const sdk4 = useSdk();
+    const {
+      globalConfig: globalConfig2
+    } = sdk4;
+    const value = globalConfig2.get(globalConfigKey);
+    const canSetValue = globalConfig2.hasPermissionToSet(globalConfigKey);
+    function setValue(newValue) {
+      sdk4.globalConfig.setAsync(globalConfigKey, newValue);
+    }
+    return [value, setValue, canSetValue];
+  }
   var init_use_synced = __esm({
     "node_modules/@airtable/blocks/dist/esm/shared/ui/use_synced.js"() {
       init_global_config_synced_component_helpers();
@@ -49452,32 +49509,6 @@ ${buttonLinkStyle}`;
     this.moduleCount = 0;
     this.dataCache = null;
     this.dataList = [];
-  }
-  function generateQRCodeSvg(text, options = {}) {
-    const {
-      errorCorrection = "M",
-      fgColor = "#000000",
-      bgColor = "#ffffff",
-      margin = 2
-    } = options;
-    const ecLevel = QRErrorCorrectionLevel[errorCorrection] ?? QRErrorCorrectionLevel.M;
-    const qr = new QRCodeModel(0, ecLevel);
-    qr.addData(text || " ");
-    qr.make();
-    const count = qr.getModuleCount();
-    const size = count + margin * 2;
-    let paths = "";
-    for (let r = 0; r < count; r++) {
-      for (let c = 0; c < count; c++) {
-        if (qr.isDark(r, c)) {
-          paths += `M${c + margin},${r + margin}h1v1h-1z `;
-        }
-      }
-    }
-    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges">
-        <rect width="${size}" height="${size}" fill="${bgColor}" />
-        <path d="${paths}" fill="${fgColor}" />
-    </svg>`;
   }
   function generateQRCodeDataUrl(text, options = {}) {
     const {
@@ -50023,7 +50054,7 @@ ${buttonLinkStyle}`;
   var init_style = __esm({
     "frontend/style.css"() {
       style = document.createElement("style");
-      style.textContent = '*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }\n\n/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Courier,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.ml-auto{margin-left:auto}.mt-0\\.5{margin-top:.125rem}.mt-6{margin-top:1.5rem}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.\\!table{display:table!important}.table{display:table}.grid{display:grid}.h-10{height:2.5rem}.h-2{height:.5rem}.h-2\\.5{height:.625rem}.h-3{height:.75rem}.h-4{height:1rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:.5rem}.w-2\\.5{width:.625rem}.w-24{width:6rem}.w-3{width:.75rem}.w-36{width:9rem}.w-4{width:1rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-5xl{max-width:64rem}.max-w-6xl{max-width:72rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.select-all{-webkit-user-select:all;-moz-user-select:all;user-select:all}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-1\\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.space-y-8>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-gray-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(243 244 246/var(--tw-divide-opacity,1))}.overflow-auto{overflow:auto}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-words{overflow-wrap:break-word}.break-all{word-break:break-all}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.875rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138/var(--tw-border-opacity,1))}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254/var(--tw-border-opacity,1))}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246/var(--tw-border-opacity,1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235/var(--tw-border-opacity,1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219/var(--tw-border-opacity,1))}.border-green-200{--tw-border-opacity:1;border-color:rgb(187 247 208/var(--tw-border-opacity,1))}.border-red-200{--tw-border-opacity:1;border-color:rgb(254 202 202/var(--tw-border-opacity,1))}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254/var(--tw-bg-opacity,1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235/var(--tw-bg-opacity,1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity,1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244/var(--tw-bg-opacity,1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94/var(--tw-bg-opacity,1))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-gradient-to-tr{background-image:linear-gradient(to top right,var(--tw-gradient-stops))}.from-blue-600{--tw-gradient-from:#2563eb var(--tw-gradient-from-position);--tw-gradient-to:rgba(37,99,235,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-indigo-600{--tw-gradient-to:#4f46e5 var(--tw-gradient-to-position)}.p-0\\.5{padding:.125rem}.p-1{padding:.25rem}.p-3{padding:.75rem}.p-3\\.5{padding:.875rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-0\\.5{padding-left:.125rem;padding-right:.125rem}.px-1\\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-3\\.5{padding-top:.875rem;padding-bottom:.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pr-0\\.5{padding-right:.125rem}.pt-1{padding-top:.25rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Courier,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-\\[8\\.5px\\]{font-size:8.5px}.text-\\[8px\\]{font-size:8px}.text-\\[9\\.5px\\]{font-size:9.5px}.text-base{font-size:.8125rem;line-height:1.25rem}.text-sm{font-size:.6875rem;line-height:1rem}.text-xs{font-size:.5625rem;line-height:.875rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-\\[1\\.15\\]{line-height:1.15}.leading-\\[1\\.2\\]{line-height:1.2}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-wider{letter-spacing:.05em}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9/var(--tw-text-opacity,1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14/var(--tw-text-opacity,1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216/var(--tw-text-opacity,1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175/var(--tw-text-opacity,1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219/var(--tw-text-opacity,1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175/var(--tw-text-opacity,1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128/var(--tw-text-opacity,1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99/var(--tw-text-opacity,1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81/var(--tw-text-opacity,1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55/var(--tw-text-opacity,1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39/var(--tw-text-opacity,1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61/var(--tw-text-opacity,1))}.text-green-800{--tw-text-opacity:1;color:rgb(22 101 52/var(--tw-text-opacity,1))}.text-red-800{--tw-text-opacity:1;color:rgb(153 27 27/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-md{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow:0px 0px 1px 0px rgba(0,0,0,.24),0px 0px 2px 0px rgba(0,0,0,.08),0px 2px 4px 0px rgba(0,0,0,.08);--tw-shadow-colored:0px 0px 1px 0px var(--tw-shadow-color),0px 0px 2px 0px var(--tw-shadow-color),0px 2px 4px 0px var(--tw-shadow-color)}.shadow-sm{--tw-shadow:0px 0px 1px rgba(0,0,0,.32),0px 0px 3px rgba(0,0,0,.11),0px 1px 4px rgba(0,0,0,.12);--tw-shadow-colored:0px 0px 1px var(--tw-shadow-color),0px 0px 3px var(--tw-shadow-color),0px 1px 4px var(--tw-shadow-color)}.shadow-sm,.shadow-xs{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xs{--tw-shadow:0px 0px 1px rgba(0,0,0,.32),0px 0px 2px rgba(0,0,0,.08),0px 1px 3px rgba(0,0,0,.08);--tw-shadow-colored:0px 0px 1px var(--tw-shadow-color),0px 0px 2px var(--tw-shadow-color),0px 1px 3px var(--tw-shadow-color)}.outline-none{outline:2px solid transparent;outline-offset:2px}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}@media screen{.avery-preview-sheet{width:8.5in;min-height:11in;padding:.5in .1875in;margin:0 auto;background:#fff;box-shadow:0 10px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);box-sizing:border-box}}.avery-grid{display:grid;grid-template-columns:repeat(3,2.625in);grid-auto-rows:1in;-moz-column-gap:.125in;column-gap:.125in;row-gap:0}.avery-label{width:2.625in;height:1in;padding:.08in .1in;box-sizing:border-box;overflow:hidden;position:relative;background-color:#fff}@media print{body{background:#fff!important;margin:0!important;padding:0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.no-print{display:none!important}@page{size:letter portrait;margin:0}.avery-preview-sheet{width:8.5in!important;height:11in!important;max-height:11in!important;padding:.5in .1875in!important;margin:0!important;box-shadow:none!important;page-break-after:always;-moz-column-break-after:page;break-after:page;box-sizing:border-box!important}.avery-label{width:2.625in!important;height:1in!important;max-height:1in!important;border:none!important;outline:none!important;box-shadow:none!important}}.hover\\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.hover\\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216/var(--tw-bg-opacity,1))}.hover\\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.hover\\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity,1))}.hover\\:text-blue-600:hover{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.hover\\:text-gray-900:hover{--tw-text-opacity:1;color:rgb(17 24 39/var(--tw-text-opacity,1))}.focus\\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246/var(--tw-ring-opacity,1))}.disabled\\:bg-gray-100:disabled{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.disabled\\:opacity-40:disabled{opacity:.4}.disabled\\:opacity-75:disabled{opacity:.75}@media (min-width:768px){.md\\:col-span-6{grid-column:span 6/span 6}.md\\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.md\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\\:grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}}';
+      style.textContent = '*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }\n\n/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Courier,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:.25rem}.ml-auto{margin-left:auto}.mt-0\\.5{margin-top:.125rem}.mt-6{margin-top:1.5rem}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.\\!table{display:table!important}.table{display:table}.grid{display:grid}.h-10{height:2.5rem}.h-2{height:.5rem}.h-2\\.5{height:.625rem}.h-3{height:.75rem}.h-4{height:1rem}.h-6{height:1.5rem}.h-64{height:16rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:.5rem}.w-2\\.5{width:.625rem}.w-24{width:6rem}.w-3{width:.75rem}.w-36{width:9rem}.w-4{width:1rem}.w-6{width:1.5rem}.w-64{width:16rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0}.max-w-5xl{max-width:64rem}.max-w-6xl{max-width:72rem}.max-w-xs{max-width:20rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(.4,0,.6,1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.select-all{-webkit-user-select:all;-moz-user-select:all;user-select:all}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-2\\.5{gap:.625rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-1\\.5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.375rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.375rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.space-y-5>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem*var(--tw-space-y-reverse))}.space-y-6>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem*var(--tw-space-y-reverse))}.space-y-8>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem*var(--tw-space-y-reverse))}.divide-y>:not([hidden])~:not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px*(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px*var(--tw-divide-y-reverse))}.divide-gray-100>:not([hidden])~:not([hidden]){--tw-divide-opacity:1;border-color:rgb(243 244 246/var(--tw-divide-opacity,1))}.overflow-auto{overflow:auto}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.break-words{overflow-wrap:break-word}.break-all{word-break:break-all}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.875rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-amber-200{--tw-border-opacity:1;border-color:rgb(253 230 138/var(--tw-border-opacity,1))}.border-blue-200{--tw-border-opacity:1;border-color:rgb(191 219 254/var(--tw-border-opacity,1))}.border-gray-100{--tw-border-opacity:1;border-color:rgb(243 244 246/var(--tw-border-opacity,1))}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235/var(--tw-border-opacity,1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219/var(--tw-border-opacity,1))}.border-green-200{--tw-border-opacity:1;border-color:rgb(187 247 208/var(--tw-border-opacity,1))}.border-red-200{--tw-border-opacity:1;border-color:rgb(254 202 202/var(--tw-border-opacity,1))}.bg-amber-100{--tw-bg-opacity:1;background-color:rgb(254 243 199/var(--tw-bg-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-blue-100{--tw-bg-opacity:1;background-color:rgb(219 234 254/var(--tw-bg-opacity,1))}.bg-blue-50{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235/var(--tw-bg-opacity,1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity,1))}.bg-green-100{--tw-bg-opacity:1;background-color:rgb(220 252 231/var(--tw-bg-opacity,1))}.bg-green-50{--tw-bg-opacity:1;background-color:rgb(240 253 244/var(--tw-bg-opacity,1))}.bg-green-500{--tw-bg-opacity:1;background-color:rgb(34 197 94/var(--tw-bg-opacity,1))}.bg-red-50{--tw-bg-opacity:1;background-color:rgb(254 242 242/var(--tw-bg-opacity,1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.bg-gradient-to-tr{background-image:linear-gradient(to top right,var(--tw-gradient-stops))}.from-blue-600{--tw-gradient-from:#2563eb var(--tw-gradient-from-position);--tw-gradient-to:rgba(37,99,235,0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}.to-indigo-600{--tw-gradient-to:#4f46e5 var(--tw-gradient-to-position)}.p-0\\.5{padding:.125rem}.p-1{padding:.25rem}.p-3{padding:.75rem}.p-3\\.5{padding:.875rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-0\\.5{padding-left:.125rem;padding-right:.125rem}.px-1\\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-3\\.5{padding-top:.875rem;padding-bottom:.875rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pr-0\\.5{padding-right:.125rem}.pt-1{padding-top:.25rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Courier,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-\\[8\\.5px\\]{font-size:8.5px}.text-\\[8px\\]{font-size:8px}.text-\\[9\\.5px\\]{font-size:9.5px}.text-base{font-size:.8125rem;line-height:1.25rem}.text-sm{font-size:.6875rem;line-height:1rem}.text-xs{font-size:.5625rem;line-height:.875rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-\\[1\\.15\\]{line-height:1.15}.leading-\\[1\\.2\\]{line-height:1.2}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-wider{letter-spacing:.05em}.text-amber-600{--tw-text-opacity:1;color:rgb(217 119 6/var(--tw-text-opacity,1))}.text-amber-700{--tw-text-opacity:1;color:rgb(180 83 9/var(--tw-text-opacity,1))}.text-amber-800{--tw-text-opacity:1;color:rgb(146 64 14/var(--tw-text-opacity,1))}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.text-blue-700{--tw-text-opacity:1;color:rgb(29 78 216/var(--tw-text-opacity,1))}.text-blue-800{--tw-text-opacity:1;color:rgb(30 64 175/var(--tw-text-opacity,1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219/var(--tw-text-opacity,1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175/var(--tw-text-opacity,1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128/var(--tw-text-opacity,1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99/var(--tw-text-opacity,1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81/var(--tw-text-opacity,1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55/var(--tw-text-opacity,1))}.text-gray-900{--tw-text-opacity:1;color:rgb(17 24 39/var(--tw-text-opacity,1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74/var(--tw-text-opacity,1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61/var(--tw-text-opacity,1))}.text-green-800{--tw-text-opacity:1;color:rgb(22 101 52/var(--tw-text-opacity,1))}.text-red-800{--tw-text-opacity:1;color:rgb(153 27 27/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-md{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-md{--tw-shadow:0px 0px 1px 0px rgba(0,0,0,.24),0px 0px 2px 0px rgba(0,0,0,.08),0px 2px 4px 0px rgba(0,0,0,.08);--tw-shadow-colored:0px 0px 1px 0px var(--tw-shadow-color),0px 0px 2px 0px var(--tw-shadow-color),0px 2px 4px 0px var(--tw-shadow-color)}.shadow-sm{--tw-shadow:0px 0px 1px rgba(0,0,0,.32),0px 0px 3px rgba(0,0,0,.11),0px 1px 4px rgba(0,0,0,.12);--tw-shadow-colored:0px 0px 1px var(--tw-shadow-color),0px 0px 3px var(--tw-shadow-color),0px 1px 4px var(--tw-shadow-color)}.shadow-sm,.shadow-xs{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xs{--tw-shadow:0px 0px 1px rgba(0,0,0,.32),0px 0px 2px rgba(0,0,0,.08),0px 1px 3px rgba(0,0,0,.08);--tw-shadow-colored:0px 0px 1px var(--tw-shadow-color),0px 0px 2px var(--tw-shadow-color),0px 1px 3px var(--tw-shadow-color)}.outline-none{outline:2px solid transparent;outline-offset:2px}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}@media screen{.avery-preview-sheet{width:8.5in;min-height:11in;padding:.5in .1875in;margin:0 auto;background:#fff;box-shadow:0 10px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);box-sizing:border-box}}.avery-grid{display:grid;grid-template-columns:repeat(3,2.625in);grid-auto-rows:1in;-moz-column-gap:.125in;column-gap:.125in;row-gap:0}.avery-label{width:2.625in;height:1in;padding:.08in .1in;box-sizing:border-box;overflow:hidden;position:relative;background-color:#fff}@media print{body{background:#fff!important;margin:0!important;padding:0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.no-print{display:none!important}@page{size:letter portrait;margin:0}.avery-preview-sheet{width:8.5in!important;height:11in!important;max-height:11in!important;padding:.5in .1875in!important;margin:0!important;box-shadow:none!important;page-break-after:always;-moz-column-break-after:page;break-after:page;box-sizing:border-box!important}.avery-label{width:2.625in!important;height:1in!important;max-height:1in!important;border:none!important;outline:none!important;box-shadow:none!important}}.hover\\:bg-blue-50:hover{--tw-bg-opacity:1;background-color:rgb(239 246 255/var(--tw-bg-opacity,1))}.hover\\:bg-blue-700:hover{--tw-bg-opacity:1;background-color:rgb(29 78 216/var(--tw-bg-opacity,1))}.hover\\:bg-gray-100:hover{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.hover\\:bg-gray-50:hover{--tw-bg-opacity:1;background-color:rgb(249 250 251/var(--tw-bg-opacity,1))}.hover\\:text-blue-600:hover{--tw-text-opacity:1;color:rgb(37 99 235/var(--tw-text-opacity,1))}.hover\\:text-gray-900:hover{--tw-text-opacity:1;color:rgb(17 24 39/var(--tw-text-opacity,1))}.focus\\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.focus\\:ring-blue-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(59 130 246/var(--tw-ring-opacity,1))}.disabled\\:bg-gray-100:disabled{--tw-bg-opacity:1;background-color:rgb(243 244 246/var(--tw-bg-opacity,1))}.disabled\\:opacity-40:disabled{opacity:.4}.disabled\\:opacity-75:disabled{opacity:.75}@media (min-width:768px){.md\\:col-span-6{grid-column:span 6/span 6}.md\\:grid-cols-12{grid-template-columns:repeat(12,minmax(0,1fr))}.md\\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.md\\:grid-cols-7{grid-template-columns:repeat(7,minmax(0,1fr))}}';
       document.head.appendChild(style);
     }
   });
@@ -50296,45 +50327,80 @@ ${buttonLinkStyle}`;
 
   // frontend/index.js
   var frontend_exports = {};
+  function usePersistentState(key, defaultValue) {
+    const [syncedValue, setSyncedValue, canSetSyncedValue] = useSynced(`qr_${key}`);
+    const [localValue, setLocalValue] = (0, import_react7.useState)(() => {
+      try {
+        const stored = localStorage.getItem(`airtable_qr_${key}`);
+        if (stored !== null) {
+          return JSON.parse(stored);
+        }
+      } catch {
+      }
+      return defaultValue;
+    });
+    const isSyncedDefined = syncedValue !== void 0 && syncedValue !== null;
+    const value = isSyncedDefined ? syncedValue : localValue;
+    const setValue = (0, import_react7.useCallback)((updaterOrVal) => {
+      const nextVal = typeof updaterOrVal === "function" ? updaterOrVal(value) : updaterOrVal;
+      setLocalValue(nextVal);
+      try {
+        localStorage.setItem(`airtable_qr_${key}`, JSON.stringify(nextVal));
+      } catch {
+      }
+      if (canSetSyncedValue) {
+        setSyncedValue(nextVal);
+      }
+    }, [canSetSyncedValue, setSyncedValue, value, key]);
+    return [value, setValue];
+  }
   function QRGenerator() {
     const base2 = use_base_default2();
+    const session = use_session_default2();
     const tables = (0, import_react7.useMemo)(() => base2.tables || [], [base2]);
-    const [selectedTableId, setSelectedTableId] = (0, import_react7.useState)(() => tables[0]?.id || "");
+    const [selectedTableId, setSelectedTableId] = usePersistentState("tableId", tables[0]?.id || "");
     const table = (0, import_react7.useMemo)(() => {
       return tables.find((t) => t.id === selectedTableId) || tables[0] || null;
     }, [tables, selectedTableId]);
+    const canUpdateRecords = (0, import_react7.useMemo)(() => {
+      if (!table) return false;
+      return Boolean(table.hasPermissionToUpdateRecords());
+    }, [table]);
+    useSettingsButton(() => {
+      setActiveTab((prev) => prev === "designer" ? "auto-column" : "designer");
+    });
     const records = useRecords(table || void 0);
     const fields = (0, import_react7.useMemo)(() => table ? table.fields : [], [table]);
-    const [activeTab, setActiveTab] = (0, import_react7.useState)("auto-column");
-    const [sourceFieldId, setSourceFieldId] = (0, import_react7.useState)("__airtable_record_url__");
+    const [activeTab, setActiveTab] = usePersistentState("activeTab", "auto-column");
+    const [sourceFieldId, setSourceFieldId] = usePersistentState("sourceFieldId", "__airtable_record_url__");
     const effectiveSourceField = (0, import_react7.useMemo)(() => {
       if (sourceFieldId === "__airtable_record_url__") return null;
       if (!fields.length) return null;
       return fields.find((f) => f.id === sourceFieldId) || fields[0];
     }, [fields, sourceFieldId]);
-    const [targetFieldId, setTargetFieldId] = (0, import_react7.useState)("");
+    const [targetFieldId, setTargetFieldId] = usePersistentState("targetFieldId", "");
     const targetField = (0, import_react7.useMemo)(() => {
       return fields.find((f) => f.id === targetFieldId) || null;
     }, [fields, targetFieldId]);
     const isAttachmentTarget = targetField?.type === "multipleAttachments";
-    const [prefix, setPrefix] = (0, import_react7.useState)("");
-    const [suffix, setSuffix] = (0, import_react7.useState)("");
-    const [errorCorrection, setErrorCorrection] = (0, import_react7.useState)("M");
-    const [fgColor, setFgColor] = (0, import_react7.useState)("#000000");
-    const [bgColor, setBgColor] = (0, import_react7.useState)("#ffffff");
-    const [insertMode, setInsertMode] = (0, import_react7.useState)("image-attachment");
-    const [syncFilter, setSyncFilter] = (0, import_react7.useState)("missing-only");
-    const [autoSyncEnabled, setAutoSyncEnabled] = (0, import_react7.useState)(false);
+    const [prefix, setPrefix] = usePersistentState("prefix", "");
+    const [suffix, setSuffix] = usePersistentState("suffix", "");
+    const [errorCorrection, setErrorCorrection] = usePersistentState("errorCorrection", "M");
+    const [fgColor, setFgColor] = usePersistentState("fgColor", "#000000");
+    const [bgColor, setBgColor] = usePersistentState("bgColor", "#ffffff");
+    const [insertMode, setInsertMode] = usePersistentState("insertMode", "image-attachment");
+    const [autoSyncEnabled, setAutoSyncEnabled] = usePersistentState("autoSyncEnabled", false);
     const [isSyncing, setIsSyncing] = (0, import_react7.useState)(false);
     const [syncProgress, setSyncProgress] = (0, import_react7.useState)({ current: 0, total: 0 });
     const [syncMessage, setSyncMessage] = (0, import_react7.useState)(null);
-    const [labelLayout, setLabelLayout] = (0, import_react7.useState)("qr-left");
-    const [averyQrSize, setAveryQrSize] = (0, import_react7.useState)("medium");
-    const [titleFieldId, setTitleFieldId] = (0, import_react7.useState)("");
-    const [subtitleFieldId, setSubtitleFieldId] = (0, import_react7.useState)("");
-    const [detailFieldId, setDetailFieldId] = (0, import_react7.useState)("");
-    const [quantityFieldId, setQuantityFieldId] = (0, import_react7.useState)("");
-    const [startLabelNumber, setStartLabelNumber] = (0, import_react7.useState)(1);
+    const [inFlightIds, setInFlightIds] = (0, import_react7.useState)(() => /* @__PURE__ */ new Set());
+    const [labelLayout, setLabelLayout] = usePersistentState("labelLayout", "qr-left");
+    const [averyQrSize, setAveryQrSize] = usePersistentState("averyQrSize", "medium");
+    const [titleFieldId, setTitleFieldId] = usePersistentState("titleFieldId", "");
+    const [subtitleFieldId, setSubtitleFieldId] = usePersistentState("subtitleFieldId", "");
+    const [detailFieldId, setDetailFieldId] = usePersistentState("detailFieldId", "");
+    const [quantityFieldId, setQuantityFieldId] = usePersistentState("quantityFieldId", "");
+    const [startLabelNumber, setStartLabelNumber] = usePersistentState("startLabelNumber", 1);
     const qrSizeInches = (0, import_react7.useMemo)(() => {
       if (labelLayout === "qr-only") return "0.84in";
       if (labelLayout === "qr-center") return "0.52in";
@@ -50370,24 +50436,38 @@ ${buttonLinkStyle}`;
       if (!record || !targetField) return false;
       try {
         const val = record.getCellValue(targetField.id);
-        if (val === null || val === void 0) return false;
-        if (Array.isArray(val)) return val.length > 0;
-        if (typeof val === "string") return val.trim().length > 0;
-        return Boolean(val);
+        if (val !== null && val !== void 0) {
+          if (Array.isArray(val) && val.length > 0) return true;
+          if (typeof val === "string" && val.trim().length > 0) return true;
+          if (typeof val === "number" || typeof val === "boolean") return true;
+          if (typeof val === "object" && Object.keys(val).length > 0) return true;
+        }
+        const strVal = record.getCellValueAsString(targetField.id);
+        if (strVal && strVal.trim().length > 0) return true;
+        return false;
       } catch {
         return false;
       }
     }, [targetField]);
+    const isRecordSet = (0, import_react7.useCallback)((record) => {
+      if (!record) return false;
+      if (inFlightIds.has(record.id)) return true;
+      return recordHasTargetData(record);
+    }, [inFlightIds, recordHasTargetData]);
     const missingRecords = (0, import_react7.useMemo)(() => {
       if (!records || !targetField) return [];
-      return records.filter((r) => !recordHasTargetData(r) && getPayloadForRecord(r).trim().length > 0);
-    }, [records, targetField, recordHasTargetData, getPayloadForRecord]);
+      return records.filter((r) => !isRecordSet(r) && getPayloadForRecord(r).trim().length > 0);
+    }, [records, targetField, isRecordSet, getPayloadForRecord]);
     const buildUpdateFields = (0, import_react7.useCallback)((record) => {
       if (!targetField) return null;
+      if (isRecordSet(record)) return null;
       const payload = getPayloadForRecord(record);
-      if (!payload) return null;
+      if (!payload || !payload.trim()) return null;
       const cleanName = (record.name || "qr-code").replace(/[^a-zA-Z0-9_-]/g, "_");
-      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=2&data=${encodeURIComponent(payload)}`;
+      const fgHex = (fgColor || "#000000").replace("#", "");
+      const bgHex = (bgColor || "#ffffff").replace("#", "");
+      const ecc = errorCorrection || "M";
+      const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=2&ecc=${ecc}&color=${fgHex}&bgcolor=${bgHex}&data=${encodeURIComponent(payload)}`;
       if (isAttachmentTarget || insertMode === "image-attachment") {
         return {
           [targetField.id]: [
@@ -50406,38 +50486,73 @@ ${buttonLinkStyle}`;
       return {
         [targetField.id]: payload
       };
-    }, [targetField, getPayloadForRecord, isAttachmentTarget, insertMode]);
+    }, [targetField, isRecordSet, getPayloadForRecord, fgColor, bgColor, errorCorrection, isAttachmentTarget, insertMode]);
     const handleUpdateSingleRecord = (0, import_react7.useCallback)(async (record) => {
       if (!table || !targetField) {
-        alert("Please select a Target Column first.");
+        setSyncMessage({
+          type: "error",
+          text: "Please select a Target Column first."
+        });
+        return;
+      }
+      if (!canUpdateRecords) {
+        const check = table.checkPermissionsForUpdateRecord(record);
+        setSyncMessage({
+          type: "error",
+          text: check.reasonDisplayString || "You do not have permission to update records in this table."
+        });
+        return;
+      }
+      if (isRecordSet(record)) {
+        setSyncMessage({
+          type: "info",
+          text: `QR code is already set for "${record.name || record.id}". It will not be re-generated.`
+        });
         return;
       }
       const fieldsToUpdate = buildUpdateFields(record);
       if (!fieldsToUpdate) return;
+      setInFlightIds((prev) => /* @__PURE__ */ new Set([...prev, record.id]));
       try {
         await table.updateRecordAsync(record, fieldsToUpdate);
         setSyncMessage({
           type: "success",
-          text: `Updated "${record.name || record.id}" with QR code!`
+          text: `Created QR code for "${record.name || record.id}"!`
         });
       } catch (err) {
+        setInFlightIds((prev) => {
+          const next = new Set(prev);
+          next.delete(record.id);
+          return next;
+        });
         console.error(err);
         setSyncMessage({
           type: "error",
           text: `Failed to update record: ${err.message}`
         });
       }
-    }, [table, targetField, buildUpdateFields]);
+    }, [table, targetField, canUpdateRecords, isRecordSet, buildUpdateFields]);
     const handleRunBatchInsert = (0, import_react7.useCallback)(async () => {
       if (!table || !targetField || !records || !records.length) {
-        alert("Please select both a Source Field and a Target Column.");
+        setSyncMessage({
+          type: "error",
+          text: "Please select both a Source Field and a Target Column."
+        });
         return;
       }
-      const targets = syncFilter === "missing-only" ? missingRecords : records;
+      if (!canUpdateRecords) {
+        const check = table.checkPermissionsForUpdateRecords();
+        setSyncMessage({
+          type: "error",
+          text: check.reasonDisplayString || "You do not have permission to update records in this table."
+        });
+        return;
+      }
+      const targets = missingRecords.filter((r) => !isRecordSet(r));
       if (!targets.length) {
         setSyncMessage({
           type: "success",
-          text: "All records already have QR codes in the selected column!"
+          text: "All records already have QR codes set in the selected column."
         });
         return;
       }
@@ -50449,16 +50564,20 @@ ${buttonLinkStyle}`;
         for (let i = 0; i < targets.length; i += chunkSize) {
           const chunk = targets.slice(i, i + chunkSize);
           const updates = [];
+          const updatedIds = [];
           for (const rec of chunk) {
+            if (isRecordSet(rec)) continue;
             const fieldsToUpdate = buildUpdateFields(rec);
             if (fieldsToUpdate) {
               updates.push({
                 id: rec.id,
                 fields: fieldsToUpdate
               });
+              updatedIds.push(rec.id);
             }
           }
           if (updates.length > 0) {
+            setInFlightIds((prev) => /* @__PURE__ */ new Set([...prev, ...updatedIds]));
             await table.updateRecordsAsync(updates);
           }
           setSyncProgress({
@@ -50468,7 +50587,7 @@ ${buttonLinkStyle}`;
         }
         setSyncMessage({
           type: "success",
-          text: `Successfully generated and inserted QR codes into "${targetField.name}" for ${targets.length} records!`
+          text: `Successfully created QR codes for ${targets.length} records in "${targetField.name}"! Existing QR codes were preserved.`
         });
       } catch (err) {
         console.error("Batch insert error:", err);
@@ -50479,10 +50598,10 @@ ${buttonLinkStyle}`;
       } finally {
         setIsSyncing(false);
       }
-    }, [table, targetField, records, syncFilter, missingRecords, buildUpdateFields]);
+    }, [table, targetField, records, canUpdateRecords, missingRecords, isRecordSet, buildUpdateFields]);
     const autoSyncTimer = (0, import_react7.useRef)(null);
     (0, import_react7.useEffect)(() => {
-      if (!autoSyncEnabled || isSyncing || !targetField || !table || !missingRecords.length) {
+      if (!autoSyncEnabled || isSyncing || !canUpdateRecords || !targetField || !table || !missingRecords.length) {
         return;
       }
       clearTimeout(autoSyncTimer.current);
@@ -50490,7 +50609,7 @@ ${buttonLinkStyle}`;
         handleRunBatchInsert();
       }, 1500);
       return () => clearTimeout(autoSyncTimer.current);
-    }, [autoSyncEnabled, isSyncing, targetField, table, missingRecords.length, handleRunBatchInsert]);
+    }, [autoSyncEnabled, isSyncing, canUpdateRecords, targetField, table, missingRecords.length, handleRunBatchInsert]);
     const handleDownloadPng = (0, import_react7.useCallback)(() => {
       const payload = previewRecord ? getPayloadForRecord(previewRecord) : "AIRTABLE-QR-CODE";
       const dataUrl = generateQRCodeDataUrl(payload || " ", {
@@ -50573,36 +50692,36 @@ ${buttonLinkStyle}`;
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-3", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-md", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-6 h-6", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z" }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 356,
+            lineNumber: 479,
             columnNumber: 29
           }, this) }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 355,
+            lineNumber: 478,
             columnNumber: 25
           }, this) }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 354,
+            lineNumber: 477,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h1", { className: "text-base font-bold text-gray-900 leading-tight", children: "Airtable QR Generator & Avery 5160 / 88560" }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 360,
+              lineNumber: 483,
               columnNumber: 25
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("p", { className: "text-xs text-gray-500", children: "Auto-generate QR codes into columns and print Avery 5160 / 88560 label sheets" }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 361,
+              lineNumber: 484,
               columnNumber: 25
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 359,
+            lineNumber: 482,
             columnNumber: 21
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 353,
+          lineNumber: 476,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs", children: [
@@ -50614,29 +50733,33 @@ ${buttonLinkStyle}`;
               children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 376,
+                  lineNumber: 499,
                   columnNumber: 29
                 }, this) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 375,
+                  lineNumber: 498,
                   columnNumber: 25
                 }, this),
                 "1. Insert QR Codes to Column",
-                missingRecords.length > 0 && targetField && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold", children: [
+                targetField && (missingRecords.length > 0 ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold", children: [
                   missingRecords.length,
-                  " missing"
+                  " unset"
                 ] }, void 0, true, {
                   fileName: "frontend/index.js",
-                  lineNumber: 380,
-                  columnNumber: 29
-                }, this)
+                  lineNumber: 504,
+                  columnNumber: 33
+                }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "bg-green-100 text-green-800 text-[10px] px-1.5 py-0.2 rounded-full font-bold", children: "All Set" }, void 0, false, {
+                  fileName: "frontend/index.js",
+                  lineNumber: 508,
+                  columnNumber: 33
+                }, this))
               ]
             },
             void 0,
             true,
             {
               fileName: "frontend/index.js",
-              lineNumber: 367,
+              lineNumber: 490,
               columnNumber: 21
             },
             this
@@ -50649,11 +50772,11 @@ ${buttonLinkStyle}`;
               children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 395,
+                  lineNumber: 524,
                   columnNumber: 29
                 }, this) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 394,
+                  lineNumber: 523,
                   columnNumber: 25
                 }, this),
                 "2. Export to Avery 5160 / 8160 (",
@@ -50665,7 +50788,7 @@ ${buttonLinkStyle}`;
             true,
             {
               fileName: "frontend/index.js",
-              lineNumber: 386,
+              lineNumber: 515,
               columnNumber: 21
             },
             this
@@ -50679,17 +50802,17 @@ ${buttonLinkStyle}`;
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 409,
+                    lineNumber: 538,
                     columnNumber: 29
                   }, this),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 410,
+                    lineNumber: 539,
                     columnNumber: 29
                   }, this)
                 ] }, void 0, true, {
                   fileName: "frontend/index.js",
-                  lineNumber: 408,
+                  lineNumber: 537,
                   columnNumber: 25
                 }, this),
                 "QR Styling"
@@ -50699,26 +50822,26 @@ ${buttonLinkStyle}`;
             true,
             {
               fileName: "frontend/index.js",
-              lineNumber: 400,
+              lineNumber: 529,
               columnNumber: 21
             },
             this
           )
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 366,
+          lineNumber: 489,
           columnNumber: 17
         }, this)
       ] }, void 0, true, {
         fileName: "frontend/index.js",
-        lineNumber: 352,
+        lineNumber: 475,
         columnNumber: 13
       }, this),
       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "no-print bg-white border-b border-gray-200 px-6 py-3 flex flex-wrap items-center gap-4 text-xs", children: [
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-semibold text-gray-700", children: "Table:" }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 420,
+            lineNumber: 549,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -50727,6 +50850,7 @@ ${buttonLinkStyle}`;
               value: selectedTableId,
               onChange: (e) => {
                 setSelectedTableId(e.target.value);
+                setInFlightIds(/* @__PURE__ */ new Set());
                 setSourceFieldId("");
                 setTargetFieldId("");
                 setTitleFieldId("");
@@ -50735,7 +50859,7 @@ ${buttonLinkStyle}`;
               className: "bg-gray-50 border border-gray-300 text-gray-900 rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-blue-500 font-medium",
               children: tables.map((t) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: t.id, children: t.name }, t.id, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 433,
+                lineNumber: 563,
                 columnNumber: 29
               }, this))
             },
@@ -50743,20 +50867,20 @@ ${buttonLinkStyle}`;
             false,
             {
               fileName: "frontend/index.js",
-              lineNumber: 421,
+              lineNumber: 550,
               columnNumber: 21
             },
             this
           )
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 419,
+          lineNumber: 548,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-semibold text-gray-700", children: "Source Column (Encode):" }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 439,
+            lineNumber: 569,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -50768,7 +50892,7 @@ ${buttonLinkStyle}`;
               children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "__airtable_record_url__", children: "\u{1F517} Direct Airtable Record Link (Opens Table & Row)" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 445,
+                  lineNumber: 575,
                   columnNumber: 25
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("optgroup", { label: "Encode Column Value", children: fields.map((f) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: f.id, children: [
@@ -50778,11 +50902,11 @@ ${buttonLinkStyle}`;
                   ")"
                 ] }, f.id, true, {
                   fileName: "frontend/index.js",
-                  lineNumber: 450,
+                  lineNumber: 580,
                   columnNumber: 33
                 }, this)) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 448,
+                  lineNumber: 578,
                   columnNumber: 25
                 }, this)
               ]
@@ -50791,20 +50915,20 @@ ${buttonLinkStyle}`;
             true,
             {
               fileName: "frontend/index.js",
-              lineNumber: 440,
+              lineNumber: 570,
               columnNumber: 21
             },
             this
           )
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 438,
+          lineNumber: 568,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-semibold text-gray-700", children: "Prefix:" }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 457,
+            lineNumber: 587,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -50820,20 +50944,20 @@ ${buttonLinkStyle}`;
             false,
             {
               fileName: "frontend/index.js",
-              lineNumber: 458,
+              lineNumber: 588,
               columnNumber: 21
             },
             this
           )
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 456,
+          lineNumber: 586,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-semibold text-gray-700", children: "Suffix:" }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 468,
+            lineNumber: 598,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -50849,35 +50973,35 @@ ${buttonLinkStyle}`;
             false,
             {
               fileName: "frontend/index.js",
-              lineNumber: 469,
+              lineNumber: 599,
               columnNumber: 21
             },
             this
           )
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 467,
+          lineNumber: 597,
           columnNumber: 17
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2 ml-auto", children: [
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-gray-500", children: "Total Records:" }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 479,
+            lineNumber: 609,
             columnNumber: 21
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "bg-blue-50 text-blue-700 font-bold px-2.5 py-0.5 rounded-full border border-blue-200", children: records?.length || 0 }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 480,
+            lineNumber: 610,
             columnNumber: 21
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 478,
+          lineNumber: 608,
           columnNumber: 17
         }, this)
       ] }, void 0, true, {
         fileName: "frontend/index.js",
-        lineNumber: 418,
+        lineNumber: 547,
         columnNumber: 13
       }, this),
       activeTab === "auto-column" && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("main", { className: "no-print flex-1 p-6 max-w-6xl mx-auto w-full space-y-6", children: [
@@ -50887,23 +51011,23 @@ ${buttonLinkStyle}`;
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h2", { className: "text-base font-bold text-gray-900 flex items-center gap-2", children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "w-2.5 h-2.5 rounded-full bg-blue-600" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 496,
+                  lineNumber: 626,
                   columnNumber: 37
                 }, this),
                 "Insert QR Codes into Column"
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 495,
+                lineNumber: 625,
                 columnNumber: 33
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("p", { className: "text-xs text-gray-500 mt-0.5", children: "Choose an Attachment column (to save QR images directly) or a Text/URL column" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 499,
+                lineNumber: 629,
                 columnNumber: 33
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 494,
+              lineNumber: 624,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "flex items-center space-x-2 text-xs font-semibold text-gray-700 bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-xl cursor-pointer hover:bg-gray-100 transition", children: [
@@ -50919,31 +51043,31 @@ ${buttonLinkStyle}`;
                 false,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 506,
+                  lineNumber: 636,
                   columnNumber: 33
                 },
                 this
               ),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { children: "Auto-Sync new / empty records automatically" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 512,
+                lineNumber: 642,
                 columnNumber: 33
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 505,
+              lineNumber: 635,
               columnNumber: 29
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 493,
+            lineNumber: 623,
             columnNumber: 25
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "grid grid-cols-1 md:grid-cols-3 gap-4 pt-1", children: [
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-xs font-bold text-gray-700 mb-1", children: "1. Target Column (Destination)" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 519,
+                lineNumber: 649,
                 columnNumber: 33
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -50952,6 +51076,7 @@ ${buttonLinkStyle}`;
                   value: targetFieldId,
                   onChange: (e) => {
                     setTargetFieldId(e.target.value);
+                    setInFlightIds(/* @__PURE__ */ new Set());
                     const found = fields.find((f) => f.id === e.target.value);
                     if (found?.type === "multipleAttachments") {
                       setInsertMode("image-attachment");
@@ -50965,7 +51090,7 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "-- Choose Target Column --" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 537,
+                      lineNumber: 668,
                       columnNumber: 37
                     }, this),
                     fields.map((f) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: f.id, children: [
@@ -50975,7 +51100,7 @@ ${buttonLinkStyle}`;
                       ")"
                     ] }, f.id, true, {
                       fileName: "frontend/index.js",
-                      lineNumber: 539,
+                      lineNumber: 670,
                       columnNumber: 41
                     }, this))
                   ]
@@ -50984,20 +51109,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 522,
+                  lineNumber: 652,
                   columnNumber: 33
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 518,
+              lineNumber: 648,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-xs font-bold text-gray-700 mb-1", children: "2. Format to Insert" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 547,
+                lineNumber: 678,
                 columnNumber: 33
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51009,27 +51134,27 @@ ${buttonLinkStyle}`;
                   className: "w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none disabled:opacity-75 disabled:bg-gray-100",
                   children: isAttachmentTarget ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "image-attachment", children: "PNG Image Attachment (Direct file upload)" }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 557,
+                    lineNumber: 688,
                     columnNumber: 41
                   }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(import_jsx_dev_runtime.Fragment, { children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "payload-text", children: "Raw QR Payload Text (e.g. SKU or URL)" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 562,
+                      lineNumber: 693,
                       columnNumber: 45
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "image-url", children: "Direct QR Image URL (QuickChart / QRServer)" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 563,
+                      lineNumber: 694,
                       columnNumber: 45
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "image-attachment", children: "PNG Attachment (Requires Attachment column)" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 564,
+                      lineNumber: 695,
                       columnNumber: 45
                     }, this)
                   ] }, void 0, true, {
                     fileName: "frontend/index.js",
-                    lineNumber: 561,
+                    lineNumber: 692,
                     columnNumber: 41
                   }, this)
                 },
@@ -51037,74 +51162,58 @@ ${buttonLinkStyle}`;
                 false,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 550,
+                  lineNumber: 681,
                   columnNumber: 33
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 546,
+              lineNumber: 677,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-xs font-bold text-gray-700 mb-1", children: "3. Scope / Filter" }, void 0, false, {
+              /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-xs font-bold text-gray-700 mb-1", children: "3. Generation Scope" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 571,
+                lineNumber: 702,
                 columnNumber: 33
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
-                "select",
-                {
-                  value: syncFilter,
-                  onChange: (e) => setSyncFilter(e.target.value),
-                  className: "w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs text-gray-900 focus:ring-2 focus:ring-blue-500 outline-none",
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "missing-only", children: "Only Missing (Skip records that already have QR)" }, void 0, false, {
-                      fileName: "frontend/index.js",
-                      lineNumber: 579,
-                      columnNumber: 37
-                    }, this),
-                    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "all", children: [
-                      "Overwrite All (",
-                      records?.length || 0,
-                      " records)"
-                    ] }, void 0, true, {
-                      fileName: "frontend/index.js",
-                      lineNumber: 582,
-                      columnNumber: 37
-                    }, this)
-                  ]
-                },
-                void 0,
-                true,
-                {
+              /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "w-full bg-gray-50 border border-gray-300 rounded-xl px-3 py-2 text-xs flex items-center justify-between", children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-semibold text-gray-800", children: "Only Unset Records" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 574,
-                  columnNumber: 33
-                },
-                this
-              )
+                  lineNumber: 706,
+                  columnNumber: 37
+                }, this),
+                /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-[10px] text-green-700 font-bold bg-green-50 px-2 py-0.5 rounded-full border border-green-200", children: "Preserves Set QRs" }, void 0, false, {
+                  fileName: "frontend/index.js",
+                  lineNumber: 707,
+                  columnNumber: 37
+                }, this)
+              ] }, void 0, true, {
+                fileName: "frontend/index.js",
+                lineNumber: 705,
+                columnNumber: 33
+              }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 570,
+              lineNumber: 701,
               columnNumber: 29
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 517,
+            lineNumber: 647,
             columnNumber: 25
           }, this),
-          syncMessage && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: `p-3.5 rounded-xl text-xs font-medium ${syncMessage.type === "success" ? "bg-green-50 text-green-800 border border-green-200" : "bg-red-50 text-red-800 border border-red-200"}`, children: syncMessage.text }, void 0, false, {
+          syncMessage && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: `p-3.5 rounded-xl text-xs font-medium ${syncMessage.type === "success" ? "bg-green-50 text-green-800 border border-green-200" : syncMessage.type === "info" ? "bg-blue-50 text-blue-800 border border-blue-200" : "bg-red-50 text-red-800 border border-red-200"}`, children: syncMessage.text }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 591,
+            lineNumber: 716,
             columnNumber: 29
           }, this),
           isSyncing && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "space-y-1.5 pt-1", children: [
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex justify-between text-xs text-gray-600 font-semibold", children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { children: "Inserting QR codes..." }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 604,
+                lineNumber: 731,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { children: [
@@ -51113,12 +51222,12 @@ ${buttonLinkStyle}`;
                 syncProgress.total
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 605,
+                lineNumber: 732,
                 columnNumber: 37
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 603,
+              lineNumber: 730,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "w-full bg-gray-100 rounded-full h-3 overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51131,18 +51240,18 @@ ${buttonLinkStyle}`;
               false,
               {
                 fileName: "frontend/index.js",
-                lineNumber: 608,
+                lineNumber: 735,
                 columnNumber: 37
               },
               this
             ) }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 607,
+              lineNumber: 734,
               columnNumber: 33
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 602,
+            lineNumber: 729,
             columnNumber: 29
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100", children: [
@@ -51150,7 +51259,7 @@ ${buttonLinkStyle}`;
               "Target: ",
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("strong", { children: targetField.name }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 621,
+                lineNumber: 748,
                 columnNumber: 49
               }, this),
               " (",
@@ -51159,61 +51268,61 @@ ${buttonLinkStyle}`;
               " ",
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-amber-600 font-semibold", children: [
                 missingRecords.length,
-                " empty / missing QR"
+                " unset records"
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 622,
+                lineNumber: 749,
                 columnNumber: 41
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 620,
+              lineNumber: 747,
               columnNumber: 37
             }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-gray-400 italic", children: "Select a target column above to begin" }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 627,
+              lineNumber: 754,
               columnNumber: 37
             }, this) }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 618,
+              lineNumber: 745,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
               "button",
               {
                 onClick: handleRunBatchInsert,
-                disabled: isSyncing || !targetField || !records?.length,
+                disabled: isSyncing || !targetField || !records?.length || missingRecords.length === 0,
                 className: "px-5 py-2.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 text-white rounded-xl text-xs font-bold shadow transition flex items-center gap-2",
                 children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M13 10V3L4 14h7v7l9-11h-7z" }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 637,
+                    lineNumber: 764,
                     columnNumber: 37
                   }, this) }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 636,
+                    lineNumber: 763,
                     columnNumber: 33
                   }, this),
-                  isSyncing ? "Syncing In Progress..." : syncFilter === "missing-only" ? `Auto-Generate (${missingRecords.length} Missing)` : `Update All (${records?.length || 0} Records)`
+                  isSyncing ? "Generating QR Codes..." : missingRecords.length === 0 ? `All QR Codes Set (${records?.length || 0})` : `Generate Missing (${missingRecords.length} Unset)`
                 ]
               },
               void 0,
               true,
               {
                 fileName: "frontend/index.js",
-                lineNumber: 631,
+                lineNumber: 758,
                 columnNumber: 29
               },
               this
             )
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 617,
+            lineNumber: 744,
             columnNumber: 25
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 492,
+          lineNumber: 622,
           columnNumber: 21
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden", children: [
@@ -51221,34 +51330,34 @@ ${buttonLinkStyle}`;
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h3", { className: "text-sm font-bold text-gray-900", children: "Records & Live QR Preview" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 652,
+                lineNumber: 779,
                 columnNumber: 33
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("p", { className: "text-xs text-gray-500", children: "Test or generate individual rows or verify before bulk updating" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 653,
+                lineNumber: 780,
                 columnNumber: 33
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 651,
+              lineNumber: 778,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-xs text-gray-500", children: "Showing first 50 records" }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 655,
+              lineNumber: 782,
               columnNumber: 29
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 650,
+            lineNumber: 777,
             columnNumber: 25
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("table", { className: "w-full text-left text-xs", children: [
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("thead", { className: "bg-gray-50 text-gray-600 font-semibold border-b border-gray-200", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("tr", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("th", { className: "py-3 px-4", children: "Record Name" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 662,
+                lineNumber: 789,
                 columnNumber: 41
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("th", { className: "py-3 px-4", children: [
@@ -51257,12 +51366,12 @@ ${buttonLinkStyle}`;
                 ")"
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 663,
+                lineNumber: 790,
                 columnNumber: 41
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("th", { className: "py-3 px-4", children: "QR Preview" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 666,
+                lineNumber: 793,
                 columnNumber: 41
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("th", { className: "py-3 px-4", children: [
@@ -51271,26 +51380,27 @@ ${buttonLinkStyle}`;
                 ")"
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 667,
+                lineNumber: 794,
                 columnNumber: 41
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("th", { className: "py-3 px-4 text-right", children: "Action" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 668,
+                lineNumber: 795,
                 columnNumber: 41
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 661,
+              lineNumber: 788,
               columnNumber: 37
             }, this) }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 660,
+              lineNumber: 787,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("tbody", { className: "divide-y divide-gray-100 text-gray-700", children: (records || []).slice(0, 50).map((record) => {
               const payload = getPayloadForRecord(record);
-              const hasData = recordHasTargetData(record);
+              const isSet = isRecordSet(record);
+              const isPending = inFlightIds.has(record.id);
               const qrSvg = generateQRCodeSvg(payload || " ", {
                 errorCorrection,
                 fgColor,
@@ -51300,16 +51410,16 @@ ${buttonLinkStyle}`;
               return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("tr", { className: "hover:bg-gray-50 transition", children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("td", { className: "py-2.5 px-4 font-semibold text-gray-900", children: record.name || record.id }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 684,
+                  lineNumber: 812,
                   columnNumber: 49
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("td", { className: "py-2.5 px-4 font-mono text-[11px] text-gray-600 max-w-xs truncate", children: payload || /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-gray-300 italic", children: "Empty" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 688,
+                  lineNumber: 816,
                   columnNumber: 65
                 }, this) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 687,
+                  lineNumber: 815,
                   columnNumber: 49
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("td", { className: "py-2 px-4", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51322,48 +51432,67 @@ ${buttonLinkStyle}`;
                   false,
                   {
                     fileName: "frontend/index.js",
-                    lineNumber: 691,
+                    lineNumber: 819,
                     columnNumber: 53
                   },
                   this
                 ) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 690,
+                  lineNumber: 818,
                   columnNumber: 49
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("td", { className: "py-2.5 px-4", children: !targetField ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "text-gray-400 italic", children: "Select column" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 698,
+                  lineNumber: 826,
                   columnNumber: 57
-                }, this) : hasData ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded-md font-medium border border-green-200", children: [
+                }, this) : isPending ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "inline-flex items-center gap-1 text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md font-medium border border-blue-200 animate-pulse", children: "Setting..." }, void 0, false, {
+                  fileName: "frontend/index.js",
+                  lineNumber: 828,
+                  columnNumber: 57
+                }, this) : isSet ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded-md font-medium border border-green-200", children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-3 h-3", fill: "currentColor", viewBox: "0 0 20 20", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { fillRule: "evenodd", d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z", clipRule: "evenodd" }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 702,
+                    lineNumber: 834,
                     columnNumber: 65
                   }, this) }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 701,
+                    lineNumber: 833,
                     columnNumber: 61
                   }, this),
                   "Set / Ready"
                 ] }, void 0, true, {
                   fileName: "frontend/index.js",
-                  lineNumber: 700,
+                  lineNumber: 832,
                   columnNumber: 57
-                }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "inline-flex items-center gap-1 text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md font-medium border border-amber-200", children: "Empty" }, void 0, false, {
+                }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "inline-flex items-center gap-1 text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md font-medium border border-amber-200", children: "Unset" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 707,
+                  lineNumber: 839,
                   columnNumber: 57
                 }, this) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 696,
+                  lineNumber: 824,
                   columnNumber: 49
                 }, this),
-                /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("td", { className: "py-2.5 px-4 text-right", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
+                /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("td", { className: "py-2.5 px-4 text-right", children: isSet || isPending ? /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "inline-flex items-center gap-1 text-[11px] font-semibold text-gray-400 bg-gray-50 border border-gray-200 px-2.5 py-1 rounded-lg select-none", children: [
+                  /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-3 h-3 text-green-600", fill: "currentColor", viewBox: "0 0 20 20", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { fillRule: "evenodd", d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z", clipRule: "evenodd" }, void 0, false, {
+                    fileName: "frontend/index.js",
+                    lineNumber: 848,
+                    columnNumber: 65
+                  }, this) }, void 0, false, {
+                    fileName: "frontend/index.js",
+                    lineNumber: 847,
+                    columnNumber: 61
+                  }, this),
+                  "Set"
+                ] }, void 0, true, {
+                  fileName: "frontend/index.js",
+                  lineNumber: 846,
+                  columnNumber: 57
+                }, this) : /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
                   "button",
                   {
                     onClick: () => handleUpdateSingleRecord(record),
-                    disabled: !targetField || !payload,
+                    disabled: !targetField || !payload || isSyncing,
                     className: "px-2.5 py-1 bg-gray-100 hover:bg-blue-50 hover:text-blue-600 disabled:opacity-40 rounded-lg border border-gray-300 text-[11px] font-semibold transition",
                     children: "Insert"
                   },
@@ -51371,42 +51500,42 @@ ${buttonLinkStyle}`;
                   false,
                   {
                     fileName: "frontend/index.js",
-                    lineNumber: 713,
-                    columnNumber: 53
+                    lineNumber: 853,
+                    columnNumber: 57
                   },
                   this
                 ) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 712,
+                  lineNumber: 844,
                   columnNumber: 49
                 }, this)
               ] }, record.id, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 683,
+                lineNumber: 811,
                 columnNumber: 45
               }, this);
             }) }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 671,
+              lineNumber: 798,
               columnNumber: 33
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 659,
+            lineNumber: 786,
             columnNumber: 29
           }, this) }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 658,
+            lineNumber: 785,
             columnNumber: 25
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 649,
+          lineNumber: 776,
           columnNumber: 21
         }, this)
       ] }, void 0, true, {
         fileName: "frontend/index.js",
-        lineNumber: 490,
+        lineNumber: 620,
         columnNumber: 17
       }, this),
       activeTab === "avery-print" && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex-1 flex flex-col", children: [
@@ -51416,27 +51545,27 @@ ${buttonLinkStyle}`;
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center gap-2", children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h2", { className: "text-base font-bold text-gray-900", children: "Avery 8160 / 5160 Easy Peel Exporter" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 742,
+                  lineNumber: 883,
                   columnNumber: 41
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "bg-blue-100 text-blue-800 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase", children: '30 Labels / Sheet \u2022 2-5/8" \xD7 1"' }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 743,
+                  lineNumber: 884,
                   columnNumber: 41
                 }, this)
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 741,
+                lineNumber: 882,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("p", { className: "text-xs text-gray-500 mt-0.5", children: 'Compatible with Avery 5160, 8160, 88560, 8460, 5260, 5960, and 6570 on 8.5" \xD7 11" Letter paper' }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 747,
+                lineNumber: 888,
                 columnNumber: 37
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 740,
+              lineNumber: 881,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-3", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51447,11 +51576,11 @@ ${buttonLinkStyle}`;
                 children: [
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 758,
+                    lineNumber: 899,
                     columnNumber: 45
                   }, this) }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 757,
+                    lineNumber: 898,
                     columnNumber: 41
                   }, this),
                   "Print / Save to PDF (",
@@ -51465,25 +51594,25 @@ ${buttonLinkStyle}`;
               true,
               {
                 fileName: "frontend/index.js",
-                lineNumber: 753,
+                lineNumber: 894,
                 columnNumber: 37
               },
               this
             ) }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 752,
+              lineNumber: 893,
               columnNumber: 33
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 739,
+            lineNumber: 880,
             columnNumber: 29
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "grid grid-cols-2 md:grid-cols-7 gap-2.5 text-xs", children: [
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "Layout Preset" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 768,
+                lineNumber: 909,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51495,22 +51624,22 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "qr-left", children: "QR Left + Text Right" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 774,
+                      lineNumber: 915,
                       columnNumber: 41
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "qr-right", children: "Text Left + QR Right" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 775,
+                      lineNumber: 916,
                       columnNumber: 41
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "qr-center", children: "QR Center + Text Bottom" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 776,
+                      lineNumber: 917,
                       columnNumber: 41
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "qr-only", children: "Large QR Only" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 777,
+                      lineNumber: 918,
                       columnNumber: 41
                     }, this)
                   ]
@@ -51519,20 +51648,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 769,
+                  lineNumber: 910,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 767,
+              lineNumber: 908,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "QR Code Size" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 782,
+                lineNumber: 923,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51544,17 +51673,17 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "compact", children: 'Compact (0.60" - Max text)' }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 788,
+                      lineNumber: 929,
                       columnNumber: 41
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "medium", children: 'Standard (0.66" - Balanced)' }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 789,
+                      lineNumber: 930,
                       columnNumber: 41
                     }, this),
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "large", children: 'Large (0.75")' }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 790,
+                      lineNumber: 931,
                       columnNumber: 41
                     }, this)
                   ]
@@ -51563,20 +51692,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 783,
+                  lineNumber: 924,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 781,
+              lineNumber: 922,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "Title Field" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 795,
+                lineNumber: 936,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51588,12 +51717,12 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "Primary Field" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 801,
+                      lineNumber: 942,
                       columnNumber: 41
                     }, this),
                     fields.map((f) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: f.id, children: f.name }, f.id, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 803,
+                      lineNumber: 944,
                       columnNumber: 45
                     }, this))
                   ]
@@ -51602,20 +51731,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 796,
+                  lineNumber: 937,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 794,
+              lineNumber: 935,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "Subtitle / SKU" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 809,
+                lineNumber: 950,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51627,12 +51756,12 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "None" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 815,
+                      lineNumber: 956,
                       columnNumber: 41
                     }, this),
                     fields.map((f) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: f.id, children: f.name }, f.id, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 817,
+                      lineNumber: 958,
                       columnNumber: 45
                     }, this))
                   ]
@@ -51641,20 +51770,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 810,
+                  lineNumber: 951,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 808,
+              lineNumber: 949,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "Price / Detail" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 823,
+                lineNumber: 964,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51666,12 +51795,12 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "None" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 829,
+                      lineNumber: 970,
                       columnNumber: 41
                     }, this),
                     fields.map((f) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: f.id, children: f.name }, f.id, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 831,
+                      lineNumber: 972,
                       columnNumber: 45
                     }, this))
                   ]
@@ -51680,20 +51809,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 824,
+                  lineNumber: 965,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 822,
+              lineNumber: 963,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "Qty Multiplier" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 837,
+                lineNumber: 978,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51705,7 +51834,7 @@ ${buttonLinkStyle}`;
                   children: [
                     /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "", children: "1 per record" }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 843,
+                      lineNumber: 984,
                       columnNumber: 41
                     }, this),
                     fields.filter((f) => f.type === "number").map((f) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: f.id, children: [
@@ -51713,7 +51842,7 @@ ${buttonLinkStyle}`;
                       " (Qty)"
                     ] }, f.id, true, {
                       fileName: "frontend/index.js",
-                      lineNumber: 845,
+                      lineNumber: 986,
                       columnNumber: 45
                     }, this))
                   ]
@@ -51722,20 +51851,20 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 838,
+                  lineNumber: 979,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 836,
+              lineNumber: 977,
               columnNumber: 33
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-700 font-bold mb-1", children: "Start Label # (1-30)" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 851,
+                lineNumber: 992,
                 columnNumber: 37
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51753,28 +51882,28 @@ ${buttonLinkStyle}`;
                 false,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 852,
+                  lineNumber: 993,
                   columnNumber: 37
                 },
                 this
               )
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 850,
+              lineNumber: 991,
               columnNumber: 33
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 766,
+            lineNumber: 907,
             columnNumber: 29
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 738,
+          lineNumber: 879,
           columnNumber: 25
         }, this) }, void 0, false, {
           fileName: "frontend/index.js",
-          lineNumber: 737,
+          lineNumber: 878,
           columnNumber: 21
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex-1 bg-gray-200 p-6 overflow-auto", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "space-y-8", children: sheets.map((sheetLabels, sheetIndex) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51793,7 +51922,7 @@ ${buttonLinkStyle}`;
                   false,
                   {
                     fileName: "frontend/index.js",
-                    lineNumber: 878,
+                    lineNumber: 1019,
                     columnNumber: 53
                   },
                   this
@@ -51816,7 +51945,7 @@ ${buttonLinkStyle}`;
                         false,
                         {
                           fileName: "frontend/index.js",
-                          lineNumber: 894,
+                          lineNumber: 1035,
                           columnNumber: 61
                         },
                         this
@@ -51824,49 +51953,49 @@ ${buttonLinkStyle}`;
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex-1 min-w-0 flex flex-col justify-center overflow-hidden pr-0.5", children: [
                         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[9.5px] leading-[1.2] font-bold text-gray-900 break-words line-clamp-2", children: lbl.title }, void 0, false, {
                           fileName: "frontend/index.js",
-                          lineNumber: 900,
+                          lineNumber: 1041,
                           columnNumber: 65
                         }, this),
                         lbl.subtitle && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[8px] font-mono text-gray-600 truncate mt-0.5 leading-none", children: lbl.subtitle }, void 0, false, {
                           fileName: "frontend/index.js",
-                          lineNumber: 904,
+                          lineNumber: 1045,
                           columnNumber: 69
                         }, this),
                         lbl.detail && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[8px] font-semibold text-blue-700 truncate mt-0.5 leading-none", children: lbl.detail }, void 0, false, {
                           fileName: "frontend/index.js",
-                          lineNumber: 909,
+                          lineNumber: 1050,
                           columnNumber: 69
                         }, this)
                       ] }, void 0, true, {
                         fileName: "frontend/index.js",
-                        lineNumber: 899,
+                        lineNumber: 1040,
                         columnNumber: 61
                       }, this)
                     ] }, void 0, true, {
                       fileName: "frontend/index.js",
-                      lineNumber: 893,
+                      lineNumber: 1034,
                       columnNumber: 57
                     }, this),
                     labelLayout === "qr-right" && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center w-full h-full gap-2 overflow-hidden", children: [
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex-1 min-w-0 flex flex-col justify-center overflow-hidden pr-0.5", children: [
                         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[9.5px] leading-[1.2] font-bold text-gray-900 break-words line-clamp-2", children: lbl.title }, void 0, false, {
                           fileName: "frontend/index.js",
-                          lineNumber: 920,
+                          lineNumber: 1061,
                           columnNumber: 65
                         }, this),
                         lbl.subtitle && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[8px] font-mono text-gray-600 truncate mt-0.5 leading-none", children: lbl.subtitle }, void 0, false, {
                           fileName: "frontend/index.js",
-                          lineNumber: 924,
+                          lineNumber: 1065,
                           columnNumber: 69
                         }, this),
                         lbl.detail && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[8px] font-semibold text-blue-700 truncate mt-0.5 leading-none", children: lbl.detail }, void 0, false, {
                           fileName: "frontend/index.js",
-                          lineNumber: 929,
+                          lineNumber: 1070,
                           columnNumber: 69
                         }, this)
                       ] }, void 0, true, {
                         fileName: "frontend/index.js",
-                        lineNumber: 919,
+                        lineNumber: 1060,
                         columnNumber: 61
                       }, this),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51880,14 +52009,14 @@ ${buttonLinkStyle}`;
                         false,
                         {
                           fileName: "frontend/index.js",
-                          lineNumber: 934,
+                          lineNumber: 1075,
                           columnNumber: 61
                         },
                         this
                       )
                     ] }, void 0, true, {
                       fileName: "frontend/index.js",
-                      lineNumber: 918,
+                      lineNumber: 1059,
                       columnNumber: 57
                     }, this),
                     labelLayout === "qr-center" && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex flex-col items-center justify-center w-full h-full overflow-hidden text-center", children: [
@@ -51902,19 +52031,19 @@ ${buttonLinkStyle}`;
                         false,
                         {
                           fileName: "frontend/index.js",
-                          lineNumber: 944,
+                          lineNumber: 1085,
                           columnNumber: 61
                         },
                         this
                       ),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "text-[8.5px] leading-[1.15] font-bold text-gray-900 break-words line-clamp-2 w-full mt-0.5 px-0.5", children: lbl.title }, void 0, false, {
                         fileName: "frontend/index.js",
-                        lineNumber: 949,
+                        lineNumber: 1090,
                         columnNumber: 61
                       }, this)
                     ] }, void 0, true, {
                       fileName: "frontend/index.js",
-                      lineNumber: 943,
+                      lineNumber: 1084,
                       columnNumber: 57
                     }, this),
                     labelLayout === "qr-only" && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center justify-center w-full h-full overflow-hidden", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -51928,13 +52057,13 @@ ${buttonLinkStyle}`;
                       false,
                       {
                         fileName: "frontend/index.js",
-                        lineNumber: 957,
+                        lineNumber: 1098,
                         columnNumber: 61
                       },
                       this
                     ) }, void 0, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 956,
+                      lineNumber: 1097,
                       columnNumber: 57
                     }, this)
                   ]
@@ -51943,14 +52072,14 @@ ${buttonLinkStyle}`;
                 true,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 888,
+                  lineNumber: 1029,
                   columnNumber: 49
                 },
                 this
               );
             }) }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 874,
+              lineNumber: 1015,
               columnNumber: 37
             }, this)
           },
@@ -51958,22 +52087,22 @@ ${buttonLinkStyle}`;
           false,
           {
             fileName: "frontend/index.js",
-            lineNumber: 870,
+            lineNumber: 1011,
             columnNumber: 33
           },
           this
         )) }, void 0, false, {
           fileName: "frontend/index.js",
-          lineNumber: 868,
+          lineNumber: 1009,
           columnNumber: 25
         }, this) }, void 0, false, {
           fileName: "frontend/index.js",
-          lineNumber: 867,
+          lineNumber: 1008,
           columnNumber: 21
         }, this)
       ] }, void 0, true, {
         fileName: "frontend/index.js",
-        lineNumber: 735,
+        lineNumber: 876,
         columnNumber: 17
       }, this),
       activeTab === "designer" && /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("main", { className: "no-print flex-1 p-6 max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-6", children: [
@@ -51982,20 +52111,20 @@ ${buttonLinkStyle}`;
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h2", { className: "text-sm font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2", children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "w-2 h-2 rounded-full bg-blue-500" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 983,
+                lineNumber: 1124,
                 columnNumber: 33
               }, this),
               "QR Code Properties"
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 982,
+              lineNumber: 1123,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "grid grid-cols-2 gap-3 text-xs", children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-600 font-medium mb-1", children: "Error Correction" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 989,
+                  lineNumber: 1130,
                   columnNumber: 37
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -52007,22 +52136,22 @@ ${buttonLinkStyle}`;
                     children: [
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "L", children: "L (7% recovery)" }, void 0, false, {
                         fileName: "frontend/index.js",
-                        lineNumber: 995,
+                        lineNumber: 1136,
                         columnNumber: 41
                       }, this),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "M", children: "M (15% - Recommended)" }, void 0, false, {
                         fileName: "frontend/index.js",
-                        lineNumber: 996,
+                        lineNumber: 1137,
                         columnNumber: 41
                       }, this),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "Q", children: "Q (25% recovery)" }, void 0, false, {
                         fileName: "frontend/index.js",
-                        lineNumber: 997,
+                        lineNumber: 1138,
                         columnNumber: 41
                       }, this),
                       /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: "H", children: "H (30% high resilience)" }, void 0, false, {
                         fileName: "frontend/index.js",
-                        lineNumber: 998,
+                        lineNumber: 1139,
                         columnNumber: 41
                       }, this)
                     ]
@@ -52031,20 +52160,20 @@ ${buttonLinkStyle}`;
                   true,
                   {
                     fileName: "frontend/index.js",
-                    lineNumber: 990,
+                    lineNumber: 1131,
                     columnNumber: 37
                   },
                   this
                 )
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 988,
+                lineNumber: 1129,
                 columnNumber: 33
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-600 font-medium mb-1", children: "Preview Record" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1003,
+                  lineNumber: 1144,
                   columnNumber: 37
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
@@ -52055,7 +52184,7 @@ ${buttonLinkStyle}`;
                     className: "w-full bg-gray-50 border border-gray-300 rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-blue-500 truncate",
                     children: (records || []).slice(0, 100).map((r) => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("option", { value: r.id, children: r.name || r.id }, r.id, false, {
                       fileName: "frontend/index.js",
-                      lineNumber: 1010,
+                      lineNumber: 1151,
                       columnNumber: 45
                     }, this))
                   },
@@ -52063,26 +52192,26 @@ ${buttonLinkStyle}`;
                   false,
                   {
                     fileName: "frontend/index.js",
-                    lineNumber: 1004,
+                    lineNumber: 1145,
                     columnNumber: 37
                   },
                   this
                 )
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 1002,
+                lineNumber: 1143,
                 columnNumber: 33
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 987,
+              lineNumber: 1128,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "grid grid-cols-2 gap-3 text-xs pt-2", children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-600 font-medium mb-1", children: "QR Foreground" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1020,
+                  lineNumber: 1161,
                   columnNumber: 37
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2", children: [
@@ -52098,30 +52227,30 @@ ${buttonLinkStyle}`;
                     false,
                     {
                       fileName: "frontend/index.js",
-                      lineNumber: 1022,
+                      lineNumber: 1163,
                       columnNumber: 41
                     },
                     this
                   ),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-mono text-gray-700 uppercase", children: fgColor }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 1028,
+                    lineNumber: 1169,
                     columnNumber: 41
                   }, this)
                 ] }, void 0, true, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1021,
+                  lineNumber: 1162,
                   columnNumber: 37
                 }, this)
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 1019,
+                lineNumber: 1160,
                 columnNumber: 33
               }, this),
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("label", { className: "block text-gray-600 font-medium mb-1", children: "QR Background" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1033,
+                  lineNumber: 1174,
                   columnNumber: 37
                 }, this),
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "flex items-center space-x-2", children: [
@@ -52137,62 +52266,62 @@ ${buttonLinkStyle}`;
                     false,
                     {
                       fileName: "frontend/index.js",
-                      lineNumber: 1035,
+                      lineNumber: 1176,
                       columnNumber: 41
                     },
                     this
                   ),
                   /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "font-mono text-gray-700 uppercase", children: bgColor }, void 0, false, {
                     fileName: "frontend/index.js",
-                    lineNumber: 1041,
+                    lineNumber: 1182,
                     columnNumber: 41
                   }, this)
                 ] }, void 0, true, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1034,
+                  lineNumber: 1175,
                   columnNumber: 37
                 }, this)
               ] }, void 0, true, {
                 fileName: "frontend/index.js",
-                lineNumber: 1032,
+                lineNumber: 1173,
                 columnNumber: 33
               }, this)
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 1018,
+              lineNumber: 1159,
               columnNumber: 29
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 981,
+            lineNumber: 1122,
             columnNumber: 25
           }, this),
           /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "bg-white rounded-2xl p-6 shadow-sm border border-gray-200 space-y-3", children: [
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("h2", { className: "text-sm font-bold text-gray-800 uppercase tracking-wider flex items-center gap-2", children: [
               /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("span", { className: "w-2 h-2 rounded-full bg-green-500" }, void 0, false, {
                 fileName: "frontend/index.js",
-                lineNumber: 1049,
+                lineNumber: 1190,
                 columnNumber: 33
               }, this),
               "Encoded String Preview"
             ] }, void 0, true, {
               fileName: "frontend/index.js",
-              lineNumber: 1048,
+              lineNumber: 1189,
               columnNumber: 29
             }, this),
             /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "p-3 bg-gray-50 border border-gray-200 rounded-xl font-mono text-xs text-gray-800 break-all select-all", children: previewRecord ? getPayloadForRecord(previewRecord) : "No record selected" }, void 0, false, {
               fileName: "frontend/index.js",
-              lineNumber: 1052,
+              lineNumber: 1193,
               columnNumber: 29
             }, this)
           ] }, void 0, true, {
             fileName: "frontend/index.js",
-            lineNumber: 1047,
+            lineNumber: 1188,
             columnNumber: 25
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 980,
+          lineNumber: 1121,
           columnNumber: 21
         }, this),
         /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { className: "md:col-span-6 flex flex-col items-center justify-center bg-white rounded-2xl p-8 shadow-sm border border-gray-200 text-center", children: [
@@ -52216,7 +52345,7 @@ ${buttonLinkStyle}`;
                 false,
                 {
                   fileName: "frontend/index.js",
-                  lineNumber: 1063,
+                  lineNumber: 1204,
                   columnNumber: 29
                 },
                 this
@@ -52226,7 +52355,7 @@ ${buttonLinkStyle}`;
             false,
             {
               fileName: "frontend/index.js",
-              lineNumber: 1059,
+              lineNumber: 1200,
               columnNumber: 25
             },
             this
@@ -52239,11 +52368,11 @@ ${buttonLinkStyle}`;
               children: [
                 /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("svg", { className: "w-4 h-4", fill: "none", stroke: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1080,
+                  lineNumber: 1221,
                   columnNumber: 37
                 }, this) }, void 0, false, {
                   fileName: "frontend/index.js",
-                  lineNumber: 1079,
+                  lineNumber: 1220,
                   columnNumber: 33
                 }, this),
                 "Download PNG (512x512)"
@@ -52253,28 +52382,28 @@ ${buttonLinkStyle}`;
             true,
             {
               fileName: "frontend/index.js",
-              lineNumber: 1075,
+              lineNumber: 1216,
               columnNumber: 29
             },
             this
           ) }, void 0, false, {
             fileName: "frontend/index.js",
-            lineNumber: 1074,
+            lineNumber: 1215,
             columnNumber: 25
           }, this)
         ] }, void 0, true, {
           fileName: "frontend/index.js",
-          lineNumber: 1058,
+          lineNumber: 1199,
           columnNumber: 21
         }, this)
       ] }, void 0, true, {
         fileName: "frontend/index.js",
-        lineNumber: 979,
+        lineNumber: 1120,
         columnNumber: 17
       }, this)
     ] }, void 0, true, {
       fileName: "frontend/index.js",
-      lineNumber: 350,
+      lineNumber: 473,
       columnNumber: 9
     }, this);
   }
@@ -52289,7 +52418,7 @@ ${buttonLinkStyle}`;
       LABELS_PER_SHEET = 30;
       initializeBlock(() => /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(QRGenerator, {}, void 0, false, {
         fileName: "frontend/index.js",
-        lineNumber: 1092,
+        lineNumber: 1233,
         columnNumber: 23
       }));
     }
